@@ -24,8 +24,9 @@ $this->menu=array(
 		'columns'=>array(
 			// 'id',
 			array(
-				'name' => 'Date',
-				'value' => 'date("d-M-Y", strtotime($data->dateCreated))'
+				'name' => 'dateCreated',
+				'header' => 'Date',
+				'value' => 'date("d-M-Y", strtotime($data->dateCreated))',
 			),
 			// 'dateLastModified',
 			array(
@@ -63,7 +64,7 @@ $this->menu=array(
 			),
 			array(
 				'class'=>'CButtonColumn',
-				'template'=>'{view} {delete}',
+				'template'=>'{view}',
 				'viewButtonUrl' => 'Yii::app()->controller->createUrl("detail", array("id" => $data->id))',
 			),
 		),

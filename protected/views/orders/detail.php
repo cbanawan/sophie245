@@ -12,7 +12,7 @@ $this->menu=array(
 ?>
 
 <div class="row">
-	<h3>Sales Order #<?php echo $order->id; ?></h3>
+	<h3>Sales Order # BC245<?php echo str_pad($order->id, 10, "0", STR_PAD_LEFT); ?></h3>
 
 	<?php $this->widget('zii.widgets.CDetailView', array(
 		'data'=>$order,
@@ -74,7 +74,7 @@ $this->menu=array(
 		?>
 	  </div>
 	  <div class="tab-pane <?php if($activeNavItem == 'payments') echo "active"; ?>" id="payments">
-		<?php echo CHtml::link('New Order', $this->createUrl('/payments/create', array('orderId' => $order->id))); ?>
+		<?php echo CHtml::link('Add Payment', $this->createUrl('/payments/create', array('orderId' => $order->id))); ?>
 		<?php 
 			$this->renderPartial(
 					'/payments/_list',

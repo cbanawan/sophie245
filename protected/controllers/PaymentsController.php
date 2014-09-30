@@ -81,11 +81,14 @@ class PaymentsController extends Controller
 			$model->dateLastModified = $model->dateCreated;
 		}
 		
+		$order = Orders::model()->findByPk($orderId);
+		
 		$paymentTypes = CHtml::listData(Paymenttypes::model()->findAll(), 'id', 'name');
 
 		$this->render('create',array(
 			'model' => $model,
 			'paymentTypes' => $paymentTypes,
+			'order' => $order,
 		));
 	}
 

@@ -36,11 +36,11 @@
 			<table class="table table-condensed">
 				<thead>
 					<tr>
-						<th style="text-align: center;">Quantity</th>
 						<th>Item Description</th>
 						<th style="text-align: right;">Catalog Price</th>
 						<th style="text-align: right;">Discount</th>
 						<th style="text-align: right;">Net Price</th>
+						<th style="text-align: center;">Quantity</th>
 						<th style="text-align: right;">Amount</th>
 					</tr>
 				</thead>
@@ -56,19 +56,19 @@
 						$totalNet += $amount;
 					?>
 						<tr>
-							<td style="text-align: center;"><?php echo $orderDetail->quantity; ?></td>
 							<td><?php echo $orderDetail->product->codename; ?></td>
 							<td style="text-align: right;"><?php echo number_format($orderDetail->product->catalogPrice, 2); ?></td>
 							<td style="text-align: right;"><?php echo $orderDetail->discount; ?> %</td>
 							<td style="text-align: right;"><?php echo number_format($netPrice, 2); ?></td>
+							<td style="text-align: center;"><?php echo $orderDetail->quantity; ?></td>
 							<td style="text-align: right;"><?php echo number_format($amount, 2); ?></td>
 						</tr>
 					<?php endforeach; ?>
 				</tbody>
 				<tfoot>
 					<tr>
-						<td colspan="3" style="text-align: right;"><em>Gross Total</em>: <strong>Php <?php echo number_format($totalGross, 2); ?></strong></td>
-						<td colspan="3" style="text-align: right;"><em>Total Amount</em>: <strong>Php <?php echo number_format($totalNet, 2); ?></strong></td>
+						<td colspan="2" style="text-align: right;"><em>Gross Total</em>: <strong>Php <?php echo number_format($totalGross, 2); ?></strong></td>
+						<td colspan="4" style="text-align: right;"><em>Total Amount</em>: <strong>Php <?php echo number_format($totalNet, 2); ?></strong></td>
 					</tr>
 				</tfoot>
 			</table>
@@ -80,20 +80,34 @@
 
 <div class="footer">
 	<div class="row-fluid">
-		<div class="span6">
+		<div class="span4">
 			<strong>Payments:</strong>
 			<br />
 			&nbsp;&nbsp;<em>Total Payments Made</em>: <strong>Php <?php echo number_format($order->totalPayment, 2); ?></strong>
 			<br />
 			&nbsp;&nbsp;<em>Balance Due</em>: <strong>Php <?php echo number_format($totalNet - $order->totalPayment, 2); ?></strong>
 		</div>
-		<div class="span6">
+		<div class="span4">
+			<div class="pull-right">
+			<strong>Received By:</strong>: 
+			<br /><br />
+			<table>
+				<tr>
+					<td>__________________________________</td>
+				</tr>
+				<tr>
+					<td align="center">&nbsp;</em></td>
+				</tr>
+			</table>
+			</div>
+		</div>
+		<div class="span4">
 			<div class="pull-right">
 			<strong>Customer Signature</strong>: 
 			<br /><br />
 			<table>
 				<tr>
-					<td>_________________________________________</td>
+					<td>___________________________________</td>
 				</tr>
 				<tr>
 					<td align="center"><em><?php echo $order->member->codename; ?></em></td>

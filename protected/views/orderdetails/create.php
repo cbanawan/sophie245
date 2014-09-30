@@ -13,7 +13,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create Orderdetails</h1>
+<h2>Add Order Detail</h2>
 <div class="row">
 	<div class="span-8">
 		<?php $this->renderPartial(
@@ -26,7 +26,7 @@ $this->menu=array(
 		?>
 	</div>
 	<div class="span-9">
-		<h3>For Order #<?php echo $order->id; ?></h3>
+		<h3>P.O. # BC245<?php echo str_pad($order->id, 10, "0", STR_PAD_LEFT); ?></h3>
 		<?php $this->widget('zii.widgets.CDetailView', array(
 			'data'=>$order,
 			'attributes'=>array(

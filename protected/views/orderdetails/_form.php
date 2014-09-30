@@ -14,6 +14,7 @@
 			'htmlOptions' => array(
 				// 'prepend' => TbHtml::icon(TbHtml::ICON_GLOBE),
 				'placeholder' => 'Enter product code/name',
+				'class' => 'span-8',
 			),
 		)); ?>		
 	</div>
