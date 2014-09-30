@@ -18,6 +18,8 @@
  * @property string $address2
  * @property integer $cityId
  * @property integer $fullName
+ * @property integer $sponsorCode
+ * @property integer $position
  *
  * The followings are the available model relations:
  * @property Members $sponsor
@@ -45,15 +47,15 @@ class Members extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('memberCode, cityId', 'required'),
-			array('sponsorId, _active, cityId', 'numerical', 'integerOnly'=>true),
+			array('memberCode, firstName, lastName, mobilePhone', 'required'),
+			// array('sponsorId,', 'numerical', 'integerOnly'=>true),
 			array('memberCode', 'length', 'max'=>10),
-			array('firstName, lastName, middleName, address1, address2', 'length', 'max'=>45),
-			array('homePhone, mobilePhone', 'length', 'max'=>13),
-			array('emailAddress', 'length', 'max'=>100),
+			// array('firstName, lastName, middleName, address1, address2', 'length', 'max'=>45),
+			// array('homePhone, mobilePhone', 'length', 'max'=>13),
+			// array('emailAddress', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, memberCode, firstName, lastName, middleName, sponsorId, _active, homePhone, mobilePhone, emailAddress, address1, address2, cityId', 'safe', 'on'=>'search'),
+			array('id, memberCode, firstName, lastName, middleName, sponsorId, sponsorCode, position, _active, homePhone, mobilePhone, emailAddress, address1, address2, cityId', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -94,6 +96,8 @@ class Members extends CActiveRecord
 			'address2' => 'Address2',
 			'cityId' => 'City',
 			'fullName' => 'Full Name',
+			'sponsorCode' => 'Sponsor Code',
+			'position' => 'Position',
 		);
 	}
 

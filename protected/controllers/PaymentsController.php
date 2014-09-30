@@ -71,7 +71,14 @@ class PaymentsController extends Controller
 		{
 			$model->attributes=$_POST['Payments'];
 			if($model->save())
+			{
+				// Order status to NEW
+				$order = Orders::model()->findByPk($model->orderId);
+				$order->orderStatusId = 1;
+				$order->save();
+				
 				$this->redirect($this->createUrl('orders/detail', array('id' => $model->orderId, 'navItem' => 'payments')));
+			}
 		}
 		else
 		{

@@ -7153,3 +7153,84 @@ Stack trace:
 REQUEST_URI=/index.php?r=orders/index
 HTTP_REFERER=http://localhost/index.php
 ---
+2014/10/01 00:16:30 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\sophie245\protected\controllers\MembersController.php:183)
+Stack trace:
+#0 C:\xampp\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#1 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\xampp\yii\framework\web\filters\CFilterChain.php(133): MembersController->runAction()
+#3 C:\xampp\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#4 C:\xampp\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#5 C:\xampp\yii\framework\web\filters\CInlineFilter.php(58): MembersController->filterAccessControl()
+#6 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#7 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#8 C:\xampp\yii\framework\web\CController.php(265): MembersController->runActionWithFilters()
+#9 C:\xampp\yii\framework\web\CWebApplication.php(282): MembersController->run()
+#10 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#11 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#12 C:\xampp\htdocs\sophie245\index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php?r=members/getMember&code=maric
+in C:\xampp\htdocs\sophie245\protected\controllers\MembersController.php (183)
+in C:\xampp\htdocs\sophie245\index.php (13)
+2014/10/01 00:16:41 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\sophie245\protected\controllers\MembersController.php:183)
+Stack trace:
+#0 C:\xampp\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#1 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\xampp\yii\framework\web\filters\CFilterChain.php(133): MembersController->runAction()
+#3 C:\xampp\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#4 C:\xampp\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#5 C:\xampp\yii\framework\web\filters\CInlineFilter.php(58): MembersController->filterAccessControl()
+#6 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#7 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#8 C:\xampp\yii\framework\web\CController.php(265): MembersController->runActionWithFilters()
+#9 C:\xampp\yii\framework\web\CWebApplication.php(282): MembersController->run()
+#10 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#11 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#12 C:\xampp\htdocs\sophie245\index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php?r=members/getMember&code=maric
+in C:\xampp\htdocs\sophie245\protected\controllers\MembersController.php (183)
+in C:\xampp\htdocs\sophie245\index.php (13)
+2014/10/01 00:21:37 [warning] [application] Failed to set unsafe attribute "remarks" of "Payments".
+in C:\xampp\htdocs\sophie245\protected\controllers\PaymentsController.php (72)
+in C:\xampp\htdocs\sophie245\index.php (13)
+2014/10/01 00:25:53 [warning] [application] Failed to set unsafe attribute "remarks" of "Payments".
+in C:\xampp\htdocs\sophie245\protected\controllers\PaymentsController.php (72)
+in C:\xampp\htdocs\sophie245\index.php (13)
+2014/10/01 00:28:26 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\sophie245\protected\views\orders\detail.php:15)
+Stack trace:
+#0 C:\xampp\yii\framework\web\CController.php(869): OrdersController->renderFile()
+#1 C:\xampp\yii\framework\web\CController.php(782): OrdersController->renderPartial()
+#2 C:\xampp\htdocs\sophie245\protected\controllers\OrdersController.php(99): OrdersController->render()
+#3 unknown(0): OrdersController->actionDetail()
+#4 C:\xampp\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#5 C:\xampp\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#6 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 C:\xampp\yii\framework\web\filters\CFilterChain.php(133): OrdersController->runAction()
+#8 C:\xampp\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 C:\xampp\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#10 C:\xampp\yii\framework\web\filters\CInlineFilter.php(58): OrdersController->filterAccessControl()
+#11 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#12 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#13 C:\xampp\yii\framework\web\CController.php(265): OrdersController->runActionWithFilters()
+#14 C:\xampp\yii\framework\web\CWebApplication.php(282): OrdersController->run()
+#15 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#16 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\sophie245\index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php?r=orders/detail&id=4
+in C:\xampp\htdocs\sophie245\protected\views\orders\detail.php (15)
+in C:\xampp\htdocs\sophie245\protected\controllers\OrdersController.php (99)
+in C:\xampp\htdocs\sophie245\index.php (13)
+2014/10/01 00:41:12 [warning] [application] Failed to set unsafe attribute "remarks" of "Payments".
+in C:\xampp\htdocs\sophie245\protected\controllers\PaymentsController.php (72)
+in C:\xampp\htdocs\sophie245\index.php (13)
+2014/10/01 00:41:40 [warning] [application] Failed to set unsafe attribute "remarks" of "Payments".
+in C:\xampp\htdocs\sophie245\protected\controllers\PaymentsController.php (72)
+in C:\xampp\htdocs\sophie245\index.php (13)
+2014/10/01 00:51:54 [warning] [application] Failed to set unsafe attribute "sponsorId" of "Members".
+in C:\xampp\htdocs\sophie245\protected\controllers\MembersController.php (72)
+in C:\xampp\htdocs\sophie245\index.php (13)
+2014/10/01 00:51:54 [warning] [application] Failed to set unsafe attribute "sponsorCode" of "Members".
+in C:\xampp\htdocs\sophie245\protected\controllers\MembersController.php (72)
+in C:\xampp\htdocs\sophie245\index.php (13)
+2014/10/01 00:51:54 [warning] [application] Failed to set unsafe attribute "emailAddress" of "Members".
+in C:\xampp\htdocs\sophie245\protected\controllers\MembersController.php (72)
+in C:\xampp\htdocs\sophie245\index.php (13)

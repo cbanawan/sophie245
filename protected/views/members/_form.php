@@ -17,83 +17,63 @@
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
-	<?php echo $form->errorSummary($model); ?>
+	<?php 
+		echo $form->errorSummary($model); 
+		echo $form->hiddenField($model,'sponsorId', array('value' => '1'));
+		
+	?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'memberCode'); ?>
-		<?php echo $form->textField($model,'memberCode',array('size'=>10,'maxlength'=>10)); ?>
-		<?php echo $form->error($model,'memberCode'); ?>
+		<div class="span-6">
+			<div class="row">
+				<?php echo $form->labelEx($model,'memberCode'); ?>
+				<?php echo $form->textField($model,'memberCode',array('size'=>10,'maxlength'=>10)); ?>
+				<?php echo $form->error($model,'memberCode'); ?>
+			</div>
+
+			<div class="row">
+				<?php echo $form->labelEx($model,'firstName'); ?>
+				<?php echo $form->textField($model,'firstName',array('size'=>45,'maxlength'=>45)); ?>
+				<?php echo $form->error($model,'firstName'); ?>
+			</div>
+
+			<div class="row">
+				<?php echo $form->labelEx($model,'lastName'); ?>
+				<?php echo $form->textField($model,'lastName',array('size'=>45,'maxlength'=>45)); ?>
+				<?php echo $form->error($model,'lastName'); ?>
+			</div>
+
+			<div class="row">
+				<?php echo $form->labelEx($model,'sponsorCode'); ?>
+				<?php echo $form->textField($model,'sponsorCode'); ?>
+				<?php echo $form->error($model,'sponsorCode'); ?>
+			</div>
+			<div class="row buttons">
+				<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+				<?php echo CHtml::button('Cancel', array('submit' => $this->createUrl('members/admin'))); ?>
+			</div>			
+		</div>
+		<div class="span-6">		
+			<div class="row">
+				<?php echo $form->labelEx($model,'homePhone'); ?>
+				<?php echo $form->textField($model,'homePhone',array('size'=>13,'maxlength'=>13)); ?>
+				<?php echo $form->error($model,'homePhone'); ?>
+			</div>
+
+			<div class="row">
+				<?php echo $form->labelEx($model,'mobilePhone'); ?>
+				<?php echo $form->textField($model,'mobilePhone',array('size'=>13,'maxlength'=>13)); ?>
+				<?php echo $form->error($model,'mobilePhone'); ?>
+			</div>
+
+			<div class="row">
+				<?php echo $form->labelEx($model,'emailAddress'); ?>
+				<?php echo $form->textField($model,'emailAddress',array('size'=>60,'maxlength'=>100)); ?>
+				<?php echo $form->error($model,'emailAddress'); ?>
+			</div>
+		</div>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'firstName'); ?>
-		<?php echo $form->textField($model,'firstName',array('size'=>45,'maxlength'=>45)); ?>
-		<?php echo $form->error($model,'firstName'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'lastName'); ?>
-		<?php echo $form->textField($model,'lastName',array('size'=>45,'maxlength'=>45)); ?>
-		<?php echo $form->error($model,'lastName'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'middleName'); ?>
-		<?php echo $form->textField($model,'middleName',array('size'=>45,'maxlength'=>45)); ?>
-		<?php echo $form->error($model,'middleName'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'sponsorId'); ?>
-		<?php echo $form->textField($model,'sponsorId'); ?>
-		<?php echo $form->error($model,'sponsorId'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'_active'); ?>
-		<?php echo $form->textField($model,'_active'); ?>
-		<?php echo $form->error($model,'_active'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'homePhone'); ?>
-		<?php echo $form->textField($model,'homePhone',array('size'=>13,'maxlength'=>13)); ?>
-		<?php echo $form->error($model,'homePhone'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'mobilePhone'); ?>
-		<?php echo $form->textField($model,'mobilePhone',array('size'=>13,'maxlength'=>13)); ?>
-		<?php echo $form->error($model,'mobilePhone'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'emailAddress'); ?>
-		<?php echo $form->textField($model,'emailAddress',array('size'=>60,'maxlength'=>100)); ?>
-		<?php echo $form->error($model,'emailAddress'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'address1'); ?>
-		<?php echo $form->textField($model,'address1',array('size'=>45,'maxlength'=>45)); ?>
-		<?php echo $form->error($model,'address1'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'address2'); ?>
-		<?php echo $form->textField($model,'address2',array('size'=>45,'maxlength'=>45)); ?>
-		<?php echo $form->error($model,'address2'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'cityId'); ?>
-		<?php echo $form->textField($model,'cityId'); ?>
-		<?php echo $form->error($model,'cityId'); ?>
-	</div>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
-	</div>
 
 <?php $this->endWidget(); ?>
 
