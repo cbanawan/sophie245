@@ -72,6 +72,8 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		// 'orderDetailStatusId',
 		array(
 			'class'=>'CButtonColumn',
+			'template'=>'{delete}',
+			'deleteButtonUrl' => 'Yii::app()->controller->createUrl("orderdetails/delete", array("id" => $data->id))',				
 		),
 	),
 )); 
