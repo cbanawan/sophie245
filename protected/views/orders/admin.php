@@ -8,8 +8,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Orders', 'url'=>array('index')),
-	array('label'=>'Create Orders', 'url'=>array('create')),
+	// array('label'=>'List Orders', 'url'=>array('index')),
+	array('label'=>'Create New Order', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -26,12 +26,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Orders</h1>
-
-<p>
-You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
-</p>
+<h2>Manage Orders</h2>
 
 <?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
@@ -43,16 +38,41 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'orders-grid',
 	'dataProvider'=>$model->search(),
-	'filter'=>$model,
+	// 'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'dateCreated',
-		'dateLastModified',
-		'memberId',
-		'userId',
-		'orderStatusId',
+		array(
+			'name' => 'dateCreated',
+			'value' => 'date("m/d/Y", strtotime($data->dateCreated))'
+		),
+		// 'dateLastModified',
+		// 'memberId',
+		array(
+			'name' => 'memberCode',
+			'value' => '$data->memberMemberCode',
+			// 'filter'=> CHtml::activeTextField($model, 'memberCode'),
+		),
+		array(
+			'name' => 'memberName',
+			'value' => '$data->memberFullName',
+			// 'filter'=> CHtml::activeTextField($model, 'memberCode'),
+		),
+		'user.username',
+		'orderStatus.status',
+		array(
+			'name' => 'Amount',
+			'value' => 'number_format($data->orderDetailSummary["net"], 2)',
+			'htmlOptions' => array('class' => 'text-right'),
+		),
+		array(
+			'name' => 'Payment',
+			'value' => 'number_format($data->totalPayment, 2)',
+			'htmlOptions' => array('class' => 'text-right'),
+		),
 		array(
 			'class'=>'CButtonColumn',
+			'template'=>'{view}',
+			'viewButtonUrl' => 'Yii::app()->controller->createUrl("detail", array("id" => $data->id))',			
 		),
 	),
 )); ?>

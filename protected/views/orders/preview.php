@@ -12,7 +12,20 @@
 		?>	  
 	  </div>
 	  <div class="span6 pull-right text-right">
-		  <em>Order Trasaction No.</em> <a href="#" onclick="window.print(); return false;"><strong>BC245<?php echo str_pad($order->id, 10, "0", STR_PAD_LEFT); ?></strong></a> 
+		  <span><strong>
+		  <?php
+			  if($order->orderDetailSummary['net'] - $order->totalPayment > 0)
+			  {
+				  echo 'ORDER SLIP';
+			  }
+			  else
+			  {
+				  echo "PROOF OF PURCHASE";
+			  }
+		  ?>
+		  </strong></span>
+		  <br />
+		  <em>Trasaction No.</em> <a href="#" onclick="window.print(); return false;"><strong>BC245<?php echo str_pad($order->id, 10, "0", STR_PAD_LEFT); ?></strong></a> 
 	  </div>
 	</div>
 	<br />
@@ -81,38 +94,21 @@
 <div class="footer">
 	<div class="row-fluid">
 		<div class="span4">
-			<strong>Payments:</strong>
+			<strong>Payment Summary:</strong>
 			<br />
-			&nbsp;&nbsp;<em>Total Payments Made</em>: <strong>Php <?php echo number_format($order->totalPayment, 2); ?></strong>
+			&nbsp;&nbsp;<em>Total</em>: <strong>Php <?php echo number_format($order->totalPayment, 2); ?></strong>
 			<br />
-			&nbsp;&nbsp;<em>Balance Due</em>: <strong>Php <?php echo number_format($totalNet - $order->totalPayment, 2); ?></strong>
+			&nbsp;&nbsp;<em>Balance</em>: <strong>Php <?php echo number_format($totalNet - $order->totalPayment, 2); ?></strong>
+		</div>
+		<div class="span4">
+			<strong>Processed By</strong>: 
+			<br /><br />___________________________________
 		</div>
 		<div class="span4">
 			<div class="pull-right">
-			<strong>Received By:</strong>: 
-			<br /><br />
-			<table>
-				<tr>
-					<td>__________________________________</td>
-				</tr>
-				<tr>
-					<td align="center">&nbsp;</em></td>
-				</tr>
-			</table>
-			</div>
-		</div>
-		<div class="span4">
-			<div class="pull-right">
-			<strong>Customer Signature</strong>: 
-			<br /><br />
-			<table>
-				<tr>
-					<td>___________________________________</td>
-				</tr>
-				<tr>
-					<td align="center"><em><?php echo $order->member->codename; ?></em></td>
-				</tr>
-			</table>
+				<strong>Received By</strong>: 
+				<br /><br />_____________________________________
+				<br /><em>(Signature Over Printed Name / Date)</em>
 			</div>
 		</div>
 	</div>

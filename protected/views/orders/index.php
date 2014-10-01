@@ -26,12 +26,17 @@ $this->menu=array(
 			array(
 				'name' => 'dateCreated',
 				'header' => 'Date',
-				'value' => 'date("d-M-Y", strtotime($data->dateCreated))',
+				'value' => 'date("m/d/Y", strtotime($data->dateCreated))',
 			),
 			// 'dateLastModified',
 			array(
+				'name' => 'memberCode',
+				'header' => 'Member Code',
+				'value' => '$data->member->memberCode'
+			),
+			array(
 				'name' => 'Member',
-				'value' => '$data->member->codename'
+				'value' => '$data->member->lastName . ", " . $data->member->firstName'
 			),
 			// 'user.username',
 			array(
@@ -58,6 +63,14 @@ $this->menu=array(
 				'name' => 'Net Amount',
 				'type' => 'raw',
 				'value' => 'number_format($data->orderDetailSummary["net"], 2)',
+				'htmlOptions' => array(
+					'class' => 'text-right'
+				)
+			),
+			array(
+				'name' => 'Amount Paid',
+				'type' => 'raw',
+				'value' => 'number_format($data->totalPayment, 2)',
 				'htmlOptions' => array(
 					'class' => 'text-right'
 				)

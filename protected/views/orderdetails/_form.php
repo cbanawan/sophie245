@@ -4,6 +4,13 @@
 /* @var $form CActiveForm */
 ?>
 
+<?php
+	Yii::app()->getClientScript()->registerScript("dateCreated", "
+		$( document ).ready(function() {
+			$('#product').focus();
+		});
+	");
+?>
 <div class="form">
 
 	<div class="row">

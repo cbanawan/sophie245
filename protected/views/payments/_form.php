@@ -4,6 +4,24 @@
 /* @var $form CActiveForm */
 ?>
 
+<?php 
+	Yii::app()->getClientScript()->registerCoreScript('jquery.ui');
+	Yii::app()->clientScript->registerCssFile(
+		Yii::app()->clientScript->getCoreScriptUrl().
+		'/jui/css/base/jquery-ui.css'
+	);
+	
+	Yii::app()->getClientScript()->registerScript("dateCreated", "
+		$(function() {
+			$('#dateCreated').datepicker({dateFormat: 'yy-mm-dd'});
+		});		
+		
+		$( document ).ready(function() {
+			$('#amount').focus();
+		});
+	");	
+?>
+
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -24,13 +42,13 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'dateCreated'); ?>
-		<?php echo $form->textField($model,'dateCreated'); ?>
+		<?php echo $form->textField($model,'dateCreated',array('id'=>'dateCreated', 'class'=>'span-3')); ?>
 		<?php echo $form->error($model,'dateCreated'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'amount'); ?>
-		<?php echo $form->textField($model,'amount', array('class'=>'span-3 text-right')); ?>
+		<?php echo $form->textField($model,'amount', array('id'=>'amount','class'=>'span-3 text-right')); ?>
 		<?php echo $form->error($model,'amount'); ?>
 	</div>
 

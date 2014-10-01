@@ -10,6 +10,8 @@
  * @property integer $memberId
  * @property integer $userId
  * @property integer $orderStatusId
+ * 
+ * @property string $memberCode
  *
  * The followings are the available model relations:
  * @property Orderdetails[] $orderdetails
@@ -22,6 +24,9 @@
  */
 class Orders extends CActiveRecord
 {
+	public $memberCode;
+	public $memberName;
+	
 	/**
 	 * @return string the associated database table name
 	 */
@@ -43,7 +48,7 @@ class Orders extends CActiveRecord
 			// array('dateCreated, dateLastModified', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, dateCreated, dateLastModified, memberId, userId, orderStatusId', 'safe', 'on'=>'search'),
+			array('id, dateCreated, dateLastModified, memberId, userId, orderStatusId, memberCode, memberName', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -97,16 +102,44 @@ class Orders extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
-
-		$criteria->compare('id',$this->id);
+		$criteria->with = array(
+            'member' => array(
+				'select' => 'memberCode, firstName, lastName, middleName'
+			)
+        );
+		$criteria->compare('t.id',$this->id);
 		$criteria->compare('dateCreated',$this->dateCreated,true);
 		$criteria->compare('dateLastModified',$this->dateLastModified,true);
 		$criteria->compare('memberId',$this->memberId);
 		$criteria->compare('userId',$this->userId);
 		$criteria->compare('orderStatusId',$this->orderStatusId);
+		$criteria->compare('memberCode',$this->memberCode);		
+		$criteria->compare('memberName',$this->memberName);		
+		
+		$sort = new CSort;
+        $sort->attributes = array(
+            /*  if (account_description is null)
+                then (sort by client_surname, client_name1...), 
+                else (sort by account_description) */
+            'memberCode' => array(
+                'asc' => 'memberCode',
+                'desc' => 'memberCode desc',
+            ),
+			'memberName' => array(
+                'asc' => 'lastName',
+                'desc' => 'lastName desc',
+			),
+            '*',
+        );		
+
+		/* Default Sort Order*/
+        $sort->defaultOrder= array(
+            'dateCreated'=>CSort::SORT_DESC,
+        );
 
 		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
+			'criteria' => $criteria,
+			'sort' => $sort,
 		));
 	}
 
@@ -163,5 +196,15 @@ class Orders extends CActiveRecord
 		}
 		
 		return $paymentTotal;
+	}
+	
+	public function getMemberMemberCode()
+	{
+		return $this->member->memberCode;
+	}
+	
+	public function getMemberFullName()
+	{
+		return $this->member->lastName . ', ' . $this->member->firstName;
 	}
 }

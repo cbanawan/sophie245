@@ -41,9 +41,13 @@
 
 					// Change focus to discount field		
 				});
+				
+				$( document ).ready(function() {
+					$('#memberSearch').focus();
+				});
 			");
 	?>
-	
+			
 	<hr />
 
 	<?php $form=$this->beginWidget('CActiveForm', array(

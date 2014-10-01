@@ -8,11 +8,6 @@
 	<?php
 	
 		Yii::app()->clientScript->registerScript('printReady', "
-			$( document ).ready(function() {
-				// window.print();
-				// window.close();
-			});
-			
 			jQuery(window).load(function() {
 				window.print();
 				window.close();
@@ -21,13 +16,13 @@
 
 		Yii::app()->clientScript->registerCss('receipt', "
 			#body {
-				min-height: 270px;
+				min-height: 240px;
 				overflow: hidden;
 			}
 			
 		    html *
 			{
-			   font-size: 9px !important;
+			   font-size: 10px !important;
 			   color: #000 !important;
 			   font-family: 'Courier New' !important;
 			}

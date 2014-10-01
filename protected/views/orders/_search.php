@@ -4,6 +4,19 @@
 /* @var $form CActiveForm */
 ?>
 
+<?php 
+	Yii::app()->getClientScript()->registerCoreScript('jquery.ui');
+	Yii::app()->clientScript->registerCssFile(
+		Yii::app()->clientScript->getCoreScriptUrl().
+		'/jui/css/base/jquery-ui.css'
+	);
+	
+	Yii::app()->getClientScript()->registerScript("dateCreated", "
+		$(function() {
+			$('#dateCreated').datepicker({dateFormat: 'yy-mm-dd'});
+		});		
+	");	
+?>
 <div class="wide form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -13,34 +26,27 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'id'); ?>
-		<?php echo $form->textField($model,'id'); ?>
+		<?php echo $form->textField($model,'id', array('class' => 'span-3')); ?>
 	</div>
-
+	
 	<div class="row">
 		<?php echo $form->label($model,'dateCreated'); ?>
-		<?php echo $form->textField($model,'dateCreated'); ?>
+		<?php 
+			echo $form->textField(
+					$model,
+					'dateCreated',
+					array(
+						'id'=>'dateCreated',
+						'class'=>'span-3'
+					)
+				); 
+		?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'dateLastModified'); ?>
-		<?php echo $form->textField($model,'dateLastModified'); ?>
+		<?php echo $form->label($model,'memberCode'); ?>
+		<?php echo $form->textField($model,'memberCode', array('class' => 'span-3')); ?>
 	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'memberId'); ?>
-		<?php echo $form->textField($model,'memberId'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'userId'); ?>
-		<?php echo $form->textField($model,'userId'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'orderStatusId'); ?>
-		<?php echo $form->textField($model,'orderStatusId'); ?>
-	</div>
-
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Search'); ?>
 	</div>

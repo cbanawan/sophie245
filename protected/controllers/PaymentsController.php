@@ -84,7 +84,7 @@ class PaymentsController extends Controller
 		{
 			$model->orderId = $orderId;
 			$model->userId = 1;
-			$model->dateCreated = date('Y-m-d H:i:s');
+			$model->dateCreated = date('Y-m-d');
 			$model->dateLastModified = $model->dateCreated;
 		}
 		

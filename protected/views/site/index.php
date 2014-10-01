@@ -8,6 +8,6 @@ $this->pageTitle=Yii::app()->name;
 
 <p>Please select a transaction:</p>
 <ul>
-	<li><?php echo CHtml::link('Manage Orders', $this->createUrl('/orders/index')); ?></li>
+	<li><?php echo CHtml::link('Manage Orders', $this->createUrl('/orders/admin')); ?></li>
 	<li><?php echo CHtml::link('Manage Members', $this->createUrl('/members/admin')); ?></li>
 </ul>

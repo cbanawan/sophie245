@@ -6,7 +6,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'Create New Order', 'url'=>array('create')),
-	array('label'=>'Manage Orders', 'url'=>array('index')),
+	array('label'=>'Manage Orders', 'url'=>array('admin')),
 );
 
 ?>
@@ -48,9 +48,13 @@ $this->menu=array(
 <?php
 	Yii::app()->clientScript->registerScript('order', "
 		$('#myTab a').click(function (e) {
-		  e.preventDefault();
-		  $(this).tab('show');
-		})
+			e.preventDefault();
+			$(this).tab('show');
+		});
+
+		$( document ).ready(function() {
+			$('#addNewOrderItemLink').focus();
+		});
 	");
 ?>
 
@@ -63,7 +67,7 @@ $this->menu=array(
 	
 	<div class="tab-content">
 	  <div class="tab-pane <?php if($activeNavItem == 'order_details') echo "active"; ?>" id="order_details">
-		<?php echo CHtml::link('Add New Order Item', $this->createUrl('/orderdetails/create', array('orderId' => $order->id))); ?>
+		<?php echo CHtml::link('Add New Order Item', $this->createUrl('/orderdetails/create', array('orderId' => $order->id)), array('id' => 'addNewOrderItemLink')); ?>
 		<?php 
 			$this->renderPartial(
 					'_list',
