@@ -26,7 +26,7 @@ $this->menu=array(
 		'firstName',
 		'lastName',
 		'middleName',
-		'sponsorId',
+		'sponsorCode',
 		'_active',
 		'homePhone',
 		'mobilePhone',

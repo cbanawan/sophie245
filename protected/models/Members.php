@@ -18,8 +18,8 @@
  * @property string $address2
  * @property integer $cityId
  * @property integer $fullName
- * @property integer $sponsorCode
- * @property integer $position
+ * @property string $sponsorCode
+ * @property string $position
  *
  * The followings are the available model relations:
  * @property Members $sponsor
@@ -47,9 +47,10 @@ class Members extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('memberCode, firstName, lastName, mobilePhone', 'required'),
+			array('memberCode, firstName, lastName', 'required'),
 			// array('sponsorId,', 'numerical', 'integerOnly'=>true),
 			array('memberCode', 'length', 'max'=>10),
+                        array('sponsorCode', 'safe'),
 			// array('firstName, lastName, middleName, address1, address2', 'length', 'max'=>45),
 			// array('homePhone, mobilePhone', 'length', 'max'=>13),
 			// array('emailAddress', 'length', 'max'=>100),
@@ -132,6 +133,7 @@ class Members extends CActiveRecord
 		$criteria->compare('address1',$this->address1,true);
 		$criteria->compare('address2',$this->address2,true);
 		$criteria->compare('cityId',$this->cityId);
+                $criteria->compare('sponsorCode',$this->sponsorCode);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
