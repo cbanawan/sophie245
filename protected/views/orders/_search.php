@@ -49,6 +49,7 @@
 	</div>
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Search'); ?>
+		<?php echo CHtml::resetButton('Clear'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

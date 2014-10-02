@@ -32,7 +32,7 @@ class OrdersController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','detail','preview'),
+				'actions'=>array('create','update','detail','preview','updateStatus'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -179,6 +179,32 @@ class OrdersController extends Controller
 		$this->render('admin',array(
 			'model'=>$model,
 		));
+	}
+	
+	public function actionUpdateStatus($id, $statusId)
+	{
+		$order = Orders::model()->findByPk($id);
+		$order->orderStatusId = $statusId;
+		if($order->save())
+		{
+			// Save order change history
+			$orderStatusHistory = new Orderstatushistory();
+			$orderStatusHistory->orderId = $id;
+			$orderStatusHistory->orderStatusId = $statusId;
+			$orderStatusHistory->dateCreated = new CDbExpression('NOW()');
+			$orderStatusHistory->save();
+			
+			foreach($order->orderdetails as $orderDetail)
+			{
+				// if($statusId > $orderDetail->orderDetailStatusId)
+				// {
+					$orderDetail->orderDetailStatusId = $statusId;
+					$orderDetail->save();
+				// }
+			}
+		}
+		
+		$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : $this->createUrl('/orders/detail', array('id' => $id)));
 	}
 
 	/**

@@ -74,7 +74,24 @@ class PaymentsController extends Controller
 			{
 				// Order status to NEW
 				$order = Orders::model()->findByPk($model->orderId);
-				$order->orderStatusId = 1;
+				
+				if($order->totalPayment < $order->orderDetailSummary['net'])
+				{
+					$order->orderStatusId = 2; // NEW
+				}
+				else
+				{
+					$order->orderStatusId = 3; // PAID
+					// Update PAID excluding served and cancelled
+					foreach($order->orderdetails as $orderDetail)
+					{
+						if($order->orderStatusId > $orderDetail->orderDetailStatusId)
+						{
+							$orderDetail->orderDetailStatusId = $order->orderStatusId;
+							$orderDetail->save();
+						}
+					}						
+				}
 				$order->save();
 				
 				$this->redirect($this->createUrl('orders/detail', array('id' => $model->orderId, 'navItem' => 'payments')));

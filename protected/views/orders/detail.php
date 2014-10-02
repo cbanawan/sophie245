@@ -25,15 +25,15 @@ $this->menu=array(
 			// 'id',
 			'dateCreated',
 			// 'dateLastModified',
-			array(
+			/*array(
 				'label' => 'Received By',
 				'type' => 'raw',
 				'value' => $order->user->username,
-			),
+			),*/
 			array(
 				'label' => 'Order Status',
 				'type' => 'raw',
-				'value' => $order->orderStatus->status,
+				'value' => $order->orderStatus->description,
 			),
 		),
 	));
@@ -41,7 +41,26 @@ $this->menu=array(
 </div>
 <br />
 <div class="row pull-right">
-	<?php echo CHtml::link(TbHtml::icon(TbHtml::ICON_PRINT), $this->createUrl('/orders/preview', array('id' => $order->id)), array('target'=>'_blank', 'class' => 'button')); ?>
+	<?php if(!in_array($order->orderStatus->status, array('served', 'cancelled'))): ?>
+		<div class="btn-group">
+		  <button type="button" class="btn btn-small dropdown-toggle" data-toggle="dropdown">
+			Change Order Status  <span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu" role="menu">
+			<?php if(in_array($order->orderStatus->status, array('paid'))): ?>
+				<li><?php echo CHtml::link('Served', $this->createUrl('/orders/updateStatus', array('id' => $order->id, 'statusId' => '4'))); ?></li>
+			<?php endif; ?>
+			<?php if(!in_array($order->orderStatus->status, array('paid', 'served', 'cancelled'))): ?>
+				<li><?php echo CHtml::link('Cancel Order', $this->createUrl('/orders/updateStatus', array('id' => $order->id, 'statusId' => '5'))); ?></li>
+			<?php endif; ?>
+		  </ul>
+		</div>	
+	<?php endif; ?>
+	<div class="btn-group">
+	  <button type="button" class="btn btn-small" data-toggle="dropdown">
+		<span class="icon-print"></span> Print
+	  </button>
+	</div>
 </div>
 <br />
 
@@ -62,24 +81,31 @@ $this->menu=array(
 	<ul class="nav nav-tabs" id="myTab">
 	  <li class="<?php if($activeNavItem == 'order_details') echo "active"; ?>"><a href="#order_details">Order Details</a></li>
 	  <li class="<?php if($activeNavItem == 'payments') echo "active"; ?>"><a href="#payments">Payments</a></li>
-	  <li class="<?php if($activeNavItem == 'summary') echo "active"; ?>"><a href="#summary">Summary</a></li>
 	</ul>
 	
 	<div class="tab-content">
 	  <div class="tab-pane <?php if($activeNavItem == 'order_details') echo "active"; ?>" id="order_details">
-		<?php echo CHtml::link('Add New Order Item', $this->createUrl('/orderdetails/create', array('orderId' => $order->id)), array('id' => 'addNewOrderItemLink')); ?>
 		<?php 
+			if(!in_array($order->orderStatus->status, array('served', 'cancelled'))) 
+			{
+				echo CHtml::link('Add New Order Item', $this->createUrl('/orderdetails/create', array('orderId' => $order->id)), array('id' => 'addNewOrderItemLink', 'class' => 'btn btn-small')); 
+			}
+
 			$this->renderPartial(
 					'_list',
 					array(
-						'orderDetails'=>$order->orderdetails,
+						'order'=>$order,
 					)
 				); 
 		?>
 	  </div>
 	  <div class="tab-pane <?php if($activeNavItem == 'payments') echo "active"; ?>" id="payments">
-		<?php echo CHtml::link('Add Payment', $this->createUrl('/payments/create', array('orderId' => $order->id))); ?>
 		<?php 
+			if(!in_array($order->orderStatus->status, array('served', 'cancelled'))) 
+			{
+				echo CHtml::link('Add Payment', $this->createUrl('/payments/create', array('orderId' => $order->id)), array('class' => 'btn btn-small')); 
+			}
+			
 			$this->renderPartial(
 					'/payments/_list',
 					array(
@@ -88,7 +114,6 @@ $this->menu=array(
 				); 
 		?>		  
 	  </div>
-	  <div class="tab-pane <?php if($activeNavItem == 'summary') echo "active"; ?>" id="summary">...</div>
 	</div>
 	
 </div>

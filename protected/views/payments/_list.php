@@ -2,12 +2,7 @@
 $dataProvider = new CArrayDataProvider('Payments');
 $dataProvider->setData($order->payments);
 
-$this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'payments-grid',
-	'summaryText' => 'Total ({count}) payments made',
-	'dataProvider'=>$dataProvider,
-	// 'filter'=>$model,
-	'columns'=>array(
+$columns = array(
 		// 'paymentId',
 		array(
 			'name' => 'dateCreated',
@@ -32,12 +27,23 @@ $this->widget('zii.widgets.grid.CGridView', array(
 			'footer' => '<strong>' . number_format($order->totalPayment, 2) . '</strong>',
 			'footerHtmlOptions' => array('class'=>'text-right'),
 		),
-		array(
+	);
+
+/*if(!in_array($order->orderStatus->status, array('served', 'cancelled')))
+{
+	$columns[] = array(
 			'class'=>'CButtonColumn',
 			'template' => '{delete}',
 			'deleteButtonUrl' => 'Yii::app()->controller->createUrl("payments/delete", array("id" => $data->id))',
-		),
-	),
+		);
+}*/
+
+$this->widget('zii.widgets.grid.CGridView', array(
+	'id'=>'payments-grid',
+	'summaryText' => 'Total ({count}) payments made',
+	'dataProvider'=>$dataProvider,
+	// 'filter'=>$model,
+	'columns'=>$columns
 )); 
 
 $orderDetailSummary = $order->orderDetailSummary;

@@ -40,8 +40,9 @@
 
 		<?php echo $form->errorSummary($model); ?>
 
-		<?php echo $form->hiddenField($model,'orderId', array('value' => $orderId)); ?>
+		<?php echo $form->hiddenField($model,'orderId', array('value' => $order->id)); ?>
 		<?php echo $form->hiddenField($model,'productId'); ?>		
+		<?php echo $form->hiddenField($model,'orderDetailStatusId', array('value' => $order->orderStatus->id)); ?>
 	</div>
 	
 	<div class="row">
@@ -72,7 +73,7 @@
 			<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 		</div>
 		<div class="span-1">
-			<?php echo CHtml::button('Cancel', array('submit' => $this->createUrl('orders/detail', array('id' => $orderId)))); ?>
+			<?php echo CHtml::button('Cancel', array('submit' => $this->createUrl('orders/detail', array('id' => $order->id)))); ?>
 		</div>
 	</div>
 
@@ -105,8 +106,8 @@
 	$("#Orderdetails_quantity").keyup(function( event ) {
 		// if ( event.which == 13 ) {
 			var netPrice = Number($("#catalogPrice").val()) * ( 1 - ( Number($("#Orderdetails_discount").val()) / 100 ) );
-			$("#netPrice").val(netPrice);
-			$("#amount").val(netPrice * Number($(this).val()));
+			$("#netPrice").val(netPrice.toFixed(2));
+			$("#amount").val((netPrice * Number($(this).val())).toFixed(2));
 
 			$("#btnSave").focus();
 		// }
@@ -115,8 +116,9 @@
 	$("#Orderdetails_discount").keyup(function( event ) {
 		// if ( event.which == 13 ) {
 			var netPrice = Number($("#catalogPrice").val()) * ( 1 - ( Number($("#Orderdetails_discount").val()) / 100 ) );
+			netPrice = netPrice.toFixed(2);
 			$("#netPrice").val(netPrice);
-			$("#amount").val(netPrice * Number($(this).val()));
+			$("#amount").val((netPrice * Number($(this).val())).toFixed(2));
 
 			$("#btnSave").focus();
 		// }

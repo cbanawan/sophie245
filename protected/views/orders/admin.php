@@ -57,8 +57,7 @@ $('.search-form form').submit(function(){
 			'value' => '$data->memberFullName',
 			// 'filter'=> CHtml::activeTextField($model, 'memberCode'),
 		),
-		'user.username',
-		'orderStatus.status',
+		// 'user.username',
 		array(
 			'name' => 'Amount',
 			'value' => 'number_format($data->orderDetailSummary["net"], 2)',
@@ -68,6 +67,11 @@ $('.search-form form').submit(function(){
 			'name' => 'Payment',
 			'value' => 'number_format($data->totalPayment, 2)',
 			'htmlOptions' => array('class' => 'text-right'),
+		),
+		array(
+			'name' => 'Status',
+			'value' => '$data->orderStatus->description',
+			'htmlOptions' => array('class' => 'text-center'),
 		),
 		array(
 			'class'=>'CButtonColumn',

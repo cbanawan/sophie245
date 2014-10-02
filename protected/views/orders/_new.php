@@ -81,7 +81,7 @@
 			echo $form->hiddenField($model, 'memberId'); 
 			
 			// TODO: Must be in controller
-			echo $form->hiddenField($model, 'orderStatusId', array('value' => 4)); 
+			echo $form->hiddenField($model, 'orderStatusId', array('value' => 1)); 
 			echo $form->hiddenField($model, 'userId', array('value' => 1)); 
 
 			echo CHtml::label('Member Code', 'memberCode'); 
@@ -98,7 +98,7 @@
 	
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('id' => 'btnSubmit')); ?>
-		<?php echo CHtml::button('Cancel', array('submit' => $this->createUrl('orders/index'))); ?>
+		<?php echo CHtml::button('Cancel', array('submit' => $this->createUrl('orders/admin'))); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

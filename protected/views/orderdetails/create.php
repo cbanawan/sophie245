@@ -20,7 +20,7 @@ $this->menu=array(
 				'_form', 
 				array(
 					'model' => $model,
-					'orderId' => $order->id,
+					'order' => $order,
 				)
 			); 
 		?>
@@ -46,7 +46,7 @@ $this->menu=array(
 				array(
 					'label' => 'Order Status',
 					'type' => 'raw',
-					'value' => $order->orderStatus->status,
+					'value' => $order->orderStatus->description,
 				),
 			),
 		));

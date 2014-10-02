@@ -1,4 +1,6 @@
 <?php
+$orderDetails = $order->orderdetails;
+
 $totalAmount = 0;
 $totalCatalogAmount = 0;
 $quantity = 0;
@@ -19,16 +21,7 @@ $balanceDue = $totalAmount - $requiredDeposit;
 $dataProvider = new CArrayDataProvider('Orderdetails');
 $dataProvider->setData($orderDetails);
 
-$this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'orders-grid',
-	'enablePagination' => false,
-	'summaryText' => 'Total ({count}) orders',
-	'dataProvider'=>$dataProvider,
-	// 'filter'=>$orderDetails,
-	'columns'=>array(
-		// 'id',
-		// 'dateCreated',
-		// 'dateLastModified',
+$columns = array(
 		array(
 			'name' => 'Reference Code',
 			'value' => '$data->product->code',
@@ -69,13 +62,27 @@ $this->widget('zii.widgets.grid.CGridView', array(
 			'footer' => '<strong>' . number_format($totalAmount, 2) . '</strong>',
 			'footerHtmlOptions'=>array('class' => 'text-right'),
 		),
-		// 'orderDetailStatusId',
 		array(
+			'name' => 'Status',
+			'value' => '$data->orderDetailStatus->description',
+		)
+	);
+if(!in_array($order->orderStatus->status, array('served', 'cancelled')))
+{
+	$columns[] = array(
 			'class'=>'CButtonColumn',
 			'template'=>'{delete}',
 			'deleteButtonUrl' => 'Yii::app()->controller->createUrl("orderdetails/delete", array("id" => $data->id))',				
-		),
-	),
+		);
+}
+
+$this->widget('zii.widgets.grid.CGridView', array(
+	'id'=>'orders-grid',
+	'enablePagination' => false,
+	'summaryText' => 'Total ({count}) orders',
+	'dataProvider'=>$dataProvider,
+	// 'filter'=>$orderDetails,
+	'columns'=> $columns,
 )); 
 ?>
 
