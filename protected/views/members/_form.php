@@ -4,6 +4,21 @@
 /* @var $form CActiveForm */
 ?>
 
+<?php 
+	Yii::app()->getClientScript()->registerCoreScript('jquery.ui');
+	Yii::app()->clientScript->registerCssFile(
+		Yii::app()->clientScript->getCoreScriptUrl().
+		'/jui/css/base/jquery-ui.css'
+	);
+
+	Yii::app()->getClientScript()->registerScript("dateJoined", "
+		$( document ).ready(function() {
+			$('#dateJoined').datepicker({dateFormat: 'yy-mm-dd'});
+			$('#memberCode').focus();
+		});		
+	");
+?>	
+
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -27,7 +42,7 @@
 		<div class="span-6">
 			<div class="row">
 				<?php echo $form->labelEx($model,'memberCode'); ?>
-				<?php echo $form->textField($model,'memberCode',array('size'=>10,'maxlength'=>10)); ?>
+				<?php echo $form->textField($model,'memberCode',array('id' => 'memberCode', 'size'=>10,'maxlength'=>10)); ?>
 				<?php echo $form->error($model,'memberCode'); ?>
 			</div>
 
@@ -70,6 +85,12 @@
 				<?php echo $form->labelEx($model,'emailAddress'); ?>
 				<?php echo $form->textField($model,'emailAddress',array('size'=>60,'maxlength'=>100)); ?>
 				<?php echo $form->error($model,'emailAddress'); ?>
+			</div>
+
+			<div class="row">
+				<?php echo $form->labelEx($model,'dateJoined'); ?>
+				<?php echo $form->textField($model,'dateJoined',array('id' => 'dateJoined', 'class'=>'span-3')); ?>
+				<?php echo $form->error($model,'dateJoined'); ?>
 			</div>
 		</div>
 	</div>

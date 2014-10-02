@@ -73,6 +73,10 @@ class MembersController extends Controller
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
+		else
+		{
+			$model->dateJoined = date('Y-m-d');
+		}
 
 		$this->render('create',array(
 			'model'=>$model,

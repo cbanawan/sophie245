@@ -50,7 +50,7 @@ class Members extends CActiveRecord
 			array('memberCode, firstName, lastName', 'required'),
 			// array('sponsorId,', 'numerical', 'integerOnly'=>true),
 			array('memberCode', 'length', 'max'=>10),
-                        array('sponsorCode', 'safe'),
+            array('sponsorCode, dateJoined', 'safe'),
 			// array('firstName, lastName, middleName, address1, address2', 'length', 'max'=>45),
 			// array('homePhone, mobilePhone', 'length', 'max'=>13),
 			// array('emailAddress', 'length', 'max'=>100),
