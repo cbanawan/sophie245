@@ -13,7 +13,7 @@
 			'source' => array_values(CHtml::listData(Members::model()->findAll(), 'id', 'codename')),
 			'htmlOptions' => array(
 				// 'prepend' => TbHtml::icon(TbHtml::ICON_GLOBE),
-				'placeholder' => 'Enter member code/name',
+				'placeholder' => 'Enter Member Code or Name',
 				'class' => 'span-10',
 			),
 		)); ?>		
@@ -43,10 +43,25 @@
 				});
 				
 				$( document ).ready(function() {
+					$('#dateCreated').datepicker({dateFormat: 'yy-mm-dd'});
 					$('#memberSearch').focus();
 				});
 			");
 	?>
+	
+	<?php 
+		Yii::app()->getClientScript()->registerCoreScript('jquery.ui');
+		Yii::app()->clientScript->registerCssFile(
+			Yii::app()->clientScript->getCoreScriptUrl().
+			'/jui/css/base/jquery-ui.css'
+		);
+
+		/*Yii::app()->getClientScript()->registerScript("dateCreated", "
+			$(function() {
+				$('#dateCreated').datepicker({dateFormat: 'yy-mm-dd', defaultDate: '2014-09-30'});
+			});		
+		");	*/
+	?>	
 			
 	<hr />
 
@@ -58,8 +73,6 @@
 		// See class documentation of CActiveForm for details on this.
 		'enableAjaxValidation'=>false,
 	)); ?>
-
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
@@ -76,6 +89,10 @@
 
 			echo CHtml::label('Name', 'memberName'); 
 			echo CHtml::textField('memberName', '', array('disabled' => true,'class'=>'span-10'));
+
+			echo CHtml::label('Date', 'dateCreated'); 
+			echo $form->textField($model, 'dateCreated', array('id' => 'dateCreated', 'value' => date('Y-m-d'), 'class' => 'span-3'));
+			// echo CHtml::textField('dateCreated', '', array('disabled' => false,'class'=>'span-3'));			
 		?>
 	</div>
 	

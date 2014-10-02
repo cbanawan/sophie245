@@ -45,7 +45,7 @@ class Orders extends CActiveRecord
 		return array(
 			array('memberId, userId, orderStatusId', 'required'),
 			array('memberId, userId, orderStatusId', 'numerical', 'integerOnly'=>true),
-			// array('dateCreated, dateLastModified', 'safe'),
+			array('dateCreated', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, dateCreated, dateLastModified, memberId, userId, orderStatusId, memberCode, memberName', 'safe', 'on'=>'search'),
@@ -158,7 +158,15 @@ class Orders extends CActiveRecord
 	{
 		if ($this->isNewRecord)
 		{
-			$this->dateCreated = new CDbExpression('NOW()');
+			// var_dump($this->dateCreated); exit;
+			if(!isset($this->dateCreated))
+			{
+				$this->dateCreated = new CDbExpression('NOW()');
+			}
+			else
+			{
+				$this->dateCreated .= date(' H:i:s');
+			}
 		}
 
 		$this->dateLastModified = new CDbExpression('NOW()');

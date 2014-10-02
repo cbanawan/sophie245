@@ -13,7 +13,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create New Order</h1>
+<h2>Create New Order</h2>
 
 <?php $this->renderPartial('_new', 
 		array(
