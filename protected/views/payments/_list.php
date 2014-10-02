@@ -34,7 +34,8 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		),
 		array(
 			'class'=>'CButtonColumn',
-			'viewButtonUrl' => 'Yii::app()->controller->createUrl("payments/view", array("id" => $data->id))',
+			'template' => '{delete}',
+			'deleteButtonUrl' => 'Yii::app()->controller->createUrl("payments/delete", array("id" => $data->id))',
 		),
 	),
 )); 
