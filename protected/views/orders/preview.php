@@ -14,14 +14,19 @@
 	  <div class="span6 pull-right text-right">
 		  <span><strong>
 		  <?php
-			  if($order->orderDetailSummary['net'] - $order->totalPayment > 0)
-			  {
-				  echo 'ORDER SLIP';
-			  }
-			  else
-			  {
-				  echo "PROOF OF PURCHASE";
-			  }
+			switch($order->orderStatus->status)
+			{
+				case 'partial':
+				case 'paid':
+					echo 'ORDER TRANSACTION SLIP';
+					break;
+				case 'served':
+					echo 'PROOF OF PURCHASE';
+					break;
+				default:
+					echo 'TEMPORARY ORDER SUMMARY SLIP';
+					break;
+			}
 		  ?>
 		  </strong></span>
 		  <br />
@@ -97,8 +102,10 @@
 			<strong>Payment Summary:</strong>
 			<br />
 			&nbsp;&nbsp;<em>Total</em>: <strong>Php <?php echo number_format($order->totalPayment, 2); ?></strong>
-			<br />
-			&nbsp;&nbsp;<em>Balance</em>: <strong>Php <?php echo number_format($totalNet - $order->totalPayment, 2); ?></strong>
+			<?php if($totalNet - $order->totalPayment > 0): ?>
+				<br />
+				&nbsp;&nbsp;<em>Balance</em>: <strong>Php <?php echo number_format($totalNet - $order->totalPayment, 2); ?></strong>
+			<?php endif; ?>
 		</div>
 		<div class="span4">
 			<strong>Processed By</strong>: 

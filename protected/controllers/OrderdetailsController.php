@@ -14,8 +14,8 @@ class OrderdetailsController extends Controller
 	public function filters()
 	{
 		return array(
-			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
+			// 'accessControl', // perform access control for CRUD operations
+			// 'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -32,7 +32,7 @@ class OrderdetailsController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'updateStatus'),
+				'actions'=>array('create','update', 'updateStatus', 'delete'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -113,11 +113,12 @@ class OrderdetailsController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
-
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		$orderDetail = Orderdetails::model()->findByPk($id);
+		
+		$orderId = $orderDetail->orderId;
+		$orderDetail->delete();
+		
+		$this->redirect($this->createUrl('/orders/detail', array('id' => $orderId)));
 	}
 
 	/**
@@ -146,23 +147,10 @@ class OrderdetailsController extends Controller
 		));
 	}
 	
-	public function actionUpdateStatus($id)
+	public function actionUpdateStatus($id, $statusId)
 	{
 		$orderDetail = Orderdetails::model()->findByPk($id);
-		$order = Orders::model()->findByPk($orderDetail->orderId);
-				
-		// $orderDetail->orderDetailStatusId = ($orderDetail->orderDetailStatus->status == 'served') ? $order->orderStatus : 1;
-				
-		if($orderDetail->orderDetailStatus->status == 'served')
-		{
-			$orderDetail->orderDetailStatusId = $order->orderStatusId;
-		}
-		else
-		{
-			$servedStatus = Orderdetailstatus::model()->findByAttributes(array('status' => 'served'));
-			$orderDetail->orderDetailStatusId = $servedStatus->id;
-		}
-
+		$orderDetail->orderDetailStatusId = $statusId;
 		$orderDetail->save();
 		
 		$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : $this->createUrl('/orders/detail', array('id' => $orderDetail->orderId)));
