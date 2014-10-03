@@ -37,7 +37,7 @@
 				<em>Prepared By</em>: <strong><?php echo $order->user->username; ?></strong>
 			</div>
 			<div class="span6 text-right">
-				<em>Date</em>: <strong><?php echo date('d M Y', strtotime($order->dateCreated)); ?></strong>
+				<em>Date</em>: <strong><?php echo date('d M Y H:i:s', strtotime($order->dateCreated)); ?></strong>
 			</div>
 		</div>
 	</div>

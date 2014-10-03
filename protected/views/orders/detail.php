@@ -57,9 +57,9 @@ $this->menu=array(
 		</div>	
 	<?php endif; ?>
 	<div class="btn-group">
-	  <button type="button" class="btn btn-small" data-toggle="dropdown">
-		<span class="icon-print"></span> Print
-	  </button>
+           <?php 
+           echo CHtml::link('<span class="icon-print"></span> Print', $this->createUrl('/orders/preview', array('id' => $order->id)), array('class' => 'btn btn-small', 'target' => '_blank')); 
+           // echo CHtml::link('Served', $this->createUrl('/orders/preview', array('id' => $order->id, 'class' => 'btn'))); ?>
 	</div>
 </div>
 <br />
