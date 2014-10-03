@@ -39,7 +39,7 @@ class Orderdetails extends CActiveRecord
 			array('orderId, productId', 'required'),
 			array('orderId, productId, quantity', 'numerical', 'integerOnly'=>true),
 			array('discount', 'numerical'),
-			// array('dateCreated, dateLastModified', 'safe'),
+			array('orderDetailStatusId', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, orderId, dateCreated, dateLastModified, productId, quantity, orderDetailStatusId, discount', 'safe', 'on'=>'search'),

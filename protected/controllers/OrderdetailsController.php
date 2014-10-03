@@ -32,7 +32,7 @@ class OrderdetailsController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update', 'updateStatus'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -145,6 +145,28 @@ class OrderdetailsController extends Controller
 			'model'=>$model,
 		));
 	}
+	
+	public function actionUpdateStatus($id)
+	{
+		$orderDetail = Orderdetails::model()->findByPk($id);
+		$order = Orders::model()->findByPk($orderDetail->orderId);
+				
+		// $orderDetail->orderDetailStatusId = ($orderDetail->orderDetailStatus->status == 'served') ? $order->orderStatus : 1;
+				
+		if($orderDetail->orderDetailStatus->status == 'served')
+		{
+			$orderDetail->orderDetailStatusId = $order->orderStatusId;
+		}
+		else
+		{
+			$servedStatus = Orderdetailstatus::model()->findByAttributes(array('status' => 'served'));
+			$orderDetail->orderDetailStatusId = $servedStatus->id;
+		}
+
+		$orderDetail->save();
+		
+		$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : $this->createUrl('/orders/detail', array('id' => $orderDetail->orderId)));
+	}	
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.

@@ -64,7 +64,8 @@ $columns = array(
 		),
 		array(
 			'name' => 'Status',
-			'value' => '$data->orderDetailStatus->description',
+			'type' => 'raw',
+			'value' => 'CHtml::link($data->orderDetailStatus->description, Yii::app()->controller->createUrl("/orderdetails/updateStatus", array("id" => $data->id)))',
 		)
 	);
 if(!in_array($order->orderStatus->status, array('served', 'cancelled')))

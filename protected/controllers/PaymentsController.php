@@ -85,7 +85,7 @@ class PaymentsController extends Controller
 					// Update PAID excluding served and cancelled
 					foreach($order->orderdetails as $orderDetail)
 					{
-						if($order->orderStatusId > $orderDetail->orderDetailStatusId)
+							if(!in_array($order->orderStatus->status, array('served')))
 						{
 							$orderDetail->orderDetailStatusId = $order->orderStatusId;
 							$orderDetail->save();
