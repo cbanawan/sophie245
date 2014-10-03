@@ -96,7 +96,7 @@ if(!in_array($order->orderStatus->status, array('served', 'cancelled')))
 				),
 				'out' => array
 				(
-					'label'=>'[oos]',
+					'label'=>'Out Of Stock',
 					'imageUrl' => Yii::app()->request->baseUrl.'/images/icons/out-of-stock.png',
 					'url' => 'Yii::app()->createUrl("orderdetails/updateStatus", array("id" => $data->id, "statusId" => 6))',
 					'visible'=>'$data->orderDetailStatus->_active',
