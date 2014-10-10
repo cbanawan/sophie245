@@ -133,7 +133,7 @@ class Members extends CActiveRecord
 		$criteria->compare('address1',$this->address1,true);
 		$criteria->compare('address2',$this->address2,true);
 		$criteria->compare('cityId',$this->cityId);
-                $criteria->compare('sponsorCode',$this->sponsorCode);
+        $criteria->compare('sponsorCode',$this->sponsorCode);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

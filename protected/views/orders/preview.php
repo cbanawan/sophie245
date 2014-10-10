@@ -67,19 +67,58 @@
 					$totalGross = 0;
 					$totalNet = 0;
 					foreach($order->orderdetails as $orderDetail): 
-						$netPrice = $orderDetail->product->catalogPrice * ( 1 - ( $orderDetail->discount / 100 ) );
-						$amount = $netPrice * $orderDetail->quantity;
-						
-						$totalGross += $orderDetail->product->catalogPrice * $orderDetail->quantity;
-						$totalNet += $amount;
+						if($orderDetail->orderDetailStatus->_active)
+						{
+							$netPrice = $orderDetail->product->catalogPrice * ( 1 - ( $orderDetail->discount / 100 ) );
+							$amount = $netPrice * $orderDetail->quantity;
+
+							$totalGross += $orderDetail->product->catalogPrice * $orderDetail->quantity;
+							$totalNet += $amount;
+						}
 					?>
 						<tr>
-							<td><?php echo $orderDetail->product->codename; ?></td>
-							<td style="text-align: right;"><?php echo number_format($orderDetail->product->catalogPrice, 2); ?></td>
-							<td style="text-align: right;"><?php echo $orderDetail->discount; ?> %</td>
-							<td style="text-align: right;"><?php echo number_format($netPrice, 2); ?></td>
-							<td style="text-align: center;"><?php echo $orderDetail->quantity; ?></td>
-							<td style="text-align: right;"><?php echo number_format($amount, 2); ?></td>
+							<td>
+							<?php 
+								if(!$orderDetail->orderDetailStatus->_active) echo '<del>';
+								echo $orderDetail->product->codename; 
+								if(!$orderDetail->orderDetailStatus->_active) echo '</del>';
+							?>
+							</td>
+							<td style="text-align: right;">
+							<?php 
+								if(!$orderDetail->orderDetailStatus->_active) echo '<del>';
+								echo number_format($orderDetail->product->catalogPrice, 2); 
+								if(!$orderDetail->orderDetailStatus->_active) echo '</del>';
+							?>
+							</td>
+							<td style="text-align: right;">
+							<?php 
+								if(!$orderDetail->orderDetailStatus->_active) echo '<del>';
+								echo $orderDetail->discount . ' %'; 
+								if(!$orderDetail->orderDetailStatus->_active) echo '</del>';
+							?>
+							</td>
+							<td style="text-align: right;">
+							<?php 
+								if(!$orderDetail->orderDetailStatus->_active) echo '<del>';
+								echo number_format($netPrice, 2); 
+								if(!$orderDetail->orderDetailStatus->_active) echo '</del>';
+							?>
+							</td>
+							<td style="text-align: center;">
+							<?php 
+								if(!$orderDetail->orderDetailStatus->_active) echo '<del>';
+								echo $orderDetail->quantity; 
+								if(!$orderDetail->orderDetailStatus->_active) echo '</del>';
+							?>
+							</td>
+							<td style="text-align: right;">
+							<?php 
+								if(!$orderDetail->orderDetailStatus->_active) echo '<del>';
+								echo number_format($amount, 2); 
+								if(!$orderDetail->orderDetailStatus->_active) echo '</del>';
+							?>
+							</td>
 						</tr>
 					<?php endforeach; ?>
 				</tbody>

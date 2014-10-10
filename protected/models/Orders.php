@@ -26,6 +26,7 @@ class Orders extends CActiveRecord
 {
 	public $memberCode;
 	public $memberName;
+	public $status;
 	
 	/**
 	 * @return string the associated database table name
@@ -76,7 +77,7 @@ class Orders extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
+			'id' => 'P.O. ID',
 			'dateCreated' => 'Date Created',
 			'dateLastModified' => 'Date Last Modified',
 			'memberId' => 'Member',
@@ -103,18 +104,20 @@ class Orders extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 		$criteria->with = array(
-            'member' => array(
-				'select' => 'memberCode, firstName, lastName, middleName'
-			)
+			'orderdetails' => array(),
+            'member' => array(),
+			'payments' => array(),
+			'orderStatus' => array(),
         );
+		
 		$criteria->compare('t.id',$this->id);
-		$criteria->compare('dateCreated',$this->dateCreated,true);
+		$criteria->compare('t.dateCreated', $this->dateCreated,true);
 		$criteria->compare('dateLastModified',$this->dateLastModified,true);
 		$criteria->compare('memberId',$this->memberId);
 		$criteria->compare('userId',$this->userId);
 		$criteria->compare('orderStatusId',$this->orderStatusId);
 		$criteria->compare('memberCode',$this->memberCode);		
-		$criteria->compare('memberName',$this->memberName);		
+		$criteria->compare('lastName',$this->memberName, 1);		
 		
 		$sort = new CSort;
         $sort->attributes = array(
@@ -129,12 +132,16 @@ class Orders extends CActiveRecord
                 'asc' => 'lastName',
                 'desc' => 'lastName desc',
 			),
+			'status' => array(
+                'asc' => 'orderStatus.description',
+                'desc' => 'orderStatus.description desc',
+			),
             '*',
         );		
 
 		/* Default Sort Order*/
         $sort->defaultOrder= array(
-            'dateCreated'=>CSort::SORT_DESC,
+            'dateLastModified'=>CSort::SORT_DESC,
         );
 
 		return new CActiveDataProvider($this, array(
@@ -174,6 +181,21 @@ class Orders extends CActiveRecord
 		return parent::beforeSave();
 	}
 	
+	public function getGrossAmount()
+	{
+		return $this->orderDetailSummary['gross'];
+	}
+	
+	public function getNetAmount()
+	{
+		return $this->orderDetailSummary['net'];
+	}
+	
+	public function getQuantity()
+	{
+		return $this->orderDetailSummary['items'];
+	}
+	
 	public function getOrderDetailSummary()
 	{
 		$gross = 0;
@@ -182,10 +204,13 @@ class Orders extends CActiveRecord
 		$orderDetails = $this->orderdetails;
 		foreach($orderDetails as $orderDetail)
 		{
-			$gross += $orderDetail->product->catalogPrice;
-			$discount = 1 - ($orderDetail->discount / 100);
-			$net += $orderDetail->product->catalogPrice * $discount * $orderDetail->quantity;
-			$items += $orderDetail->quantity;
+			if($orderDetail->orderDetailStatus->_active)
+			{
+				$gross += $orderDetail->product->catalogPrice * $orderDetail->quantity;
+				$discount = 1 - ($orderDetail->discount / 100);
+				$net += $orderDetail->product->catalogPrice * $discount * $orderDetail->quantity;
+				$items += $orderDetail->quantity;
+			}
 		}
 		
 		return array(
@@ -214,5 +239,10 @@ class Orders extends CActiveRecord
 	public function getMemberFullName()
 	{
 		return $this->member->lastName . ', ' . $this->member->firstName;
+	}
+	
+	public function getOrderStatusDesc()
+	{
+		return $this->orderStatus->description;
 	}
 }
