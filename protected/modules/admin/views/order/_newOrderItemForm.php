@@ -13,18 +13,16 @@
 
 <div class="form">
 	<div class="row">
-
-			<?php echo CHtml::label('Find a Product', 'product'); ?>
-			<?php $this->widget('bootstrap.widgets.TbTypeAhead', array(
-				'name' => 'product',
-				'source' => array_values(CHtml::listData(Products::model()->findAll(), 'id', 'codename')),
-				'htmlOptions' => array(
-					// 'prepend' => TbHtml::icon(TbHtml::ICON_GLOBE),
-					'placeholder' => 'Enter product code/name',
-					'class' => 'span-10',
-				),
-			)); ?>		
-
+		<?php echo CHtml::label('Find a Product', 'product'); ?>
+		<?php $this->widget('bootstrap.widgets.TbTypeAhead', array(
+			'name' => 'product',
+			'source' => array_values(CHtml::listData(Products::model()->findAll(), 'id', 'codename')),
+			'htmlOptions' => array(
+				// 'prepend' => TbHtml::icon(TbHtml::ICON_GLOBE),
+				'placeholder' => 'Enter product code/name',
+				'class' => 'span-10',
+			),
+		)); ?>		
 	</div>
 	<hr />	
 	<?php $form=$this->beginWidget('CActiveForm', array(

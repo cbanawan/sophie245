@@ -21,6 +21,7 @@
 				$('.search-form').toggle();
 				return false;
 			});
+			
 			$('.search-form form').submit(function(){
 				$('#orders-grid').yiiGridView('update', {
 					data: $(this).serialize()
@@ -33,62 +34,68 @@
 
 <div class="row">
 	<div class="span12">
-	<?php
-		Yii::app()->getClientScript()->registerScript("orderSelect", "
-			var alertFromCallsJS = function(id){
-				var selectedOrderId = parseInt($.fn.yiiGridView.getSelection('orders-grid'));
-				$.ajax({
-						type: 'GET',
-						url:'" . Yii::app()->createUrl('admin/order/ajaxView') . "',
-						success:function(result){
-							$('#po-header').html(result);
-						},
-						data:{id: selectedOrderId}
-					});	
-					
-				$.ajax({
-						type: 'GET',
-						url:'" . Yii::app()->createUrl('admin/order/ajaxItems') . "',
-						success:function(result){
-							$('#po-items').html(result);
-						},
-						data:{id: selectedOrderId}
-					});			
-					
-				$.ajax({
-						type: 'GET',
-						url:'" . Yii::app()->createUrl('admin/order/ajaxPayments') . "',
-						success:function(result){
-							$('#po-payments').html(result);
-						},
-						data:{id: selectedOrderId}
-					});			
-			};
-		");
-
-		$this->beginWidget('zii.widgets.CPortlet', array(
-			'title'=>'Purchase Orders',
-		)); 
-		
-		echo CHtml::link('Advanced Search','#',array('class'=>'search-button'));
-		
-		?>
-		
-		<div class="search-form" style="display:none">
-			<?php $this->renderPartial('_search',array(
-				'model'=>$order,
-				'orderStatus' => $orderStatus,
+		<div class="span3">
+			<?php $this->beginWidget('zii.widgets.CPortlet', array(
+				'title'=>'Order Search/Filter',
 			)); ?>
-		</div><!-- search-form -->		
-		<?php $this->renderPartial(
-					'_list',
-					array(
-						'order'=>$order,
-					)
-				); 	
-			
-		$this->endWidget(); 
-	?>	
+			<div class="search-formx">
+				<?php $this->renderPartial('_search',array(
+					'model'=>$order,
+					'orderStatus' => $orderStatus,
+				)); ?>
+			</div><!-- search-form -->	
+			<?php $this->endWidget(); ?>
+		</div>
+		<div class="span9">
+		<?php
+			Yii::app()->getClientScript()->registerScript("orderSelect", "
+				var alertFromCallsJS = function(id){
+					var selectedOrderId = parseInt($.fn.yiiGridView.getSelection('orders-grid'));
+					$.ajax({
+							type: 'GET',
+							url:'" . Yii::app()->createUrl('admin/order/ajaxView') . "',
+							success:function(result){
+								$('#po-header').html(result);
+							},
+							data:{id: selectedOrderId}
+						});	
+
+					$.ajax({
+							type: 'GET',
+							url:'" . Yii::app()->createUrl('admin/order/ajaxItems') . "',
+							success:function(result){
+								$('#po-items').html(result);
+							},
+							data:{id: selectedOrderId}
+						});			
+
+					$.ajax({
+							type: 'GET',
+							url:'" . Yii::app()->createUrl('admin/order/ajaxPayments') . "',
+							success:function(result){
+								$('#po-payments').html(result);
+							},
+							data:{id: selectedOrderId}
+						});			
+				};
+			");
+
+			$this->beginWidget('zii.widgets.CPortlet', array(
+				'title'=>'Purchase Orders',
+			)); 
+
+			?>
+	
+			<?php $this->renderPartial(
+						'_list',
+						array(
+							'order'=>$order,
+						)
+					); 	
+
+			$this->endWidget(); 
+		?>	
+		</div>
 	</div>
 </div>
 

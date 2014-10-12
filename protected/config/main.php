@@ -8,6 +8,7 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Sophie BC 245 Ordering System',
+	'defaultController' => 'admin',
 
 	// preloading 'log' component
 	'preload'=>array('log'),

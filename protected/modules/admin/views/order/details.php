@@ -57,7 +57,16 @@
 			<?php 
 				if(!in_array($order->orderStatus->status, array('served', 'cancelled', 'ordered')))
 				{
-					echo CHtml::link('Add Order Item', '#', array('onclick'=>'$("#order-item-dialog").dialog("open"); return false;')); 
+					echo '<div id="add-item-button" class="pull-right" style="padding-bottom: 5px">';
+					echo CHtml::link(
+							'Add Order Item', 
+							'#', 
+							array(
+								'onclick' => '$("#order-item-dialog").dialog("open"); return false;',
+								'class' => 'btn btn-mini btn-default'
+								)
+						); 
+					echo '</div>';
 				}
 			?>
 			<div id="po-items">
@@ -81,7 +90,16 @@
 			<?php 
 				if(!in_array($order->orderStatus->status, array('served', 'cancelled', 'ordered')))
 				{
-					echo CHtml::link('Add Payment', '#', array('onclick'=>'$("#payment-dialog").dialog("open"); return false;')); 
+					echo '<div id="add-item-button" class="pull-right" style="padding-bottom: 5px">';
+					echo CHtml::link(
+							'Add Payment', 
+							'#', 
+							array(
+								'onclick'=>'$("#payment-dialog").dialog("open"); return false;',
+								'class' => 'btn btn-mini btn-default'
+							)
+						); 
+					echo '</div>';
 				}
 			?>
 			<div id="po-payments">
