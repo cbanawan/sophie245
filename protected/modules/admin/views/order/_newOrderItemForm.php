@@ -39,6 +39,9 @@
 		<?php echo CHtml::label('Selected Product', 'productDesc'); ?>
 		<?php echo CHtml::textField('productDesc', '', array('disabled' => true, 'class' => 'span-10')); ?>
 
+		<?php echo CHtml::label('Stock Status', 'stockStatus'); ?>
+		<?php echo CHtml::textField('stockStatus', '', array('disabled' => true, 'class' => 'span-5')); ?>
+
 		<?php echo $form->label($model,'discount'); ?>
 		<?php echo $form->textField($model,'discount', array('class' => 'span-2 text-right')); ?>
 
@@ -79,6 +82,16 @@
 				$("#Orderdetails_productId").val(result.id);
 				$("#Orderdetails_discount").val(result.netPriceDiscount);
 				$("#productDesc").val(result.code + ' ' + result.description);
+				stockStatus = 'Available';
+				if(result._outOfStocksUp == 0)
+				{
+					stockStatus = 'Out Of Stock';
+				}
+				else if(result._outOfStocksUp > 0)
+				{
+					stockStatus = 'Critical Stock (' + result._outOfStocksUp + ')';
+				}
+				$("#stockStatus").val(stockStatus);
 			});
 		}
 		// Change focus to discount field		

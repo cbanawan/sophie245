@@ -41,6 +41,7 @@ class Products extends CActiveRecord
 			array('stocksOnHand, productGroupId, catalogId, _outOfStocksUp', 'numerical', 'integerOnly'=>true),
 			array('catalogPrice, netPriceDiscount', 'numerical'),
 			array('code, description', 'length', 'max'=>45),
+			array('_outOfStocksUp', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, code, description, catalogPrice, netPriceDiscount, stocksOnHand, productGroupId, catalogId, _outOfStocksUp', 'safe', 'on'=>'search'),
@@ -126,5 +127,15 @@ class Products extends CActiveRecord
 	public function getCodeName()
 	{
 		return $this->code . ' ' . $this->description;
+	}
+	
+	public function getOutOfStock()
+	{
+		return ($this->_outOfStocksUp == 0);
+	}
+	
+	public function getCriticalStock()
+	{
+		return ($this->_outOfStocksUp > 0);
 	}
 }

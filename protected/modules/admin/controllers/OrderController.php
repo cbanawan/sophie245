@@ -127,7 +127,22 @@ class OrderController extends Controller
 		if(isset($_POST['Orderdetails']))
 		{
 			$orderDetail->attributes = $_POST['Orderdetails'];
+			
+			$product = Products::model()->findByPk($orderDetail->productId);
+			// var_dump($product->outOfStock, $product->criticalStock);
+			if($product->outOfStock)
+			{
+				$orderDetailStatus = Orderdetailstatus::model()->find('status = :status', array(':status' => 'outOfStock'));
+				$orderDetail->orderDetailStatusId = $orderDetailStatus->id;
+			}
+			elseif($product->criticalStock)
+			{
+				$orderDetailStatus = Orderdetailstatus::model()->find('status = :status', array(':status' => 'critical'));
+				$orderDetail->orderDetailStatusId = $orderDetailStatus->id;
+			}
 		}
+		
+		var_dump($orderDetail->attributes);
 		
 		$orderDetail->save();
 	}

@@ -124,7 +124,10 @@ class Orderdetails extends CActiveRecord
 		if ($this->isNewRecord)
 		{
 			$this->dateCreated = new CDbExpression('NOW()');
-			$this->orderDetailStatusId = 1;
+			if(!isset($this->orderDetailStatusId))
+			{
+				$this->orderDetailStatusId = 1;
+			}
 		}
 
 		$this->dateLastModified = new CDbExpression('NOW()');
