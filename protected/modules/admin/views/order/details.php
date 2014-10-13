@@ -12,7 +12,7 @@
 		array(
 			'label' => 'Cancel',
 			'url' => $this->createUrl('order/changeStatus', array('id' => $order->id, 'status' => 'cancelled')),
-			'visible' => !in_array($order->orderStatus->status, array('ordered', 'served', 'cancelled'))
+			'visible' => !in_array($order->orderStatus->status, array('served', 'cancelled'))
 		),
 		array(
 			'label' => 'Placed',
@@ -27,7 +27,7 @@
 		array(
 			'label' => 'Serve',
 			'url' => $this->createUrl('order/changeStatus', array('id' => $order->id, 'status' => 'served')),
-			'visible' => in_array($order->orderStatus->status, array('paid', 'ordered'))
+			'visible' => in_array($order->orderStatus->status, array('paid'))
 		),
 	);
 ?>
@@ -55,7 +55,7 @@
 			));
 		?>
 			<?php 
-				if(!in_array($order->orderStatus->status, array('served', 'cancelled', 'ordered')))
+				if(!in_array($order->orderStatus->status, array('served', 'cancelled')))
 				{
 					echo '<div id="add-item-button" class="pull-right" style="padding-bottom: 5px">';
 					echo CHtml::link(
@@ -88,7 +88,7 @@
 			));
 		?>
 			<?php 
-				if(!in_array($order->orderStatus->status, array('served', 'cancelled', 'ordered')))
+				if(!in_array($order->orderStatus->status, array('served', 'cancelled')))
 				{
 					echo '<div id="add-item-button" class="pull-right" style="padding-bottom: 5px">';
 					echo CHtml::link(
