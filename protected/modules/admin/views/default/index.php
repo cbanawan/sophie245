@@ -6,7 +6,7 @@
 		),
 		array(
 			'label' => 'Members',
-			'url' => '#',
+			'url' => Yii::app()->createUrl('admin/member/admin'),
 		),
 		array(
 			'label' => 'Products',
