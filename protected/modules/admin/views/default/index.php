@@ -1,4 +1,9 @@
 <?php
+
+	$this->breadcrumbs=array(
+		'Admin' => array('default/index'),
+	);
+	
 	$this->menu = array(
 		array(
 			'label' => 'Purchase Order',
