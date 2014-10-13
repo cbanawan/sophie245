@@ -1,3 +1,19 @@
+<?php
+/* @var $this OrderController */
+
+	$this->breadcrumbs=array(
+		'Admin' => array('default/index'),
+		'Product' => array('product/index'),
+		'Update Critical Stocks',
+	);
+
+	$this->menu = array(
+		array(
+			'label' => 'Search Product',
+			'url' => $this->createUrl('product/search'),
+		),
+	);
+?>
 <?php 
 	$form = $this->beginWidget(
 			'CActiveForm', 

@@ -2,6 +2,8 @@
 
 class ProductController extends Controller
 {
+	public $layout='//layouts/column2_2';
+	
 	public function actionIndex()
 	{
 		$this->render('index');
@@ -62,6 +64,11 @@ class ProductController extends Controller
 		}
 		
 		$this->render('updateCritical', array('model' => new Csv()));
+	}
+	
+	public function actionSearch()
+	{
+		$this->render('search');
 	}
 
 	// Uncomment the following methods and override them if needed

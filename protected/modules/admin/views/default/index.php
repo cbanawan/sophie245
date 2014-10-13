@@ -10,7 +10,7 @@
 		),
 		array(
 			'label' => 'Products',
-			'url' => '#',
+			'url' => Yii::app()->createUrl('admin/product/index'),
 		),
 		array(
 			'label' => 'Reports',
