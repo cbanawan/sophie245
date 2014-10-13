@@ -20,6 +20,7 @@
  * @property integer $fullName
  * @property string $sponsorCode
  * @property string $position
+ * @property string $dateJoined
  *
  * The followings are the available model relations:
  * @property Members $sponsor
@@ -99,6 +100,7 @@ class Members extends CActiveRecord
 			'fullName' => 'Full Name',
 			'sponsorCode' => 'Sponsor Code',
 			'position' => 'Position',
+			'dateJoined' => 'Date Joined'
 		);
 	}
 
@@ -120,13 +122,10 @@ class Members extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
 		$criteria->compare('memberCode',$this->memberCode,true);
 		$criteria->compare('firstName',$this->firstName,true);
 		$criteria->compare('lastName',$this->lastName,true);
 		$criteria->compare('middleName',$this->middleName,true);
-		$criteria->compare('sponsorId',$this->sponsorId);
-		$criteria->compare('_active',$this->_active);
 		$criteria->compare('homePhone',$this->homePhone,true);
 		$criteria->compare('mobilePhone',$this->mobilePhone,true);
 		$criteria->compare('emailAddress',$this->emailAddress,true);
