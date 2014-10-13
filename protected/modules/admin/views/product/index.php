@@ -1,4 +1,24 @@
 <?php
+/* @var $this OrderController */
+
+	$this->breadcrumbs=array(
+		'Admin' => array('default/index'),
+		'Product'
+	);
+
+	$this->menu = array(
+		array(
+			'label' => 'Upload New Critical',
+			'url' => $this->createUrl('product/updateCritical'),
+		),
+		array(
+			'label' => 'Search Product',
+			'url' => $this->createUrl('product/search'),
+		),
+	);
+?>
+
+<?php
 /* @var $this ProductController */
 
 $this->breadcrumbs=array(
