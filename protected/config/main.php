@@ -16,6 +16,7 @@ return array(
 	// path aliases
     'aliases' => array(
         'bootstrap' => realpath(__DIR__ . '/../extensions/bootstrap'),
+        'booster' => realpath(__DIR__ . '/../extensions/yiibooster'),
     ),
 	
 	// autoloading model and component classes
@@ -41,6 +42,9 @@ return array(
 
 	// application components
 	'components'=>array(
+		'booster' => array(
+			'class' => 'booster.components.Booster',
+		),
         'bootstrap' => array(
             'class' => 'bootstrap.components.TbApi',   
         ),		

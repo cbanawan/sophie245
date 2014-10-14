@@ -16350,3 +16350,548 @@ Stack trace:
 REQUEST_URI=/index.php?r=products/getProduct&id=c
 in C:\xampp\htdocs\sophie245\protected\controllers\ProductsController.php (155)
 in C:\xampp\htdocs\sophie245\index.php (13)
+2014/10/14 20:36:02 [error] [exception.CException] exception 'CException' with message 'Alias "yiibooster.filters.BoosterFilter" is invalid. Make sure it points to an existing directory or file.' in C:\xampp\yii\framework\YiiBase.php:347
+Stack trace:
+#0 C:\xampp\yii\framework\YiiBase.php(196): YiiBase::import('yiibooster.filt...', true)
+#1 C:\xampp\yii\framework\web\filters\CFilterChain.php(89): YiiBase::createComponent(Array)
+#2 C:\xampp\yii\framework\web\CController.php(291): CFilterChain::create(Object(OrderController), Object(CInlineAction), Array)
+#3 C:\xampp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 C:\xampp\yii\framework\web\CWebApplication.php(282): CController->run('')
+#5 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('order')
+#6 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#7 C:\xampp\htdocs\sophie245\index.php(13): CApplication->run()
+#8 {main}
+REQUEST_URI=/index.php?r=order
+HTTP_REFERER=http://localhost/index.php?r=gii/controller/index
+---
+2014/10/14 20:36:03 [error] [exception.CException] exception 'CException' with message 'Alias "yiibooster.filters.BoosterFilter" is invalid. Make sure it points to an existing directory or file.' in C:\xampp\yii\framework\YiiBase.php:347
+Stack trace:
+#0 C:\xampp\yii\framework\YiiBase.php(196): YiiBase::import('yiibooster.filt...', true)
+#1 C:\xampp\yii\framework\web\filters\CFilterChain.php(89): YiiBase::createComponent(Array)
+#2 C:\xampp\yii\framework\web\CController.php(291): CFilterChain::create(Object(OrderController), Object(CInlineAction), Array)
+#3 C:\xampp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 C:\xampp\yii\framework\web\CWebApplication.php(282): CController->run('')
+#5 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('order')
+#6 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#7 C:\xampp\htdocs\sophie245\index.php(13): CApplication->run()
+#8 {main}
+REQUEST_URI=/index.php?r=order
+HTTP_REFERER=http://localhost/index.php?r=gii/controller/index
+---
+2014/10/14 20:36:16 [error] [exception.CException] exception 'CException' with message 'Alias "booster.yiibooster.filters.BoosterFilter" is invalid. Make sure it points to an existing PHP file and the file is readable.' in C:\xampp\yii\framework\YiiBase.php:322
+Stack trace:
+#0 C:\xampp\yii\framework\YiiBase.php(196): YiiBase::import('booster.yiiboos...', true)
+#1 C:\xampp\yii\framework\web\filters\CFilterChain.php(89): YiiBase::createComponent(Array)
+#2 C:\xampp\yii\framework\web\CController.php(291): CFilterChain::create(Object(OrderController), Object(CInlineAction), Array)
+#3 C:\xampp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 C:\xampp\yii\framework\web\CWebApplication.php(282): CController->run('')
+#5 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('order')
+#6 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#7 C:\xampp\htdocs\sophie245\index.php(13): CApplication->run()
+#8 {main}
+REQUEST_URI=/index.php?r=order
+HTTP_REFERER=http://localhost/index.php?r=gii/controller/index
+---
+2014/10/14 20:37:50 [error] [exception.CException] exception 'CException' with message 'Alias "yiibooster.components.Booster" is invalid. Make sure it points to an existing directory or file.' in C:\xampp\yii\framework\YiiBase.php:347
+Stack trace:
+#0 C:\xampp\yii\framework\YiiBase.php(196): YiiBase::import('yiibooster.comp...', true)
+#1 C:\xampp\yii\framework\base\CModule.php(386): YiiBase::createComponent(Array)
+#2 C:\xampp\htdocs\sophie245\protected\extensions\yiibooster\filters\BoosterFilter.php(30): CModule->getComponent('booster')
+#3 C:\xampp\yii\framework\web\filters\CFilter.php(38): BoosterFilter->preFilter(Object(CFilterChain))
+#4 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): CFilter->filter(Object(CFilterChain))
+#5 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\xampp\yii\framework\web\CWebApplication.php(282): CController->run('')
+#8 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('order')
+#9 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\sophie245\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/index.php?r=order
+HTTP_REFERER=http://localhost/index.php?r=gii/controller/index
+---
+2014/10/14 20:37:51 [error] [exception.CException] exception 'CException' with message 'Alias "yiibooster.components.Booster" is invalid. Make sure it points to an existing directory or file.' in C:\xampp\yii\framework\YiiBase.php:347
+Stack trace:
+#0 C:\xampp\yii\framework\YiiBase.php(196): YiiBase::import('yiibooster.comp...', true)
+#1 C:\xampp\yii\framework\base\CModule.php(386): YiiBase::createComponent(Array)
+#2 C:\xampp\htdocs\sophie245\protected\extensions\yiibooster\filters\BoosterFilter.php(30): CModule->getComponent('booster')
+#3 C:\xampp\yii\framework\web\filters\CFilter.php(38): BoosterFilter->preFilter(Object(CFilterChain))
+#4 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): CFilter->filter(Object(CFilterChain))
+#5 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\xampp\yii\framework\web\CWebApplication.php(282): CController->run('')
+#8 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('order')
+#9 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\sophie245\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/index.php?r=order
+HTTP_REFERER=http://localhost/index.php?r=gii/controller/index
+---
+2014/10/14 20:37:51 [error] [exception.CException] exception 'CException' with message 'Alias "yiibooster.components.Booster" is invalid. Make sure it points to an existing directory or file.' in C:\xampp\yii\framework\YiiBase.php:347
+Stack trace:
+#0 C:\xampp\yii\framework\YiiBase.php(196): YiiBase::import('yiibooster.comp...', true)
+#1 C:\xampp\yii\framework\base\CModule.php(386): YiiBase::createComponent(Array)
+#2 C:\xampp\htdocs\sophie245\protected\extensions\yiibooster\filters\BoosterFilter.php(30): CModule->getComponent('booster')
+#3 C:\xampp\yii\framework\web\filters\CFilter.php(38): BoosterFilter->preFilter(Object(CFilterChain))
+#4 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): CFilter->filter(Object(CFilterChain))
+#5 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\xampp\yii\framework\web\CWebApplication.php(282): CController->run('')
+#8 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('order')
+#9 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\sophie245\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/index.php?r=order
+HTTP_REFERER=http://localhost/index.php?r=gii/controller/index
+---
+2014/10/14 20:37:51 [error] [exception.CException] exception 'CException' with message 'Alias "yiibooster.components.Booster" is invalid. Make sure it points to an existing directory or file.' in C:\xampp\yii\framework\YiiBase.php:347
+Stack trace:
+#0 C:\xampp\yii\framework\YiiBase.php(196): YiiBase::import('yiibooster.comp...', true)
+#1 C:\xampp\yii\framework\base\CModule.php(386): YiiBase::createComponent(Array)
+#2 C:\xampp\htdocs\sophie245\protected\extensions\yiibooster\filters\BoosterFilter.php(30): CModule->getComponent('booster')
+#3 C:\xampp\yii\framework\web\filters\CFilter.php(38): BoosterFilter->preFilter(Object(CFilterChain))
+#4 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): CFilter->filter(Object(CFilterChain))
+#5 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\xampp\yii\framework\web\CWebApplication.php(282): CController->run('')
+#8 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('order')
+#9 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\sophie245\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/index.php?r=order
+HTTP_REFERER=http://localhost/index.php?r=gii/controller/index
+---
+2014/10/14 20:37:52 [error] [exception.CException] exception 'CException' with message 'Alias "yiibooster.components.Booster" is invalid. Make sure it points to an existing directory or file.' in C:\xampp\yii\framework\YiiBase.php:347
+Stack trace:
+#0 C:\xampp\yii\framework\YiiBase.php(196): YiiBase::import('yiibooster.comp...', true)
+#1 C:\xampp\yii\framework\base\CModule.php(386): YiiBase::createComponent(Array)
+#2 C:\xampp\htdocs\sophie245\protected\extensions\yiibooster\filters\BoosterFilter.php(30): CModule->getComponent('booster')
+#3 C:\xampp\yii\framework\web\filters\CFilter.php(38): BoosterFilter->preFilter(Object(CFilterChain))
+#4 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): CFilter->filter(Object(CFilterChain))
+#5 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\xampp\yii\framework\web\CWebApplication.php(282): CController->run('')
+#8 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('order')
+#9 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\sophie245\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/index.php?r=order
+HTTP_REFERER=http://localhost/index.php?r=gii/controller/index
+---
+2014/10/14 20:37:52 [error] [exception.CException] exception 'CException' with message 'Alias "yiibooster.components.Booster" is invalid. Make sure it points to an existing directory or file.' in C:\xampp\yii\framework\YiiBase.php:347
+Stack trace:
+#0 C:\xampp\yii\framework\YiiBase.php(196): YiiBase::import('yiibooster.comp...', true)
+#1 C:\xampp\yii\framework\base\CModule.php(386): YiiBase::createComponent(Array)
+#2 C:\xampp\htdocs\sophie245\protected\extensions\yiibooster\filters\BoosterFilter.php(30): CModule->getComponent('booster')
+#3 C:\xampp\yii\framework\web\filters\CFilter.php(38): BoosterFilter->preFilter(Object(CFilterChain))
+#4 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): CFilter->filter(Object(CFilterChain))
+#5 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\xampp\yii\framework\web\CWebApplication.php(282): CController->run('')
+#8 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('order')
+#9 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\sophie245\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/index.php?r=order
+HTTP_REFERER=http://localhost/index.php?r=gii/controller/index
+---
+2014/10/14 20:41:40 [error] [php] Undefined variable: order (C:\xampp\htdocs\sophie245\protected\views\order\view.php:1)
+Stack trace:
+#0 C:\xampp\yii\framework\web\CController.php(869): OrderController->renderFile()
+#1 C:\xampp\yii\framework\web\CController.php(782): OrderController->renderPartial()
+#2 C:\xampp\htdocs\sophie245\protected\controllers\OrderController.php(26): OrderController->render()
+#3 unknown(0): OrderController->actionView()
+#4 C:\xampp\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#5 C:\xampp\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#6 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 C:\xampp\yii\framework\web\filters\CFilterChain.php(133): OrderController->runAction()
+#8 C:\xampp\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): BoosterFilter->filter()
+#10 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\xampp\yii\framework\web\CController.php(265): OrderController->runActionWithFilters()
+#12 C:\xampp\yii\framework\web\CWebApplication.php(282): OrderController->run()
+#13 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#14 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\sophie245\index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php?r=order/view&id=32
+in C:\xampp\htdocs\sophie245\protected\views\order\view.php (1)
+in C:\xampp\htdocs\sophie245\protected\controllers\OrderController.php (26)
+in C:\xampp\htdocs\sophie245\index.php (13)
+2014/10/14 20:43:25 [error] [exception.CException] exception 'CException' with message 'Property "Orders.memberAttributes" is not defined.' in C:\xampp\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\xampp\yii\framework\db\ar\CActiveRecord.php(145): CComponent->__get('memberAttribute...')
+#1 C:\xampp\htdocs\sophie245\protected\views\order\view.php(6): CActiveRecord->__get('memberAttribute...')
+#2 C:\xampp\yii\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#3 C:\xampp\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#4 C:\xampp\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#5 C:\xampp\yii\framework\web\CController.php(782): CController->renderPartial('view', Array, true)
+#6 C:\xampp\htdocs\sophie245\protected\controllers\OrderController.php(26): CController->render('view', Array)
+#7 [internal function]: OrderController->actionView('32')
+#8 C:\xampp\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(OrderController), Array)
+#9 C:\xampp\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(OrderController), Object(ReflectionMethod), Array)
+#10 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 C:\xampp\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#15 C:\xampp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 C:\xampp\yii\framework\web\CWebApplication.php(282): CController->run('view')
+#17 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('order/view')
+#18 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#19 C:\xampp\htdocs\sophie245\index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/index.php?r=order/view&id=32
+---
+2014/10/14 20:46:21 [error] [exception.CException] exception 'CException' with message 'OrderController has an extra endWidget() call in its view.' in C:\xampp\yii\framework\web\CBaseController.php:210
+Stack trace:
+#0 C:\xampp\htdocs\sophie245\protected\views\order\view.php(18): CBaseController->endWidget()
+#1 C:\xampp\yii\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#2 C:\xampp\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#3 C:\xampp\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#4 C:\xampp\yii\framework\web\CController.php(782): CController->renderPartial('view', Array, true)
+#5 C:\xampp\htdocs\sophie245\protected\controllers\OrderController.php(26): CController->render('view', Array)
+#6 [internal function]: OrderController->actionView('32')
+#7 C:\xampp\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(OrderController), Array)
+#8 C:\xampp\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(OrderController), Object(ReflectionMethod), Array)
+#9 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#10 C:\xampp\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#11 C:\xampp\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#12 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): CFilter->filter(Object(CFilterChain))
+#13 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#14 C:\xampp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 C:\xampp\yii\framework\web\CWebApplication.php(282): CController->run('view')
+#16 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('order/view')
+#17 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#18 C:\xampp\htdocs\sophie245\index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/index.php?r=order/view&id=32
+---
+2014/10/14 21:55:46 [error] [php] Undefined variable: data (C:\xampp\htdocs\sophie245\protected\views\order\view.php:40)
+Stack trace:
+#0 C:\xampp\yii\framework\web\CController.php(869): OrderController->renderFile()
+#1 C:\xampp\yii\framework\web\CController.php(782): OrderController->renderPartial()
+#2 C:\xampp\htdocs\sophie245\protected\controllers\OrderController.php(26): OrderController->render()
+#3 unknown(0): OrderController->actionView()
+#4 C:\xampp\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#5 C:\xampp\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#6 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 C:\xampp\yii\framework\web\filters\CFilterChain.php(133): OrderController->runAction()
+#8 C:\xampp\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): BoosterFilter->filter()
+#10 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\xampp\yii\framework\web\CController.php(265): OrderController->runActionWithFilters()
+#12 C:\xampp\yii\framework\web\CWebApplication.php(282): OrderController->run()
+#13 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#14 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\sophie245\index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php?r=order/view&id=32
+in C:\xampp\htdocs\sophie245\protected\views\order\view.php (40)
+in C:\xampp\htdocs\sophie245\protected\controllers\OrderController.php (26)
+in C:\xampp\htdocs\sophie245\index.php (13)
+2014/10/14 22:01:52 [error] [exception.CException] exception 'CException' with message 'Property "Orderdetails.orderStatus" is not defined.' in C:\xampp\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\xampp\yii\framework\db\ar\CActiveRecord.php(145): CComponent->__get('orderStatus')
+#1 C:\xampp\htdocs\sophie245\protected\views\order\_items.php(33): CActiveRecord->__get('orderStatus')
+#2 C:\xampp\yii\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#3 C:\xampp\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#4 C:\xampp\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#5 C:\xampp\htdocs\sophie245\protected\views\order\view.php(29): CController->renderPartial('_items', Array)
+#6 C:\xampp\yii\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#7 C:\xampp\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#8 C:\xampp\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#9 C:\xampp\yii\framework\web\CController.php(782): CController->renderPartial('view', Array, true)
+#10 C:\xampp\htdocs\sophie245\protected\controllers\OrderController.php(26): CController->render('view', Array)
+#11 [internal function]: OrderController->actionView('32')
+#12 C:\xampp\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(OrderController), Array)
+#13 C:\xampp\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(OrderController), Object(ReflectionMethod), Array)
+#14 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#15 C:\xampp\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#16 C:\xampp\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#17 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): CFilter->filter(Object(CFilterChain))
+#18 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#19 C:\xampp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 C:\xampp\yii\framework\web\CWebApplication.php(282): CController->run('view')
+#21 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('order/view')
+#22 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#23 C:\xampp\htdocs\sophie245\index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/index.php?r=order/view&id=32
+---
+2014/10/14 22:02:10 [error] [exception.CException] exception 'CException' with message 'Property "Orderdetails.orderStatus" is not defined.' in C:\xampp\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\xampp\yii\framework\db\ar\CActiveRecord.php(145): CComponent->__get('orderStatus')
+#1 C:\xampp\htdocs\sophie245\protected\views\order\_items.php(33): CActiveRecord->__get('orderStatus')
+#2 C:\xampp\yii\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#3 C:\xampp\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#4 C:\xampp\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#5 C:\xampp\htdocs\sophie245\protected\views\order\view.php(29): CController->renderPartial('_items', Array)
+#6 C:\xampp\yii\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#7 C:\xampp\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#8 C:\xampp\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#9 C:\xampp\yii\framework\web\CController.php(782): CController->renderPartial('view', Array, true)
+#10 C:\xampp\htdocs\sophie245\protected\controllers\OrderController.php(26): CController->render('view', Array)
+#11 [internal function]: OrderController->actionView('32')
+#12 C:\xampp\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(OrderController), Array)
+#13 C:\xampp\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(OrderController), Object(ReflectionMethod), Array)
+#14 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#15 C:\xampp\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#16 C:\xampp\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#17 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): CFilter->filter(Object(CFilterChain))
+#18 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#19 C:\xampp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 C:\xampp\yii\framework\web\CWebApplication.php(282): CController->run('view')
+#21 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('order/view')
+#22 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#23 C:\xampp\htdocs\sophie245\index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/index.php?r=order/view&id=32
+---
+2014/10/14 22:02:12 [error] [exception.CException] exception 'CException' with message 'Property "Orderdetails.orderStatus" is not defined.' in C:\xampp\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\xampp\yii\framework\db\ar\CActiveRecord.php(145): CComponent->__get('orderStatus')
+#1 C:\xampp\htdocs\sophie245\protected\views\order\_items.php(33): CActiveRecord->__get('orderStatus')
+#2 C:\xampp\yii\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#3 C:\xampp\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#4 C:\xampp\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#5 C:\xampp\htdocs\sophie245\protected\views\order\view.php(29): CController->renderPartial('_items', Array)
+#6 C:\xampp\yii\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#7 C:\xampp\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#8 C:\xampp\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#9 C:\xampp\yii\framework\web\CController.php(782): CController->renderPartial('view', Array, true)
+#10 C:\xampp\htdocs\sophie245\protected\controllers\OrderController.php(26): CController->render('view', Array)
+#11 [internal function]: OrderController->actionView('32')
+#12 C:\xampp\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(OrderController), Array)
+#13 C:\xampp\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(OrderController), Object(ReflectionMethod), Array)
+#14 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#15 C:\xampp\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#16 C:\xampp\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#17 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): CFilter->filter(Object(CFilterChain))
+#18 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#19 C:\xampp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 C:\xampp\yii\framework\web\CWebApplication.php(282): CController->run('view')
+#21 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('order/view')
+#22 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#23 C:\xampp\htdocs\sophie245\index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/index.php?r=order/view&id=32
+---
+2014/10/14 22:02:26 [error] [exception.CException] exception 'CException' with message 'Property "Orderdetails.orderStatus" is not defined.' in C:\xampp\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\xampp\yii\framework\db\ar\CActiveRecord.php(145): CComponent->__get('orderStatus')
+#1 C:\xampp\htdocs\sophie245\protected\views\order\_items.php(33): CActiveRecord->__get('orderStatus')
+#2 C:\xampp\yii\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#3 C:\xampp\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#4 C:\xampp\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#5 C:\xampp\htdocs\sophie245\protected\views\order\view.php(29): CController->renderPartial('_items', Array)
+#6 C:\xampp\yii\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#7 C:\xampp\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#8 C:\xampp\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#9 C:\xampp\yii\framework\web\CController.php(782): CController->renderPartial('view', Array, true)
+#10 C:\xampp\htdocs\sophie245\protected\controllers\OrderController.php(26): CController->render('view', Array)
+#11 [internal function]: OrderController->actionView('32')
+#12 C:\xampp\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(OrderController), Array)
+#13 C:\xampp\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(OrderController), Object(ReflectionMethod), Array)
+#14 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#15 C:\xampp\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#16 C:\xampp\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#17 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): CFilter->filter(Object(CFilterChain))
+#18 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#19 C:\xampp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 C:\xampp\yii\framework\web\CWebApplication.php(282): CController->run('view')
+#21 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('order/view')
+#22 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#23 C:\xampp\htdocs\sophie245\index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/index.php?r=order/view&id=32
+---
+2014/10/14 22:03:57 [error] [exception.CDbException] exception 'CDbException' with message 'Relation "product, orderDetailStatus" is not defined in active record class "Orderdetails".' in C:\xampp\yii\framework\db\ar\CActiveFinder.php:226
+Stack trace:
+#0 C:\xampp\yii\framework\db\ar\CActiveFinder.php(287): CActiveFinder->buildJoinTree(Object(CJoinElement), 'product, orderD...')
+#1 C:\xampp\yii\framework\db\ar\CActiveFinder.php(296): CActiveFinder->buildJoinTree(Object(CJoinElement), 'orderdetails')
+#2 C:\xampp\yii\framework\db\ar\CActiveFinder.php(48): CActiveFinder->buildJoinTree(Object(CJoinElement), Array)
+#3 C:\xampp\yii\framework\db\ar\CActiveRecord.php(909): CActiveFinder->__construct(Object(Orders), Array)
+#4 C:\xampp\yii\framework\db\ar\CActiveRecord.php(1355): CActiveRecord->getActiveFinder(Array)
+#5 C:\xampp\yii\framework\db\ar\CActiveRecord.php(1486): CActiveRecord->query(Object(CDbCriteria))
+#6 C:\xampp\htdocs\sophie245\protected\controllers\OrderController.php(19): CActiveRecord->findByPk('32')
+#7 [internal function]: OrderController->actionView('32')
+#8 C:\xampp\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(OrderController), Array)
+#9 C:\xampp\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(OrderController), Object(ReflectionMethod), Array)
+#10 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 C:\xampp\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#15 C:\xampp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 C:\xampp\yii\framework\web\CWebApplication.php(282): CController->run('view')
+#17 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('order/view')
+#18 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#19 C:\xampp\htdocs\sophie245\index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/index.php?r=order/view&id=32
+---
+2014/10/14 22:04:29 [error] [exception.CException] exception 'CException' with message 'Property "Orderdetails.orderStatus" is not defined.' in C:\xampp\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\xampp\yii\framework\db\ar\CActiveRecord.php(145): CComponent->__get('orderStatus')
+#1 C:\xampp\htdocs\sophie245\protected\views\order\_items.php(33): CActiveRecord->__get('orderStatus')
+#2 C:\xampp\yii\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#3 C:\xampp\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#4 C:\xampp\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#5 C:\xampp\htdocs\sophie245\protected\views\order\view.php(29): CController->renderPartial('_items', Array)
+#6 C:\xampp\yii\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#7 C:\xampp\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#8 C:\xampp\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#9 C:\xampp\yii\framework\web\CController.php(782): CController->renderPartial('view', Array, true)
+#10 C:\xampp\htdocs\sophie245\protected\controllers\OrderController.php(26): CController->render('view', Array)
+#11 [internal function]: OrderController->actionView('32')
+#12 C:\xampp\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(OrderController), Array)
+#13 C:\xampp\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(OrderController), Object(ReflectionMethod), Array)
+#14 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#15 C:\xampp\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#16 C:\xampp\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#17 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): CFilter->filter(Object(CFilterChain))
+#18 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#19 C:\xampp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 C:\xampp\yii\framework\web\CWebApplication.php(282): CController->run('view')
+#21 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('order/view')
+#22 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#23 C:\xampp\htdocs\sophie245\index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/index.php?r=order/view&id=32
+---
+2014/10/14 22:04:59 [error] [exception.CException] exception 'CException' with message 'Property "Orderdetails.orderStatus" is not defined.' in C:\xampp\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\xampp\yii\framework\db\ar\CActiveRecord.php(145): CComponent->__get('orderStatus')
+#1 C:\xampp\htdocs\sophie245\protected\views\order\_items.php(33): CActiveRecord->__get('orderStatus')
+#2 C:\xampp\yii\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#3 C:\xampp\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#4 C:\xampp\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#5 C:\xampp\htdocs\sophie245\protected\views\order\view.php(29): CController->renderPartial('_items', Array)
+#6 C:\xampp\yii\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#7 C:\xampp\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#8 C:\xampp\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#9 C:\xampp\yii\framework\web\CController.php(782): CController->renderPartial('view', Array, true)
+#10 C:\xampp\htdocs\sophie245\protected\controllers\OrderController.php(26): CController->render('view', Array)
+#11 [internal function]: OrderController->actionView('32')
+#12 C:\xampp\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(OrderController), Array)
+#13 C:\xampp\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(OrderController), Object(ReflectionMethod), Array)
+#14 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#15 C:\xampp\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#16 C:\xampp\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#17 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): CFilter->filter(Object(CFilterChain))
+#18 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#19 C:\xampp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 C:\xampp\yii\framework\web\CWebApplication.php(282): CController->run('view')
+#21 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('order/view')
+#22 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#23 C:\xampp\htdocs\sophie245\index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/index.php?r=order/view&id=32
+---
+2014/10/14 22:05:01 [error] [exception.CException] exception 'CException' with message 'Property "Orderdetails.orderStatus" is not defined.' in C:\xampp\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\xampp\yii\framework\db\ar\CActiveRecord.php(145): CComponent->__get('orderStatus')
+#1 C:\xampp\htdocs\sophie245\protected\views\order\_items.php(33): CActiveRecord->__get('orderStatus')
+#2 C:\xampp\yii\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#3 C:\xampp\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#4 C:\xampp\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#5 C:\xampp\htdocs\sophie245\protected\views\order\view.php(29): CController->renderPartial('_items', Array)
+#6 C:\xampp\yii\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#7 C:\xampp\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#8 C:\xampp\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#9 C:\xampp\yii\framework\web\CController.php(782): CController->renderPartial('view', Array, true)
+#10 C:\xampp\htdocs\sophie245\protected\controllers\OrderController.php(26): CController->render('view', Array)
+#11 [internal function]: OrderController->actionView('32')
+#12 C:\xampp\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(OrderController), Array)
+#13 C:\xampp\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(OrderController), Object(ReflectionMethod), Array)
+#14 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#15 C:\xampp\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#16 C:\xampp\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#17 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): CFilter->filter(Object(CFilterChain))
+#18 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#19 C:\xampp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 C:\xampp\yii\framework\web\CWebApplication.php(282): CController->run('view')
+#21 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('order/view')
+#22 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#23 C:\xampp\htdocs\sophie245\index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/index.php?r=order/view&id=32
+---
+2014/10/14 22:07:48 [error] [php] Undefined variable: totalAmount (C:\xampp\htdocs\sophie245\protected\views\order\_items.php:18)
+Stack trace:
+#0 C:\xampp\yii\framework\web\CController.php(869): OrderController->renderFile()
+#1 C:\xampp\htdocs\sophie245\protected\views\order\view.php(29): OrderController->renderPartial()
+#2 C:\xampp\yii\framework\web\CBaseController.php(126): require()
+#3 C:\xampp\yii\framework\web\CBaseController.php(95): OrderController->renderInternal()
+#4 C:\xampp\yii\framework\web\CController.php(869): OrderController->renderFile()
+#5 C:\xampp\yii\framework\web\CController.php(782): OrderController->renderPartial()
+#6 C:\xampp\htdocs\sophie245\protected\controllers\OrderController.php(26): OrderController->render()
+#7 unknown(0): OrderController->actionView()
+#8 C:\xampp\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#9 C:\xampp\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#10 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#11 C:\xampp\yii\framework\web\filters\CFilterChain.php(133): OrderController->runAction()
+#12 C:\xampp\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): BoosterFilter->filter()
+#14 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#15 C:\xampp\yii\framework\web\CController.php(265): OrderController->runActionWithFilters()
+#16 C:\xampp\yii\framework\web\CWebApplication.php(282): OrderController->run()
+#17 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#18 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#19 C:\xampp\htdocs\sophie245\index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php?r=order/view&id=32
+in C:\xampp\htdocs\sophie245\protected\views\order\_items.php (18)
+in C:\xampp\htdocs\sophie245\protected\views\order\view.php (29)
+in C:\xampp\htdocs\sophie245\protected\controllers\OrderController.php (26)
+2014/10/14 22:43:07 [error] [exception.CException] exception 'CException' with message 'Property "TbButton.data-original-title" is not defined.' in C:\xampp\yii\framework\base\CComponent.php:173
+Stack trace:
+#0 C:\xampp\yii\framework\web\CWidgetFactory.php(161): CComponent->__set('data-original-t...', 'Delete')
+#1 C:\xampp\yii\framework\web\CBaseController.php(146): CWidgetFactory->createWidget(Object(OrderController), 'booster.widgets...', Array)
+#2 C:\xampp\yii\framework\web\CBaseController.php(172): CBaseController->createWidget('booster.widgets...', Array)
+#3 C:\xampp\htdocs\sophie245\protected\views\order\view.php(32): CBaseController->widget('booster.widgets...', Array)
+#4 C:\xampp\yii\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#5 C:\xampp\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#6 C:\xampp\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#7 C:\xampp\yii\framework\web\CController.php(782): CController->renderPartial('view', Array, true)
+#8 C:\xampp\htdocs\sophie245\protected\controllers\OrderController.php(26): CController->render('view', Array)
+#9 [internal function]: OrderController->actionView('32')
+#10 C:\xampp\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(OrderController), Array)
+#11 C:\xampp\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(OrderController), Object(ReflectionMethod), Array)
+#12 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#13 C:\xampp\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 C:\xampp\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#15 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): CFilter->filter(Object(CFilterChain))
+#16 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\xampp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\yii\framework\web\CWebApplication.php(282): CController->run('view')
+#19 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('order/view')
+#20 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\sophie245\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/index.php?r=order/view&id=32
+---
+2014/10/14 22:59:47 [error] [exception.CException] exception 'CException' with message 'Alias "bootstrap.widgets.TbButtonGroup" is invalid. Make sure it points to an existing PHP file and the file is readable.' in C:\xampp\yii\framework\YiiBase.php:322
+Stack trace:
+#0 C:\xampp\yii\framework\web\CWidgetFactory.php(146): YiiBase::import('bootstrap.widge...', true)
+#1 C:\xampp\yii\framework\web\CBaseController.php(146): CWidgetFactory->createWidget(Object(OrderController), 'bootstrap.widge...', Array)
+#2 C:\xampp\yii\framework\web\CBaseController.php(172): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 C:\xampp\htdocs\sophie245\protected\views\order\view.php(35): CBaseController->widget('bootstrap.widge...', Array)
+#4 C:\xampp\yii\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#5 C:\xampp\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#6 C:\xampp\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#7 C:\xampp\yii\framework\web\CController.php(782): CController->renderPartial('view', Array, true)
+#8 C:\xampp\htdocs\sophie245\protected\controllers\OrderController.php(26): CController->render('view', Array)
+#9 [internal function]: OrderController->actionView('32')
+#10 C:\xampp\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(OrderController), Array)
+#11 C:\xampp\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(OrderController), Object(ReflectionMethod), Array)
+#12 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#13 C:\xampp\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 C:\xampp\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#15 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): CFilter->filter(Object(CFilterChain))
+#16 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\xampp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\yii\framework\web\CWebApplication.php(282): CController->run('view')
+#19 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('order/view')
+#20 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\sophie245\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/index.php?r=order/view&id=32
+---
