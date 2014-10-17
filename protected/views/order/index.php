@@ -30,13 +30,13 @@
 </div>
 <?php $this->endWidget(); ?>
 
-<?php $this->beginWidget(
+<?php /*$this->beginWidget(
     'booster.widgets.TbPanel',
     array(
         'title' => 'Sales Orders',
         'headerIcon' => 'barcode'
 	)
-);?>
+);*/?>
 
 <?php
 	$this->renderPartial(
@@ -47,4 +47,4 @@
 			);
 ?>			
 
-<?php $this->endWidget(); ?>
+<?php /*$this->endWidget();*/ ?>

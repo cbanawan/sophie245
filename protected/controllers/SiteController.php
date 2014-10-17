@@ -2,6 +2,13 @@
 
 class SiteController extends Controller
 {
+	public function filters() {
+		return array(
+			//... probably other filter specifications ...
+			array('booster.filters.BoosterFilter')
+		);
+	}
+	
 	/**
 	 * Declares class-based actions.
 	 */

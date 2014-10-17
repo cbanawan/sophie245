@@ -34,7 +34,7 @@
 				array('label'=>'Dashboard', 'url'=>array('/site/index')),
 				array('label'=>'Sales Order', 'url'=>array('/order/index')),
 				array('label'=>'Member', 'url'=>array('/member/admin')),
-				array('label'=>'Product', 'url'=>array('/product/index')),
+				array('label'=>'Product', 'url'=>array('/product/admin')),
 				// array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 				// array('label'=>'Contact', 'url'=>array('/site/contact')),
 				// array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),

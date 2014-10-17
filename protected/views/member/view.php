@@ -4,7 +4,8 @@
 
 $this->breadcrumbs=array(
 	'Members'=>array('admin'),
-	$model->id,
+	$model->memberCode,
+	'Update'=>array('update', 'id' => $model->id),
 );
 
 $this->menu=array(
@@ -21,7 +22,7 @@ $this->menu=array(
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
+		// 'id',
 		'memberCode',
 		'firstName',
 		'lastName',

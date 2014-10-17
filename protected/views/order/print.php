@@ -39,9 +39,9 @@
 				<em>Prepared By</em>: <strong><?php echo $order->user->username; ?></strong>
 			</div>
 			<div class="span6 text-right">
-				<em>Date Ordered</em>: <strong><?php echo date('d M Y H:i:s', strtotime($order->dateCreated)); ?></strong>
+				<em>Date Ordered</em>: <strong><?php echo date('d M Y g:i A', strtotime($order->dateCreated)); ?></strong>
 				<br />
-				<em>Date Printed</em>: <strong><?php echo date('d M Y H:i:s'); ?></strong>
+				<em>Date Printed</em>: <strong><?php echo date('d M Y g:i A'); ?></strong>
 			</div>
 		</div>
 	</div>

@@ -162,7 +162,7 @@
 							});							
 						",
 				),
-				'visible' => (!in_array($order->orderStatus->status, array('cancelled')))
+				'visible' => !in_array($order->orderStatus->status, array('cancelled')) && ($order->netAmount != $order->totalPayment)
             ),
         )		
     )

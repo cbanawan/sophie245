@@ -3,8 +3,8 @@
 /* @var $model Members */
 
 	$this->breadcrumbs=array(
-		'Members'=>array('admin'),
-		$model->id=>array('view','id'=>$model->id),
+		'Members' => array('admin'),
+		$model->memberCode => array('view','id'=>$model->id),
 		'Update',
 		'Create New Member' => array('create')
 	);
