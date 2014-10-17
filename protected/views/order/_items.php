@@ -47,21 +47,24 @@
 			'headerHtmlOptions'=>array('style'=>'text-align: center'),
 			'htmlOptions'=>array('style'=>'text-align: center'),
 		),
-		array(
-			'header' => 'Action',
-			'headerHtmlOptions'=>array('style'=>'text-align: center'),
-			'htmlOptions' => array('nowrap'=>'nowrap', 'style'=>'text-align: center'),
-			'class'=>'booster.widgets.TbButtonColumn',
-			'template'=>'{delete}',
-			'viewButtonUrl'=>null,
-			'updateButtonUrl'=>null,
-			'deleteButtonUrl'=>null,
-		)
 	);	
 	
+	if(!in_array($orderStatus, array('cancelled')))
+	{
+		$gridColumns[] = array(
+			'header' => 'Action',
+			'headerHtmlOptions' => array('style'=>'text-align: center'),
+			'htmlOptions' => array('nowrap'=>'nowrap', 'style'=>'text-align: center', 'class' => 'action-button'),
+			'class' => 'booster.widgets.TbButtonColumn',
+			'template' => '{delete}',
+			'deleteButtonUrl' => 'Yii::app()->createUrl("order/ajaxDeleteOrderItem", array("id" => $data->id))',
+		);
+	}
+	
 	$this->widget(
-		'booster.widgets.TbJsonGridView',
+		'booster.widgets.TbGridView',
 		array(
+			'id' => 'order-items-grid',
 			'type' => 'condensed',
 			'dataProvider' => $orderItems,
 			'template' => '{items}',

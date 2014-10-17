@@ -181,6 +181,23 @@ class Orders extends CActiveRecord
 		return parent::beforeSave();
 	}
 	
+	public function beforeDelete()
+	{
+		// Delete order details
+		foreach($this->orderdetails as $orderDetail)
+		{
+			$orderDetail->delete();
+		}
+		
+		// Delete all payments
+		foreach($this->payments as $payment)
+		{
+			$payment->delete();
+		}
+		
+		return parent::beforeDelete();
+	}	
+	
 	public function getGrossAmount()
 	{
 		return $this->orderDetailSummary['gross'];

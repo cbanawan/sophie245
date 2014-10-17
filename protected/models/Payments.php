@@ -11,6 +11,7 @@
  * @property integer $orderId
  * @property integer $userId
  * @property integer $paymentTypeId
+ * @property string $remarks
  *
  * The followings are the available model relations:
  * @property Orders $order
@@ -37,7 +38,7 @@ class Payments extends CActiveRecord
 			array('orderId, userId, paymentTypeId', 'required'),
 			array('orderId, userId, paymentTypeId', 'numerical', 'integerOnly'=>true),
 			array('amount', 'numerical'),
-			array('dateCreated, dateLastModified', 'safe'),
+			array('dateCreated, dateLastModified, remarks', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, paymentTypeId, dateCreated, dateLastModified, amount, orderId, userId', 'safe', 'on'=>'search'),
@@ -70,6 +71,7 @@ class Payments extends CActiveRecord
 			'amount' => 'Amount',
 			'orderId' => 'Order',
 			'userId' => 'User',
+			'remarks' => 'Remarks'
 		);
 	}
 
