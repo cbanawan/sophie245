@@ -20916,3 +20916,76 @@ Stack trace:
 REQUEST_URI=/index.php?r=member/index
 HTTP_REFERER=http://localhost/index.php?r=order/index
 ---
+2014/10/17 19:45:44 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\sophie245\protected\controllers\MembersController.php:187)
+Stack trace:
+#0 C:\xampp\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#1 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\xampp\yii\framework\web\filters\CFilterChain.php(133): MembersController->runAction()
+#3 C:\xampp\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#4 C:\xampp\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#5 C:\xampp\yii\framework\web\filters\CInlineFilter.php(58): MembersController->filterAccessControl()
+#6 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#7 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#8 C:\xampp\yii\framework\web\CController.php(265): MembersController->runActionWithFilters()
+#9 C:\xampp\yii\framework\web\CWebApplication.php(282): MembersController->run()
+#10 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#11 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#12 C:\xampp\htdocs\sophie245\index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php?r=members/getMember&code=
+in C:\xampp\htdocs\sophie245\protected\controllers\MembersController.php (187)
+in C:\xampp\htdocs\sophie245\index.php (13)
+2014/10/17 19:48:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "product/index".' in C:\xampp\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('product/index')
+#1 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\sophie245\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/index.php?r=product/index
+HTTP_REFERER=http://localhost/index.php?r=order/view&id=190
+---
+2014/10/17 20:01:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "admin".' in C:\xampp\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\yii\framework\web\CController.php(270): CController->missingAction('admin')
+#1 C:\xampp\yii\framework\web\CWebApplication.php(282): CController->run('admin')
+#2 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('product/admin')
+#3 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\sophie245\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php?r=product/admin
+---
+2014/10/17 20:01:44 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\sophie245\protected\controllers\ProductsController.php:155)
+Stack trace:
+#0 C:\xampp\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#1 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\xampp\yii\framework\web\filters\CFilterChain.php(133): ProductsController->runAction()
+#3 C:\xampp\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#4 C:\xampp\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#5 C:\xampp\yii\framework\web\filters\CInlineFilter.php(58): ProductsController->filterAccessControl()
+#6 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#7 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#8 C:\xampp\yii\framework\web\CController.php(265): ProductsController->runActionWithFilters()
+#9 C:\xampp\yii\framework\web\CWebApplication.php(282): ProductsController->run()
+#10 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#11 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#12 C:\xampp\htdocs\sophie245\index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php?r=products/getProduct&id=digne
+in C:\xampp\htdocs\sophie245\protected\controllers\ProductsController.php (155)
+in C:\xampp\htdocs\sophie245\index.php (13)
+2014/10/17 20:01:46 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\sophie245\protected\controllers\ProductsController.php:155)
+Stack trace:
+#0 C:\xampp\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#1 C:\xampp\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\xampp\yii\framework\web\filters\CFilterChain.php(133): ProductsController->runAction()
+#3 C:\xampp\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#4 C:\xampp\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#5 C:\xampp\yii\framework\web\filters\CInlineFilter.php(58): ProductsController->filterAccessControl()
+#6 C:\xampp\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#7 C:\xampp\yii\framework\web\CController.php(291): CFilterChain->run()
+#8 C:\xampp\yii\framework\web\CController.php(265): ProductsController->runActionWithFilters()
+#9 C:\xampp\yii\framework\web\CWebApplication.php(282): ProductsController->run()
+#10 C:\xampp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#11 C:\xampp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#12 C:\xampp\htdocs\sophie245\index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php?r=products/getProduct&id=digne
+in C:\xampp\htdocs\sophie245\protected\controllers\ProductsController.php (155)
+in C:\xampp\htdocs\sophie245\index.php (13)
