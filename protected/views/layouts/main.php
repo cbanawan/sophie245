@@ -31,10 +31,13 @@
 	<div id="mainmenu">
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
-				array('label'=>'Home', 'url'=>array('/site/index')),
-				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>'Contact', 'url'=>array('/site/contact')),
-				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+				array('label'=>'Dashboard', 'url'=>array('/site/index')),
+				array('label'=>'Sales Order', 'url'=>array('/order/index')),
+				array('label'=>'Member', 'url'=>array('/member/index')),
+				array('label'=>'Product', 'url'=>array('/product/index')),
+				// array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
+				// array('label'=>'Contact', 'url'=>array('/site/contact')),
+				// array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
 		)); ?>

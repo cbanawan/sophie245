@@ -43,7 +43,14 @@
 		array(
 			'class'=>'CButtonColumn',
 			'template'=>'{view}',
-			'viewButtonUrl' => 'Yii::app()->controller->createUrl("order/view", array("id" => $data->id))',			
+			'viewButtonUrl' => 'Yii::app()->controller->createUrl("order/view", array("id" => $data->id))',
+			'buttons' => array(
+				'view' => array(
+					'htmlOptions' => array(
+						'_target' => '_blank'
+					)
+				)
+			),
 		),
 	),
 )); ?>

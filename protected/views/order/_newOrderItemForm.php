@@ -153,7 +153,7 @@
 			$("#quantity").focus();
 			if($(this).val() == '')
 			{
-				$('#order-item-dialog').dialog('close');
+				$('#btnClose').click();
 			}
 		}
 	});

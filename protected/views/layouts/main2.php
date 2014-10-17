@@ -44,9 +44,20 @@
 		</div><!-- mainmenu -->
 	</div>
 	<?php if(isset($this->breadcrumbs)):?>
-		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
+		<?php 
+		
+		/*$this->widget('zii.widgets.CBreadcrumbs', array(
 			'links'=>$this->breadcrumbs,
-		)); ?><!-- breadcrumbs -->
+		)); */
+		
+		$this->widget(
+			'booster.widgets.TbBreadcrumbs',
+			array(
+				'links' => $this->breadcrumbs,
+			)
+		);
+		
+		?><!-- breadcrumbs -->
 	<?php endif?>
 
 	<?php echo $content; ?>

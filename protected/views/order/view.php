@@ -1,3 +1,17 @@
+<?php
+	$this->breadcrumbs=array(
+		'Sales Order' => array('order/index'),
+		$order->id,
+		'Create New Order' => array('order/create'),
+	);
+	
+	Yii::app()->getClientScript()->registerScript("print-order", "
+		$('#print').click(function(){
+			window.open('" . Yii::app()->createUrl('order/print', array('id' => $order->id)) . "', '_blank');
+		});
+	");
+?>
+
 <?php $this->beginWidget(
     'booster.widgets.TbPanel',
     array(
@@ -8,6 +22,14 @@
 				'class' => 'booster.widgets.TbButtonGroup',
 				'size' => 'medium',
 				'buttons' => array(
+					array(
+						'label' => 'Print Order',
+						'icon' => 'print',
+						'url' => Yii::app()->createUrl('order/print'),
+						'htmlOptions' => array(
+							'id' => 'print'
+						)
+					),
 					array(
 						'label' => 'Change Order Status',
 						'icon' => 'cog',
@@ -37,6 +59,11 @@
 								'url' => Yii::app()->createUrl('order/delete', array('id' => $order->id)),
 								'visible' => in_array($order->orderStatus->status, array('cancelled')),
 							),
+							/*'---',
+							array(
+								'label' => 'Print Sales Order', 
+								'url' => Yii::app()->createUrl('order/print', array('id' => $order->id)),
+							),*/
 						)
 					),
 				),
@@ -135,7 +162,7 @@
 							});							
 						",
 				),
-				'visible' => ($order->totalPayment < $order->netAmount)
+				'visible' => (!in_array($order->orderStatus->status, array('cancelled')))
             ),
         )		
     )

@@ -4,7 +4,7 @@
 		<?php
 			echo CHtml::image(Yii::app()->request->baseUrl.'/images/logo-sophie-paris-bw-small.png',
 				"Sophie Paris Mactan",
-				array("width"=>"157px" ,"height"=>"48px"));
+				array("width"=>"118px" ,"height"=>"36px"));
 		?>	  
 	  </div>
 	  <div class="span6 pull-right text-right">
@@ -12,9 +12,10 @@
 		  <?php
 			switch($order->orderStatus->status)
 			{
+				case 'forOrder':
 				case 'partial':
 				case 'paid':
-					echo 'ORDER TRANSACTION SLIP';
+					echo 'SALES ORDER';
 					break;
 				case 'served':
 					echo 'PROOF OF PURCHASE';
@@ -38,7 +39,9 @@
 				<em>Prepared By</em>: <strong><?php echo $order->user->username; ?></strong>
 			</div>
 			<div class="span6 text-right">
-				<em>Date</em>: <strong><?php echo date('d M Y H:i:s', strtotime($order->dateCreated)); ?></strong>
+				<em>Date Ordered</em>: <strong><?php echo date('d M Y H:i:s', strtotime($order->dateCreated)); ?></strong>
+				<br />
+				<em>Date Printed</em>: <strong><?php echo date('d M Y H:i:s'); ?></strong>
 			</div>
 		</div>
 	</div>

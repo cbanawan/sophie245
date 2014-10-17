@@ -27,6 +27,7 @@ class Orders extends CActiveRecord
 	public $memberCode;
 	public $memberName;
 	public $status;
+	public $dateCreatedRange;
 	
 	/**
 	 * @return string the associated database table name
@@ -49,7 +50,7 @@ class Orders extends CActiveRecord
 			array('dateCreated', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, dateCreated, dateLastModified, memberId, userId, orderStatusId, memberCode, memberName', 'safe', 'on'=>'search'),
+			array('id, dateCreated, dateCreatedRange, dateLastModified, memberId, userId, orderStatusId, memberCode, memberName', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -117,8 +118,23 @@ class Orders extends CActiveRecord
 		$criteria->compare('userId',$this->userId);
 		$criteria->compare('orderStatusId',$this->orderStatusId);
 		$criteria->compare('memberCode',$this->memberCode);		
-		$criteria->compare('lastName',$this->memberName, 1);		
+		$criteria->compare('lastName',$this->memberName, 1);	
 		
+		if(!empty($this->dateCreatedRange))
+		{
+			$dateCreatedRange = explode('-', $this->dateCreatedRange);
+			$startDate = date('Y-m-d 00:00:00', strtotime($dateCreatedRange[0]));
+			$endDate = date('Y-m-d 23:59:00', strtotime($dateCreatedRange[1]));
+			
+			$criteria->addBetweenCondition('t.dateCreated', $startDate, $endDate);
+			// $criteria->params=array('dateCreated' => $startDate, ':endDate' => $endDate);
+		}
+		
+		if(is_array($this->orderStatusId))
+		{
+			$criteria->addInCondition('orderStatusId', $this->orderStatusId);
+		}
+
 		$sort = new CSort;
         $sort->attributes = array(
             /*  if (account_description is null)

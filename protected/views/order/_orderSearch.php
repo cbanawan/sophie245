@@ -1,20 +1,19 @@
 <?php 
-	Yii::app()->getClientScript()->registerCoreScript('jquery.ui');
-	Yii::app()->clientScript->registerCssFile(
-		Yii::app()->clientScript->getCoreScriptUrl().
-		'/jui/css/base/jquery-ui.css'
-	);
-	
 	Yii::app()->getClientScript()->registerScript("dateCreated", "
-		$(function() {
-			$('#dateCreated').datepicker({dateFormat: 'yy-mm-dd'});
-		});		
+		$('#order-search-form').submit(function(){
+			$('#orders-grid').yiiGridView('update', {
+				data: $(this).serialize()
+			});
+			
+			return false;
+		});
 	");	
 
 	$form = $this->beginWidget(
 			'booster.widgets.TbActiveForm',
 			array(
 				'id' => 'order-search-form',
+				'method' => 'get',
 				'action'=>Yii::app()->createUrl($this->route),
 			)
 	); 
@@ -23,9 +22,9 @@
 		
 ?>
 
-		<div class="container-fluid">
-			<div class="row-fluid">
-				<div class="span-12">
+		<div class="container">
+			<div class="row">
+				<div class="span-6">
 				<?php
 						echo $form->textFieldGroup(
 							$model,
@@ -57,11 +56,12 @@
 						);				
 				?>
 				</div>
-				<div class="span-12">
+				<div class="span-3">&nbsp;</div>
+				<div class="span-6">
 				<?php
 						echo $form->dateRangeGroup(
 							$model,
-							'dateCreated',
+							'dateCreatedRange',
 							array(
 								'widgetOptions' => array(
 									'callback' => 'js:function(start, end){console.log(start.toString("MMMM d, yyyy") + " - " + end.toString("MMMM d, yyyy"));}'
@@ -72,20 +72,17 @@
 								'prepend' => '<i class="glyphicon glyphicon-calendar"></i>'
 							)
 						);		
-
-						echo $form->dropDownListGroup(
+						
+						echo $form->checkboxListGroup(
 							$model,
 							'orderStatusId',
 							array(
-								'wrapperHtmlOptions' => array(
-									'class' => 'col-sm-5',
-								),
 								'widgetOptions' => array(
 									'data' => $orderStatus,
-									'htmlOptions' => array('multiple' => true),
-								)
+								),
+								// 'hint' => '<strong>Note:</strong> Labels surround all the options for much larger click areas.'
 							)
-						);	
+						);						
 				?>
 				</div>
 			</div>
@@ -98,7 +95,7 @@
 			'booster.widgets.TbButton',
 			array(
 				'buttonType' => 'submit',
-				'label' => 'Primary',
+				'label' => 'Search',
 				'context' => 'primary',
 			)
 		);

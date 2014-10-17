@@ -16,7 +16,7 @@
 
 		Yii::app()->clientScript->registerCss('receipt', "
 			#body {
-				min-height: 225px;
+				min-height: 200px;
 				overflow: hidden;
 			}
 			

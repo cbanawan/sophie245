@@ -14,9 +14,9 @@ class OrderController extends Controller
 		$orders = new Orders('search');
 		$orders->unsetAttributes();  // clear any default values
 		
-		if(isset($_POST['Orders']))
+		if(isset($_GET['Orders']))
 		{
-			$orders->attributes=$_POST['Orders'];
+			$orders->attributes=$_GET['Orders'];
 		}
 		
 		$orderStatus = CHtml::listData(Orderstatus::model()->findAll(), 'id', 'description');
@@ -48,6 +48,48 @@ class OrderController extends Controller
 					'order' => $order,
 				)
 			);
+	}
+	
+	public function actionPrint($id)
+	{
+		$this->layout = '//layouts/receipt';
+		
+		$order = Orders::model()->with('member', 'user', 'orderStatus', 'orderdetails','payments')->findByPk($id);
+		
+		$this->render('print',array(
+			'order'=>$order,
+		));		
+	}		
+	
+	public function actionCreate()
+	{
+		$model = new Orders;
+		$model->dateCreated = date("m/d/Y");
+
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+		
+		if(isset($_POST['Orders']))
+		{
+			$model->attributes = $_POST['Orders'];
+			$model->dateCreated = date("Y-m-d ", strtotime($model->dateCreated)); 
+			
+			if($model->save())
+			{
+				$this->redirect(array('view','id'=>$model->id));
+			}
+		}
+		
+		$members = CHtml::listData(Members::model()->findAll(), 'id', 'codename');
+		$users = CHtml::listData(Users::model()->findAll(), 'id', 'username');
+		$orderStatus = CHtml::listData(Orderstatus::model()->findAll(), 'id', 'status');
+
+		$this->render('create',array(
+			'members'=>$members,
+			'users'=>$users,
+			'orderStatus'=>$orderStatus,
+			'model'=>$model,
+		));	
 	}
 	
 	public function actionChangeStatus($id, $status)

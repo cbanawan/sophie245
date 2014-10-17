@@ -1,3 +1,10 @@
+<?php
+	$this->breadcrumbs=array(
+		'Sales Order',
+		'Create New Order' => array('order/create'),
+	);
+?>
+
 <?php $collapse = $this->beginWidget('booster.widgets.TbCollapse'); ?>
 <div class="panel-group" id="accordion">
   <div class="panel panel-default">
