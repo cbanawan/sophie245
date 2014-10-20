@@ -27,7 +27,7 @@ class ProductController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'search'),
+				'actions'=>array('create','update', 'search', 'updateCritical'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -141,6 +141,63 @@ class ProductController extends Controller
 	public function actionSearch()
 	{
 		$this->render('search');
+	}	
+	
+	public function actionUpdateCritical()
+	{
+		$model = new Csv();
+		
+		//$file = CUploadedFile::getInstance($model,'csv_file');
+		if(isset($_POST['Csv']))
+		{
+			$model->attributes=$_POST['Csv'];
+			
+			if($file = CUploadedFile::getInstance($model,'csv_file'))
+			{
+				$fp = fopen($file->tempName, 'r');
+				if($fp)
+				{
+					// Reset count
+					Products::model()->updateAll(array('_outOfStocksUp' => -1));
+					
+					//  $line = fgetcsv($fp, 1000, ",");
+					//  print_r($line); exit;
+					$first_time = true;
+					while( ($line = fgetcsv($fp, 1000, ";")) != FALSE)
+					{
+						if ($first_time == true) 
+						{
+							$first_time = false;
+							continue;
+						}
+							/*$model = new Registration;
+							$model->firstname = $line[0];
+							$model->lastname  = $line[1];
+
+							$model->save();*/
+							$lineArray = explode(',', $line[0]);
+							Products::model()->updateAll(
+										array('_outOfStocksUp' => $lineArray[5]),
+										'code = :code',
+										array(':code' => $lineArray[0])
+									);
+							
+							var_dump('Updating.... ', $lineArray[0], $lineArray[5]);
+							echo '<br />';
+
+					}
+					// $this->redirect('././index');
+
+				}
+				//    echo   $content = fread($fp, filesize($file->tempName));
+
+			}
+
+
+
+		}
+		
+		$this->render('updateCritical', array('model' => new Csv()));
 	}	
 
 	/**

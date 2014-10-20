@@ -19,7 +19,7 @@ class Csv extends CFormModel
 	public function attributeLabels() 
 	{ 
 		return array(
-			'csv_file'=>'Upload CSV File'
+			'csv_file'=>'Select a CSV file to Upload'
 		);
 	}	
 }

@@ -1,30 +1,34 @@
 <?php
-/* @var $this ProductController */
-/* @var $model Products */
+/* @var $this PurchaseOrderController */
+/* @var $model PurchaseOrders */
 
 $this->breadcrumbs=array(
-	'Manage',
-	'Search' => array('search'),
-	'Update Critical' => array('updateCritical')
+	'Purchase Orders',
+	'Create New Purchase Order' => array('create'),
+);
+
+$this->menu=array(
+	array('label'=>'List PurchaseOrders', 'url'=>array('index')),
+	array('label'=>'Create PurchaseOrders', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
-	$('.search-button').click(function(){
-		$('.search-form').toggle();
-		return false;
+$('.search-button').click(function(){
+	$('.search-form').toggle();
+	return false;
+});
+$('.search-form form').submit(function(){
+	$('#purchase-orders-grid').yiiGridView('update', {
+		data: $(this).serialize()
 	});
-	$('.search-form form').submit(function(){
-		$('#products-grid').yiiGridView('update', {
-			data: $(this).serialize()
-		});
-		return false;
-	});
+	return false;
+});
 ");
 ?>
 
-<h3>Manage Products</h3>
+<h1>Manage Purchase Orders</h1>
 
-<p class="alert alert-info">
+<p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
 or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
 </p>
@@ -37,24 +41,19 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 </div><!-- search-form -->
 
 <?php $this->widget('booster.widgets.TbGridView', array(
-	'id'=>'products-grid',
+	'id'=>'purchase-orders-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'code',
-		'description',
-		'catalogPrice',
-		'netPriceDiscount',
-		'stocksOnHand',
-		/*
-		'productGroupId',
-		'catalogId',
-		'_outOfStocksUp',
-		*/
+		'dateCreated',
+		'dateLastModified',
+		'dateOrdered',
+		'userId',
+		'orderStatusId',
 		array(
 			'class' => 'booster.widgets.TbButtonColumn',
-			'template'=>'{view}&nbsp;&nbsp;{update}'
+			'template' => '{view}'
 		),
 	),
 )); ?>

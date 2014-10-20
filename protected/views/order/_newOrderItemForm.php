@@ -1,8 +1,6 @@
 <?php
 	Yii::app()->getClientScript()->registerScript("dateCreated", "
 		$( document ).ready(function() {
-			$('#product').focus();
-			
 			$('#product').click(function() {
 				$(this).val('');
 			});
@@ -24,6 +22,14 @@
 			})
 			  .done(function( msg ) {
 				  $.fn.yiiGridView.update('order-items-grid');
+				  $.ajax({
+						url: '" . Yii::app()->createUrl('order/ajaxView', array('id' => $order->id)) . "',
+						type: 'GET',
+						dataType: 'html',
+						success: function (result) {
+							$('#order-details').html(result);
+						},
+					});	
 			});
 
 			$('#btnClear').click();	
@@ -35,7 +41,9 @@
 
 <?php $this->beginWidget(
     'booster.widgets.TbModal',
-    array('id' => 'order-item-dialog')
+    array(
+		'id' => 'order-item-dialog',
+	)
 ); ?>
 
     <div class="modal-header">
@@ -117,7 +125,7 @@
 									// 'data-dismiss' => 'modal',
 									'id' => 'btnClear',
 									'type' => 'reset',
-									'onclick' => '$("#product").val("").focus();',
+									// 'onclick' => '$("#product").val("");',
 								),
 							)
 						); 
@@ -155,33 +163,28 @@
 			{
 				$('#btnClose').click();
 			}
-		}
-	});
+			//if($(this).val() != '')
+			else {
+				product = $(this).val();
+				prod = product.split(" ");
 
-	$("#product").focusout(function( event ) {
-		// Fetch object data through ajax
-		if($(this).val() != '')
-		{
-			product = $(this).val();
-			prod = product.split(" ");
-
-			$.getJSON("<?php echo Yii::app()->createUrl('products/getProduct&id='); ?>" + prod[0],function(result){
-				// alert(result.id);
-				$("#productId").val(result.id);
-				$("#discount").val(result.netPriceDiscount);
-				$("#productDesc").val(result.code + ' ' + result.description);
-				stockStatus = 'Available';
-				if(result._outOfStocksUp == 0)
-				{
-					stockStatus = 'Out Of Stock';
-				}
-				else if(result._outOfStocksUp > 0)
-				{
-					stockStatus = 'Critical Stock (' + result._outOfStocksUp + ')';
-				}
-				$("#stockStatus").val(stockStatus);
-			});
+				$.getJSON("<?php echo Yii::app()->createUrl('products/getProduct&id='); ?>" + prod[0],function(result){
+					// alert(result.id);
+					$("#productId").val(result.id);
+					$("#discount").val(result.netPriceDiscount);
+					$("#productDesc").val(result.code + ' ' + result.description);
+					stockStatus = 'Available';
+					if(result._outOfStocksUp == 0)
+					{
+						stockStatus = 'Out Of Stock';
+					}
+					else if(result._outOfStocksUp > 0)
+					{
+						stockStatus = 'Critical Stock (' + result._outOfStocksUp + ')';
+					}
+					$("#stockStatus").val(stockStatus);
+				});
+			}			
 		}
-		// Change focus to discount field
 	});
 </script>

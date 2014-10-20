@@ -8,6 +8,14 @@
 			})
 			  .done(function( msg ) {
 				  $.fn.yiiGridView.update('order-payments-grid');
+				  $.ajax({
+						url: '" . Yii::app()->createUrl('order/ajaxView', array('id' => $order->id)) . "',
+						type: 'GET',
+						dataType: 'html',
+						success: function (result) {
+							$('#order-details').html(result);
+						},
+					});				  
 			});
 
 			$('#btnPaymentClose').click();	

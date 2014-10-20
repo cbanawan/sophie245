@@ -59,8 +59,8 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'position',
 		*/
 		array(
-			'class' => 'CButtonColumn',
-			'template' => '{view}{update}',
+			'class' => 'booster.widgets.TbButtonColumn',
+			'template' => '{view}&nbsp;&nbsp;{update}',
 		),
 	),
 )); ?>

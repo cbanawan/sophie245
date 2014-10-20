@@ -17,7 +17,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>View Products #<?php echo $model->id; ?></h1>
+<h3><?php echo $model->description . ' (' . $model->code . ')'; ?></h3>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

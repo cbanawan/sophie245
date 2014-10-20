@@ -12,7 +12,7 @@
 			'name' => 'dateCreated',
 			'header' => 'Date Paid',
 			'value' => 'date("d M Y H:i:s", strtotime($data->dateCreated))',
-			'footer' => '<strong>TOTALS:</strong>'
+			'footer' => '<strong>TOTAL</strong>'
 		),
 		array(
 			'name' => 'paymentType.description',

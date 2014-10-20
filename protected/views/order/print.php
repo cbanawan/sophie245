@@ -65,6 +65,8 @@
 					<?php 
 					$totalGross = 0;
 					$totalNet = 0;
+					$netPrice = 0;
+					$amount = 0;
 					foreach($order->orderdetails as $orderDetail): 
 						if($orderDetail->orderDetailStatus->_active)
 						{

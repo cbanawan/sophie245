@@ -242,6 +242,28 @@ class OrderController extends Controller
 		Yii::app()->end();
 	}
 	
+	public function actionAjaxView($id)
+	{
+		$order = new Orders();
+		
+		if (Yii::app()->getRequest()->getIsAjaxRequest()) 
+		{
+			header('Content-Type: application/json');
+			$order = Orders::model()->findByPk($id);
+		}
+		
+		$orderDetails = $order->attributes;
+		$orderDetails['memberName'] = $order->member->codeName;
+		$orderDetails['orderStatus'] = $order->orderStatus->description;
+		$this->renderPartial(
+				'_detail',
+				array(
+					'order' => $orderDetails,
+				)
+			); 	
+		
+		Yii::app()->end();		
+	}
 
 
 	// Uncomment the following methods and override them if needed

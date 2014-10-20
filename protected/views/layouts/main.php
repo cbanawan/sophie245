@@ -33,6 +33,7 @@
 			'items'=>array(
 				array('label'=>'Dashboard', 'url'=>array('/site/index')),
 				array('label'=>'Sales Order', 'url'=>array('/order/index')),
+				array('label'=>'Purchase Order', 'url'=>array('/admin/purchaseOrder/admin')),
 				array('label'=>'Member', 'url'=>array('/member/admin')),
 				array('label'=>'Product', 'url'=>array('/product/admin')),
 				// array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),

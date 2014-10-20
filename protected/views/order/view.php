@@ -9,6 +9,19 @@
 		$('#print').click(function(){
 			window.open('" . Yii::app()->createUrl('order/print', array('id' => $order->id)) . "', '_blank');
 		});
+
+		$(window).keydown(function(e) {
+			switch (e.keyCode) {
+				case 113: 
+					$('#add-order-item-button').click();
+					return false;
+				case 114: 
+					$('#add-order-payment-button').click();
+					return false;
+			}
+			return; //using 'return' other attached events will execute
+		});
+
 	");
 ?>
 
@@ -42,17 +55,17 @@
 							array(
 								'label' => 'For Order Placement', 
 								'url' => Yii::app()->createUrl('order/changeStatus', array('id' => $order->id, 'status' => 'forOrder')),
-								'visible' => !in_array($order->orderStatus->status, array('cancelled', 'forOrder')),
+								'visible' => !in_array($order->orderStatus->status, array('temp', 'cancelled', 'forOrder')),
 							),
 							array(
 								'label' => 'Items Delivered', 
 								'url' => Yii::app()->createUrl('order/changeStatus', array('id' => $order->id, 'status' => 'delivered')),
-								'visible' => !in_array($order->orderStatus->status, array('cancelled', 'delivered')),
+								'visible' => !in_array($order->orderStatus->status, array('temp', 'cancelled', 'delivered')),
 							),
 							array(
 								'label' => 'Order Served', 
 								'url' => Yii::app()->createUrl('order/changeStatus', array('id' => $order->id, 'status' => 'served')),
-								'visible' => !in_array($order->orderStatus->status, array('cancelled', 'served')),
+								'visible' => !in_array($order->orderStatus->status, array('temp', 'cancelled', 'served')),
 							),
 							array(
 								'label' => 'Delete Order Permanently', 
@@ -102,10 +115,11 @@
 				'icon' => 'plus-sign',
 				'size' => 'medium',
 				'htmlOptions' => array(
+					'id' => 'add-order-item-button',
 					'title' => 'Add Order Item',
 					'data-toggle' => 'modal',
 					'data-target' => '#order-item-dialog',
-				),				
+				),	
 				'visible' => (!in_array($order->orderStatus->status, array('cancelled')))
             ),
         )		
@@ -139,6 +153,7 @@
 				'icon' => 'plus-sign',
 				'size' => 'medium',
 				'htmlOptions' => array(
+					'id' => 'add-order-payment-button',
 					'title' => 'Add Order Payment',
 					'data-toggle' => 'modal',
 					'data-target' => '#order-payment-dialog',
@@ -162,7 +177,7 @@
 							});							
 						",
 				),
-				'visible' => !in_array($order->orderStatus->status, array('cancelled')) && ($order->netAmount != $order->totalPayment)
+				'visible' => !in_array($order->orderStatus->status, array('cancelled'))
             ),
         )		
     )
