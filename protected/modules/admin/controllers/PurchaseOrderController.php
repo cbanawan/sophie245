@@ -33,7 +33,7 @@ class PurchaseOrderController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'ajaxDeleteOrder', 'ajaxOrderOutOfStock', 'export'),
+				'actions'=>array('create','update', 'ajaxDeleteOrder', 'ajaxOrderOutOfStock', 'export', 'updateStatus'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -175,63 +175,68 @@ class PurchaseOrderController extends Controller
 	{
 		$purchaseOrder = PurchaseOrders::model()->with('orders')->findByPk($id);
 		
-		if(isset($_POST['orders']))
+		if(isset($_POST['PurchaseOrders']))
 		{
-			$orderIds = $_POST['orders'];
-			if(is_array($orderIds) && count($orderIds))
+			$purchaseOrder->attributes = $_POST['PurchaseOrders'];
+			$purchaseOrder->dateOrdered = date('Y-m-d H:i:s', strtotime($purchaseOrder->dateOrdered));
+			$purchaseOrder->dateExpected = date('Y-m-d H:i:s', strtotime($purchaseOrder->dateExpected));
+			$purchaseOrder->dateLastModified = date('Y-m-d H:i:s');
+			
+			if($purchaseOrder->save())
 			{
-				$purchaseOrder->dateLastModified = date('Y-m-d H:i:s');
-				
-				if($purchaseOrder->save())
+				if(isset($_POST['orders']))
 				{
-					$forOrderStatus = Orderstatus::model()->find('status = :status', array(':status' => 'inOrder'));
-					foreach($orderIds as $orderId)
+					$orderIds = $_POST['orders'];
+					if(is_array($orderIds) && count($orderIds))
 					{
-						$poOrder = new PurchaseOrderOrders();
-						
-						$poOrder->purchaseOrderId = $purchaseOrder->id;
-						$poOrder->orderId = $orderId;
-						$poOrder->dateCreated = date('Y-m-d H:i:s');
-						$poOrder->dateLastModified = $poOrder->dateCreated;
-						if($poOrder->save())
+						$forOrderStatus = Orderstatus::model()->find('status = :status', array(':status' => 'inOrder'));
+						foreach($orderIds as $orderId)
 						{
-							$order = Orders::model()->with('orderdetails')->findByPk($orderId);
-							$order->orderStatusId = $forOrderStatus->id;
-							if($order->save())
+							$poOrder = new PurchaseOrderOrders();
+
+							$poOrder->purchaseOrderId = $purchaseOrder->id;
+							$poOrder->orderId = $orderId;
+							$poOrder->dateCreated = date('Y-m-d H:i:s');
+							$poOrder->dateLastModified = $poOrder->dateCreated;
+							if($poOrder->save())
 							{
-								$orderDetailStatuses = CHtml::listData(Orderdetailstatus::model()->findAll(), 'status', 'id');
-								foreach($order->orderdetails as $orderDetail)
+								$order = Orders::model()->with('orderdetails')->findByPk($orderId);
+								$order->orderStatusId = $forOrderStatus->id;
+								if($order->save())
 								{
-									if($orderDetail->orderDetailStatusId == $orderDetailStatuses['valid'])
+									$orderDetailStatuses = CHtml::listData(Orderdetailstatus::model()->findAll(), 'status', 'id');
+									foreach($order->orderdetails as $orderDetail)
 									{
-										continue;
+										if($orderDetail->orderDetailStatusId == $orderDetailStatuses['valid'])
+										{
+											continue;
+										}
+
+										$productStatus = $orderDetail->product->_outOfStocksUp;
+										if($productStatus >  0)
+										{
+											$orderDetail->orderDetailStatusId = $orderDetailStatuses['critical'];
+										}
+										else //if($productStatus == 0)
+										{
+											$orderDetail->orderDetailStatusId = $orderDetailStatuses['outOfStock'];
+										}
+										/*else
+										{
+											 $orderDetail->orderDetailStatusId = $orderDetailStatuses['valid'];
+										}*/
+
+										$orderDetail->save();
 									}
-									
-									$productStatus = $orderDetail->product->_outOfStocksUp;
-									if($productStatus >  0)
-									{
-										$orderDetail->orderDetailStatusId = $orderDetailStatuses['critical'];
-									}
-									else //if($productStatus == 0)
-									{
-										$orderDetail->orderDetailStatusId = $orderDetailStatuses['outOfStock'];
-									}
-									/*else
-									{
-										 $orderDetail->orderDetailStatusId = $orderDetailStatuses['valid'];
-									}*/
-									
-									$orderDetail->save();
 								}
 							}
+
+							unset($poOrder);
 						}
-						
-						unset($poOrder);
 					}
-					
-					$this->redirect(array('view','id' => $purchaseOrder->id));
-				}
+				}				
 			}
+			$this->redirect(array('view','id' => $purchaseOrder->id));
 		}
 		
 		// $forOrderStatus = Orderstatus::model()->find('status = :status', array(':status' => 'forOrder'));
@@ -278,14 +283,19 @@ class PurchaseOrderController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new PurchaseOrders('search');
+		$model = new PurchaseOrders('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['PurchaseOrders']))
+		{
 			$model->attributes=$_GET['PurchaseOrders'];
+		}
 
-		$this->render('admin',array(
-			'model'=>$model,
-		));
+		$this->render(
+			'admin',
+			array(
+				'model' => $model,
+			)
+		);
 	}
 	
 	public function actionExport($id)
@@ -319,6 +329,23 @@ class PurchaseOrderController extends Controller
 		$content = $csv->toCSV();                   
 		Yii::app()->getRequest()->sendFile($filename, $content, "text/csv", false);		
 		exit;		
+	}
+	
+	public function actionUpdateStatus($id, $status)
+	{
+		$purchaseOrder = PurchaseOrders::model()->findByPk($id);
+		if($purchaseOrder)
+		{
+			$orderStatus = Orderstatus::model()->find('status = :status', array(':status' => $status));
+			if($orderStatus)
+			{
+				$purchaseOrder->orderStatusId = $orderStatus->id;
+				$purchaseOrder->dateLastModified = new CDbExpression('NOW()');
+				$purchaseOrder->save();
+			}
+		}
+		
+		$this->redirect(array('view','id'=>$id));			
 	}
 
 	/**

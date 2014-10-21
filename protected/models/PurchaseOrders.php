@@ -89,8 +89,13 @@ class PurchaseOrders extends CActiveRecord
 	{
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
-		$criteria=new CDbCriteria;
+		$criteria = new CDbCriteria;
 
+		$criteria->with = array(
+						'orders' => array(),
+						'orderStatus' => array(),
+					);
+		
 		$criteria->compare('id',$this->id);
 		$criteria->compare('dateCreated',$this->dateCreated,true);
 		$criteria->compare('dateLastModified',$this->dateLastModified,true);
@@ -112,5 +117,16 @@ class PurchaseOrders extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+	
+	public function getTotalAmount()
+	{
+		$totalAmount = 0;
+		foreach($this->orders as $order)
+		{
+			$totalAmount += $order->netAmount;
+		}
+		
+		return $totalAmount;
 	}
 }

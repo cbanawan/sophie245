@@ -98,9 +98,17 @@
 			'headerHtmlOptions' => array('style'=>'text-align: center'),
 			'htmlOptions' => array('nowrap'=>'nowrap', 'style'=>'text-align: center', 'class' => 'action-button'),
 			'class' => 'booster.widgets.TbButtonColumn',
-			'template' => '{delete}&nbsp;&nbsp;{view}',
+			'template' => '{delete}&nbsp;&nbsp;{out}',
 			'deleteButtonUrl' => 'Yii::app()->createUrl("order/ajaxDeleteOrderItem", array("id" => $data->id))',
-			'viewButtonUrl' => 'Yii::app()->createUrl("order/ajaxDeleteOrderItem", array("id" => $data->id))',
+			// 'viewButtonUrl' => 'Yii::app()->createUrl("order/ajaxDeleteOrderItem", array("id" => $data->id))',
+			'buttons' => array(
+				'out' => array(
+					'url' => 'Yii::app()->createUrl("order/ajaxDeleteOrderItem", array("id" => $data->id))',
+					'htmlOptions' => array(
+						// '' => 'alert("xxxx"); return false;',
+					)
+				)
+			)
 		);
 	}
 	

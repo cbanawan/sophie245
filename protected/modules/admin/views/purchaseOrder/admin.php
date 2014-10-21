@@ -26,9 +26,9 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Purchase Orders</h1>
+<h3>Manage Purchase Orders</h3>
 
-<p>
+<p class="blockquote">
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
 or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
 </p>
@@ -43,14 +43,18 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 <?php $this->widget('booster.widgets.TbGridView', array(
 	'id'=>'purchase-orders-grid',
 	'dataProvider'=>$model->search(),
-	'filter'=>$model,
+	// 'filter'=>$model,
 	'columns'=>array(
 		'id',
 		'dateCreated',
 		'dateLastModified',
 		'dateOrdered',
 		'userId',
-		'orderStatusId',
+		array(
+			'name' => 'totalAmount',
+			'value' => '"Php " . number_format($data->totalAmount, 2)',
+		),
+		'orderStatus.description',
 		array(
 			'class' => 'booster.widgets.TbButtonColumn',
 			'template' => '{view}'

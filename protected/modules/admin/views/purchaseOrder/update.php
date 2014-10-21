@@ -13,20 +13,6 @@ $this->menu=array(
 );
 ?>
 
-<h3>Update PurchaseOrders</h3>
-
-<?php 
-	$this->widget('zii.widgets.CDetailView', array(
-		'data'=>$model,
-		'attributes'=>array(
-			'id',
-			'dateCreated',
-			'dateLastModified',
-			'dateOrdered',
-			'userId',
-			'orderStatusId',
-		),
-	));
-
+<?php
 	$this->renderPartial('_form', array('model'=>$model, 'orders' => $orders)); 
 ?>

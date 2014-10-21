@@ -3,7 +3,7 @@
 /* @var $model PurchaseOrders */
 
 	$this->breadcrumbs=array(
-		'Purchase Orders'=>array('index'),
+		'Purchase Orders'=>array('admin'),
 		$model->id,
 		'Export to CSV'=>array('export', 'id' => $model->id),
 	);
@@ -28,7 +28,63 @@
 	");	*/
 ?>
 
-<h1>View PurchaseOrders #<?php echo $model->id; ?></h1>
+<?php $this->beginWidget(
+    'booster.widgets.TbPanel',
+    array(
+        'title' => 'Purchase Order Header',
+        'headerIcon' => 'barcode',
+		'headerButtons' => array(
+            array(
+				'class' => 'booster.widgets.TbButtonGroup',
+				'size' => 'medium',
+				'buttons' => array(
+					array(
+						'label' => 'Refresh',
+						'icon' => 'refresh',
+						'htmlOptions' => array(
+							'id' => 'refresh-po',
+							'onclick' => 'window.location.href="' . Yii::app()->createUrl('/admin/purchaseOrder/view', array('id' => $model->id)) . '"',
+						)
+					),
+					array(
+						'label' => 'Update P.O.',
+						'icon' => 'edit',
+						'htmlOptions' => array(
+							'id' => 'update-po',
+							'onclick' => 'window.location.href="' . Yii::app()->createUrl('/admin/purchaseOrder/update', array('id' => $model->id)) . '"',
+						)
+					),
+					array(
+						'label' => 'Change Order Status',
+						'icon' => 'cog',
+						'items' => array(
+							array(
+								'label' => 'Cancel', 
+								'url' => Yii::app()->createUrl('/admin/purchaseOrder/updateStatus', array('id' => $model->id, 'status' => 'cancelled')),
+								'visible' => !in_array($model->orderStatus->status, array('cancelled')),
+							),
+							array(
+								'label' => 'Submitted/Placed', 
+								'url' => Yii::app()->createUrl('/admin/purchaseOrder/updateStatus', array('id' => $model->id, 'status' => 'ordered')),
+								'visible' => !in_array($model->orderStatus->status, array('ordered')),
+							),
+							array(
+								'label' => 'Delivered', 
+								'url' => Yii::app()->createUrl('/admin/purchaseOrder/updateStatus', array('id' => $model->id, 'status' => 'delivered')),
+								'visible' => in_array($model->orderStatus->status, array('ordered')),
+							),
+							/*'---',
+							array(
+								'label' => 'Print Sales Order', 
+								'url' => Yii::app()->createUrl('order/print', array('id' => $order->id)),
+							),*/
+						)
+					),
+				),
+            ),
+		)
+    )
+); ?>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
@@ -37,11 +93,21 @@
 		'dateCreated',
 		'dateLastModified',
 		'dateOrdered',
-		'userId',
-		'orderStatusId',
+		'dateExpected',
+		'orderConfirmationNo',
+		array(
+			'name' => 'totalAmount',
+			'value' => 'Php ' . number_format($model->totalAmount, 2),
+		),
+		'user.username',
+		'orderStatus.description',
 	),
 )); 
+?>
 
+<?php $this->endWidget(); ?>
+
+<?php
 $gridColumns = array(
 	array(
 		'name' => 'id',
@@ -72,10 +138,10 @@ $gridColumns = array(
     <div id="collapseOne" class="panel-collapse collapse in">
       <div class="panel-body">
 		  <?php
-			echo CHtml::link(
+			/*echo CHtml::link(
 					'Add Order',
 					array('update', 'id' => $model->id)
-				);		  
+				);	*/	  
 		  
 			$this->renderPartial(
 						'_orderList',
@@ -102,7 +168,8 @@ $gridColumns = array(
 		<?php
 			echo CHtml::link(
 				'Export to CSV',
-				array('export', 'id' => $model->id)
+				array('export', 'id' => $model->id),
+				array('class' => 'btn btn-default')
 			);
 			
 			$this->renderPartial(

@@ -48,27 +48,32 @@
 						'icon' => 'cog',
 						'items' => array(
 							array(
-								'label' => 'Cancel Order', 
+								'label' => 'Cancel', 
 								'url' => Yii::app()->createUrl('order/changeStatus', array('id' => $order->id, 'status' => 'cancelled')),
 								'visible' => !in_array($order->orderStatus->status, array('cancelled')),
 							),
 							array(
-								'label' => 'For Order Placement', 
+								'label' => 'For Order', 
 								'url' => Yii::app()->createUrl('order/changeStatus', array('id' => $order->id, 'status' => 'forOrder')),
-								'visible' => !in_array($order->orderStatus->status, array('temp', 'cancelled', 'forOrder')),
+								'visible' => !in_array($order->orderStatus->status, array('forOrder', 'temp', 'cancelled', 'served')),
 							),
 							array(
-								'label' => 'Items Delivered', 
+								'label' => 'Ordered', 
+								'url' => Yii::app()->createUrl('order/changeStatus', array('id' => $order->id, 'status' => 'forOrder')),
+								'visible' => !in_array($order->orderStatus->status, array('inOrder', 'temp', 'cancelled', 'served')),
+							),
+							array(
+								'label' => 'Delivered', 
 								'url' => Yii::app()->createUrl('order/changeStatus', array('id' => $order->id, 'status' => 'delivered')),
-								'visible' => !in_array($order->orderStatus->status, array('temp', 'cancelled', 'delivered')),
+								'visible' => !in_array($order->orderStatus->status, array('delivered', 'temp', 'cancelled', 'served')),
 							),
 							array(
-								'label' => 'Order Served', 
+								'label' => 'Served', 
 								'url' => Yii::app()->createUrl('order/changeStatus', array('id' => $order->id, 'status' => 'served')),
-								'visible' => !in_array($order->orderStatus->status, array('temp', 'cancelled', 'served')),
+								'visible' => in_array($order->orderStatus->status, array('paid', 'forOrder', 'ordered', 'delivered')),
 							),
 							array(
-								'label' => 'Delete Order Permanently', 
+								'label' => 'Delete Permanently', 
 								'url' => Yii::app()->createUrl('order/delete', array('id' => $order->id)),
 								'visible' => in_array($order->orderStatus->status, array('cancelled')),
 							),
