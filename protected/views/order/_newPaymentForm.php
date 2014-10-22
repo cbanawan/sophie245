@@ -60,7 +60,7 @@
 					<strong>Payment Details</strong>
 						<table class="table-striped table-condensed">
 							<tr>
-								<td class="text-right">Amount Due:</td>
+								<td class="text-right">Order Amount Due:</td>
 								<td class="text-right"><strong>Php <span id="amountDue"></span></strong></td>
 							</tr>
 							<tr>

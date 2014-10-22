@@ -264,6 +264,25 @@ class OrderController extends Controller
 		
 		Yii::app()->end();		
 	}
+	
+	public function actionAjaxItemChangeStatus($id, $status)
+	{
+		if (Yii::app()->getRequest()->getIsAjaxRequest()) 
+		{
+			$orderItem = Orderdetails::model()->findByPk($id);
+			if($orderItem)
+			{
+				$itemOrderStatus = Orderdetailstatus::model()->find('status = :status', array(':status' => $status));
+				if($itemOrderStatus)
+				{
+					$orderItem->orderDetailStatusId = $itemOrderStatus->id;
+					$orderItem->save();
+				}
+			}
+		}
+		
+		Yii::app()->end();
+	}
 
 
 	// Uncomment the following methods and override them if needed

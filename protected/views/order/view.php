@@ -36,6 +36,14 @@
 				'size' => 'medium',
 				'buttons' => array(
 					array(
+						'label' => 'Refresh',
+						'icon' => 'refresh',
+						'htmlOptions' => array(
+							'id' => 'refresh',
+							'onclick' => 'location.reload()',
+						)
+					),
+					array(
 						'label' => 'Print Order',
 						'icon' => 'print',
 						'url' => Yii::app()->createUrl('order/print'),
@@ -52,11 +60,11 @@
 								'url' => Yii::app()->createUrl('order/changeStatus', array('id' => $order->id, 'status' => 'cancelled')),
 								'visible' => !in_array($order->orderStatus->status, array('cancelled')),
 							),
-							array(
+							/*array(
 								'label' => 'For Order', 
 								'url' => Yii::app()->createUrl('order/changeStatus', array('id' => $order->id, 'status' => 'forOrder')),
 								'visible' => !in_array($order->orderStatus->status, array('forOrder', 'temp', 'cancelled', 'served')),
-							),
+							),*/
 							array(
 								'label' => 'Ordered', 
 								'url' => Yii::app()->createUrl('order/changeStatus', array('id' => $order->id, 'status' => 'forOrder')),

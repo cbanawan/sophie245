@@ -249,7 +249,7 @@ class Orders extends CActiveRecord
 		return array(
 					'gross' => $gross,
 					'net' => $net,
-					'items' => $items
+					'items' => $items,
 				);
 	}
 	

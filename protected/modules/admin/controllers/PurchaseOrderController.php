@@ -241,7 +241,10 @@ class PurchaseOrderController extends Controller
 		
 		// $forOrderStatus = Orderstatus::model()->find('status = :status', array(':status' => 'forOrder'));
 		$orders = Orders::model()->with('orderdetails', 'member')->findAll(
-				"orderStatusId in (SELECT id FROM Orderstatus WHERE status in ('partial', 'full'))"
+				array(
+					'condition' => "orderStatusId in (SELECT id FROM Orderstatus WHERE status in ('partial', 'full'))",
+					'order' => 't.dateCreated DESC'
+				)
 			);
 		
 		$orderItems = new CArrayDataProvider('Orders');
