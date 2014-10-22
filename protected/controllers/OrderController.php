@@ -11,6 +11,11 @@ class OrderController extends Controller
 	
 	public function actionIndex()
 	{
+		if(Yii::app()->request->getParam('export')) {
+			$this->actionExport();
+			Yii::app()->end();
+		}
+
 		$orders = new Orders('search');
 		$orders->unsetAttributes();  // clear any default values
 		
@@ -25,6 +30,62 @@ class OrderController extends Controller
 			'orders' => $orders,
 			'orderStatus' => $orderStatus,
 		));
+	}
+	
+	public function actionExport()
+	{
+		Yii::import('ext.ECSVExport');
+		
+		$criteria = new CDbCriteria;
+		$criteria->with = array(
+			'orderdetails' => array(),
+            'member' => array(),
+			'payments' => array(),
+			'orderStatus' => array(),
+        );
+		
+		$orders = $_GET['Orders'];
+		
+		$criteria->compare('t.id',$orders['id']);
+		$criteria->compare('memberCode',$orders['memberCode']);		
+		$criteria->compare('lastName',$orders['memberName'], 1);	
+		
+		if(!empty($orders['dateCreatedRange']))
+		{
+			$dateCreatedRange = explode('-', $orders['dateCreatedRange']);
+			$startDate = date('Y-m-d 00:00:00', strtotime($dateCreatedRange[0]));
+			$endDate = date('Y-m-d 23:59:00', strtotime($dateCreatedRange[1]));
+			
+			$criteria->addBetweenCondition('t.dateCreated', $startDate, $endDate);
+			// $criteria->params=array('dateCreated' => $startDate, ':endDate' => $endDate);
+		}
+		
+		if(is_array($orders['orderStatusId']))
+		{
+			$criteria->addInCondition('orderStatusId', $orders['orderStatusId']);
+		}
+		
+		$orders = array();
+		$salesOrders = Orders::model()->findAll($criteria);
+		foreach($salesOrders as $salesOrder)
+		{
+			$orders[] = array(
+				'poId' => $salesOrder->id,
+				'dateCreated' => $salesOrder->dateCreated,
+				'dateLastModified' => $salesOrder->dateLastModified,
+				'memberCode' => $salesOrder->member-> memberCode,
+				'name' => $salesOrder->member->fullName,
+				'amountDue' => $salesOrder->netAmount,
+				'amountPaid' => $salesOrder->totalPayment,
+				'status' => $salesOrder->orderStatus->description,   
+			);
+		}
+		
+		// var_dump($salesOrders);
+		$csv = new ECSVExport($orders);
+		$content = $csv->toCSV();                   
+		Yii::app()->getRequest()->sendFile('report_' . date('YmdHis') . '.csv', $content, "text/csv", false);
+		exit;			
 	}
 	
 	public function actionView($id)
