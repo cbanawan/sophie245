@@ -61,6 +61,11 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		array(
 			'class' => 'booster.widgets.TbButtonColumn',
 			'template' => '{view}&nbsp;&nbsp;{update}',
+			'buttons' => array(
+				'view' => array(
+					'icon' => 'edit',
+				),
+			)
 		),
 	),
 )); ?>

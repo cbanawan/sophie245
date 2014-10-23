@@ -26,10 +26,20 @@ class OrderController extends Controller
 		
 		$orderStatus = CHtml::listData(Orderstatus::model()->findAll(), 'id', 'description');
 		
-		$this->render('index',array(
-			'orders' => $orders,
-			'orderStatus' => $orderStatus,
-		));
+		if (Yii::app()->getRequest()->getIsAjaxRequest())
+		{
+			$this->renderPartial('index',array(
+				'orders' => $orders,
+				'orderStatus' => $orderStatus,
+			));			
+		}
+		else
+		{
+			$this->render('index',array(
+				'orders' => $orders,
+				'orderStatus' => $orderStatus,
+			));
+		}
 	}
 	
 	public function actionExport()

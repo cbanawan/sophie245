@@ -48,10 +48,10 @@ class Members extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('memberCode, firstName, lastName', 'required'),
+			array('memberCode, firstName, lastName, dateJoined', 'required'),
 			// array('sponsorId,', 'numerical', 'integerOnly'=>true),
 			array('memberCode', 'length', 'max'=>10),
-            array('sponsorCode, dateJoined', 'safe'),
+            array('sponsorCode, dateJoined, middleName, homePhone, mobilePhone', 'safe'),
 			// array('firstName, lastName, middleName, address1, address2', 'length', 'max'=>45),
 			// array('homePhone, mobilePhone', 'length', 'max'=>13),
 			// array('emailAddress', 'length', 'max'=>100),

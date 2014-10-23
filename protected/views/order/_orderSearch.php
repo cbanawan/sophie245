@@ -39,7 +39,8 @@
 						$model,
 						'id',
 						array(
-							'class' => 'span-6'
+							'class' => 'span-6',
+							'prepend' => '<i class="glyphicon glyphicon-search"></i>',
 						)
 					);
 				?>
@@ -106,6 +107,20 @@
 									'prepend' => '<i class="glyphicon glyphicon-calendar"></i>'
 								)
 							);		
+
+							/*echo $form->dateRangeGroup(
+								$model,
+								'dateLastModifiedRange',
+								array(
+									'widgetOptions' => array(
+										'callback' => 'js:function(start, end){console.log(start.toString("MMMM d, yyyy") + " - " + end.toString("MMMM d, yyyy"));}'
+									), 
+									'wrapperHtmlOptions' => array(
+										'class' => 'col-sm-5',
+									),
+									'prepend' => '<i class="glyphicon glyphicon-calendar"></i>'
+								)
+							);	*/	
 
 							echo $form->checkboxListGroup(
 								$model,

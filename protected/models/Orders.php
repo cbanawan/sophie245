@@ -28,6 +28,7 @@ class Orders extends CActiveRecord
 	public $memberName;
 	public $status;
 	public $dateCreatedRange;
+	// public $dateLastModifiedRange;
 	
 	/**
 	 * @return string the associated database table name
@@ -129,6 +130,17 @@ class Orders extends CActiveRecord
 			$criteria->addBetweenCondition('t.dateCreated', $startDate, $endDate);
 			// $criteria->params=array('dateCreated' => $startDate, ':endDate' => $endDate);
 		}
+
+		/*if(!empty($this->dateLastModifiedRange))
+		{
+			var_dump($this->dateLastModifiedRange);
+			$dateLastModifiedRange = explode('-', $this->dateLastModifiedRange);
+			$startDate = date('Y-m-d 00:00:00', strtotime($dateLastModifiedRange[0]));
+			$endDate = date('Y-m-d 23:59:00', strtotime($dateLastModifiedRange[1]));
+			
+			$criteria->addBetweenCondition('dateLastModified', $startDate, $endDate);
+			// $criteria->params=array('dateCreated' => $startDate, ':endDate' => $endDate);
+		}*/
 		
 		if(is_array($this->orderStatusId))
 		{

@@ -19,7 +19,7 @@ $this->menu=array(
 
 <h3><?php echo $model->codeName; ?></h3>
 
-<?php $this->widget('zii.widgets.CDetailView', array(
+<?php $this->widget('booster.widgets.TbDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		// 'id',
