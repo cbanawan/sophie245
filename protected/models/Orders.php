@@ -78,7 +78,7 @@ class Orders extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'P.O. ID',
+			'id' => 'Sales Order Number',
 			'dateCreated' => 'Date Created',
 			'dateLastModified' => 'Date Last Modified',
 			'memberId' => 'Member',

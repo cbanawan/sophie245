@@ -3,7 +3,10 @@
 	'template' => '{items}{pager}', 
 	'dataProvider'=>$orders->search(),
 	'columns'=>array(
-		'id',
+		array(
+			'name' => 'id',
+			'header' => 'S.O. No.'
+		),
 		array(
 			'name' => 'dateCreated',
 			'value' => 'date("m/d/Y H:i:s", strtotime($data->dateCreated))'
@@ -46,6 +49,7 @@
 			'viewButtonUrl' => 'Yii::app()->controller->createUrl("order/view", array("id" => $data->id))',
 			'buttons' => array(
 				'view' => array(
+					'icon' => 'edit',
 					'htmlOptions' => array(
 						'_target' => '_blank'
 					)
