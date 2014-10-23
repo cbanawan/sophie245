@@ -31,21 +31,10 @@
 <?php $this->endWidget(); ?>
 
 <?php 
-	Yii::app()->getClientScript()->registerScript("dateCreated", "
+	Yii::app()->getClientScript()->registerScript("order-index", "
 		$('#export-order-item-button').on('click',function() {
 			window.location = '". $this->createUrl('export')  . "' + '&export=true&' + $('#order-search-form').serialize();
 		});
-		
-		/*$.fn.yiiGridView.export = function() {
-			alert('xxyy');
-			$.fn.yiiGridView.update('orders-grid',{ 
-				success: function() {
-					$('#orders-grid').removeClass('grid-view-loading');
-					window.location = '". $this->createUrl('export')  . "' + '&export=true&' + $('#order-search-form').serialize();
-				},
-				data: $('#order-search-form').serialize() + '&export=true'
-			});
-		}*/
 	");	
 ?>
 

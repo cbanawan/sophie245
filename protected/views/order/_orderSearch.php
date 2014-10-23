@@ -1,5 +1,5 @@
 <?php 
-	Yii::app()->getClientScript()->registerScript("dateCreated", "
+	Yii::app()->getClientScript()->registerScript("submit-search", "
 		$('#order-search-form').submit(function(){
 			$('#orders-grid').yiiGridView('update', {
 				data: $(this).serialize()
@@ -89,8 +89,6 @@
 		</div>
 
 <?php
-		echo '</fieldset>';
-
 		$this->widget(
 			'booster.widgets.TbButton',
 			array(
@@ -110,6 +108,8 @@
 				'context' => 'default',
 			)
 		);
+		
+	echo '</fieldset>';
 	
 	$this->endWidget(); 
 ?>
