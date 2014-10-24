@@ -37,13 +37,16 @@
 					// Fetch object data through ajax
 					member = $(this).val();
 					mem = member.split(' ');
-
-					$.getJSON('". $this->createUrl('/members/getMember&code=') . "' + mem[0],function(member){
-						// alert(result.id);
-						$('#Orders_memberId').val(member.id);
-						$('#memberCode').val(member.memberCode);
-						$('#memberName').val(member.fullName);
-					});
+					
+					if(mem != '')
+					{
+						$.getJSON('". $this->createUrl('/member/ajaxGetMemberByCode&code=') . "' + mem[0],function(member){
+							// alert(result.id);
+							$('#Orders_memberId').val(member.id);
+							$('#memberCode').val(member.memberCode);
+							$('#memberName').val(member.fullName);
+						});
+					}
 
 					// Change focus to discount field		
 				});

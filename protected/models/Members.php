@@ -49,7 +49,7 @@ class Members extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('memberCode, firstName, lastName, dateJoined', 'required'),
-			// array('sponsorId,', 'numerical', 'integerOnly'=>true),
+			array('memberCode', 'unique'),
 			array('memberCode', 'length', 'max'=>10),
             array('sponsorCode, dateJoined, middleName, homePhone, mobilePhone', 'safe'),
 			// array('firstName, lastName, middleName, address1, address2', 'length', 'max'=>45),

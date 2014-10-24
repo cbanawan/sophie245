@@ -21,14 +21,30 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h3>Manage Members</h3>
+<?php $this->beginWidget(
+    'booster.widgets.TbPanel',
+    array(
+        'title' => 'Manage Members',
+        'headerIcon' => 'user',
+		// 'padContent' => false,
+        'htmlOptions' => array('class' => 'bootstrap-widget-table'),
+		'headerButtons' => array(
+            array(
+                'class' => 'booster.widgets.TbButton',
+				'label' => 'Export to CSV',
+				'icon' => 'plus-sign',
+				'size' => 'medium',
+				'htmlOptions' => array(
+					'id' => 'export-order-item-button',
+					'title' => 'Export to CSV',
+				),	
+				// 'visible' => (!in_array($order->orderStatus->status, array('cancelled')))
+            ),
+        )	
+    )
+); ?>
 
-<p class="alert alert-info">
-You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
-</p>
-
-<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
+<?php // echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,
@@ -69,3 +85,5 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		),
 	),
 )); ?>
+
+<?php $this->endWidget(); ?>

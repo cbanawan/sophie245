@@ -19,7 +19,7 @@ class MemberController extends Controller
 			'model'=>$this->loadModel($id),
 		));
 	}
-
+	
 	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
@@ -161,4 +161,20 @@ class MemberController extends Controller
 		);
 	}
 	*/
+	
+	public function actionAjaxGetMemberByCode($code)
+	{
+		if (Yii::app()->getRequest()->getIsAjaxRequest())
+		{
+			$member =  array();
+			$model = Members::model()->find('memberCode = :memberCode', array(':memberCode' => $code));
+			if($model)
+			{
+				$member = $model->attributes;
+				$member['fullName'] = $model->lastName . ', ' . $model->lastName;
+			}
+			echo json_encode($member);
+		}
+		Yii::app()->end();
+	}
 }
