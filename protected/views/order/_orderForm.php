@@ -4,8 +4,8 @@
 /* @var $form CActiveForm */
 ?>
 
-<div class="form">
-	<div class="row">
+<div class="container-fluid">
+	<div class="row-fluid">
 		<?php echo CHtml::label('Find Member', 'memberSearch'); ?>
 		<?php $this->widget('booster.widgets.TbTypeAhead', array(
 			'id' => 'memberSearch',
@@ -15,12 +15,12 @@
 			),
 			'htmlOptions' => array(
 				'placeholder' => 'Enter product code/name',
-				'class' => 'span-10'
+				'class' => 'span-10',
 			),
 			'options' => array(
 				'hint' => true,
 				'highlight' => true,
-				'minLength' => 1
+				'minLength' => 1,
 			),			
 		)); ?>
 	</div>
@@ -43,8 +43,8 @@
 						$.getJSON('". $this->createUrl('/member/ajaxGetMemberByCode&code=') . "' + mem[0],function(member){
 							// alert(result.id);
 							$('#Orders_memberId').val(member.id);
-							$('#memberCode').val(member.memberCode);
-							$('#memberName').val(member.fullName);
+							$('#Orders_memberCode').val(member.memberCode);
+							$('#Orders_memberName').val(member.fullName);
 						});
 					}
 
@@ -73,12 +73,13 @@
 			'booster.widgets.TbActiveForm',
 			array(
 				'id' => 'orders-form',
+				// 'type'=> 'horizontal',
 				'method' => 'post',
 				'action'=>Yii::app()->createUrl($this->route),
 			)
 	); ?>
 
-	<?php echo $form->errorSummary($model); ?>
+	<?php // echo $form->errorSummary($model); ?>
 	
 	<?php 
 		echo $form->hiddenField($model, 'memberId'); 
@@ -88,22 +89,48 @@
 		echo $form->hiddenField($model, 'userId', array('value' => 1)); 
 	?>
 	
-	<div class="row">
-	<?php
-		echo CHtml::label('Member Code', 'memberCode'); 
-		echo CHtml::textField('memberCode', '', array('disabled' => true, 'class' => 'form-control span-4'));
-	?>
-	</div>
-	<div class="row">
-	<?php
-		echo CHtml::label('Name', 'memberName'); 
-		echo CHtml::textField('memberName', '', array('disabled' => true,'class'=>'form-control span-10'));
-	?>
-	</div>
-	<div class="row">
-		<div class="span-3">
-		<?php
-			// echo CHtml::label('Transaction Date', 'dateCreated'); 
+	<div class="row-fluid">
+		<div class="col-xs-12">
+			<div class="col-xs-3">
+			<?php
+				echo $form->textFieldGroup(
+					$model,
+					'memberCode',
+					array(
+						'wrapperHtmlOptions' => array(
+							'class' => 'col-sm-3',
+						),
+						'widgetOptions' => array(
+							'htmlOptions' => array('disabled' => true)
+						)
+						// 'hint' => 'In addition to freeform text, any HTML5 text-based input appears like so.'
+					)
+				); 
+			?>
+			</div>
+		</div>
+		<div class="col-xs-12">
+			<div class="col-xs-6">
+			<?php
+			echo $form->textFieldGroup(
+				$model,
+				'memberName',
+				array(
+					'wrapperHtmlOptions' => array(
+						'class' => 'col-sm-5',
+					),
+					'widgetOptions' => array(
+						'htmlOptions' => array('disabled' => true)
+					)
+					// 'hint' => 'In addition to freeform text, any HTML5 text-based input appears like so.'
+				)
+			);
+			?>
+			</div>
+		</div>
+		<div class="col-xs-12">
+			<div class="col-xs-3">
+			<?php
 			echo $form->datePickerGroup(
 				$model,
 				'dateCreated',
@@ -114,18 +141,20 @@
 						),
 					),
 					'wrapperHtmlOptions' => array(
-						'class' => 'col-sm-5',
+						'class' => 'col-sm-3',
 					),
 					'prepend' => '<i class="glyphicon glyphicon-calendar"></i>'
 				)
-			);
-		?>		
+			);		
+			?>
+			</div>
 		</div>
-	</div>
-	
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('id' => 'btnSubmit', 'class' => 'btn btn-primary')); ?>
-		<?php echo CHtml::button('Cancel', array('submit' => $this->createUrl('order/index'), 'class' => 'btn')); ?>
+		<div class="col-xs-12">
+			<div class="col-xs-3">
+				<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('id' => 'btnSubmit', 'class' => 'btn btn-primary')); ?>
+				<?php echo CHtml::button('Cancel', array('submit' => $this->createUrl('order/index'), 'class' => 'btn')); ?>
+			</div>		
+		</div>
 	</div>
 
 <?php $this->endWidget(); ?>
