@@ -173,6 +173,73 @@ class ProductController extends Controller
 		}
 		return $data;
 	}
+	
+	public function actionUpdateCritical()
+	{
+		$model = new Csv();
+		
+		if (Yii::app()->getRequest()->getIsAjaxRequest())
+		{
+			$report = array(
+				'critical' => 0,
+				'outOfStock' => 0,
+			);
+			//$file = CUploadedFile::getInstance($model,'csv_file');
+			if(isset($_POST['Csv']))
+			{
+				$model->attributes=$_POST['Csv'];
+
+				if($file = CUploadedFile::getInstance($model,'csv_file'))
+				{
+					$fp = fopen($file->tempName, 'r');
+					if($fp)
+					{
+						// Reset count
+						$currentCatalog = Catalogs::model()->find('_current = 1');
+						Products::model()->updateAll(
+								array('_outOfStocksUp' => -1), 
+								'catalogId = :catalogId', 
+								array(':catalogId' => $currentCatalog->id)
+							);
+
+						//  $line = fgetcsv($fp, 1000, ",");
+						//  print_r($line); exit;
+						$first_time = true;
+						while( ($line = fgetcsv($fp, 1000, ";")) != FALSE)
+						{
+							if ($first_time == true) 
+							{
+								$first_time = false;
+								continue;
+							}
+								/*$model = new Registration;
+								$model->firstname = $line[0];
+								$model->lastname  = $line[1];
+
+								$model->save();*/
+								$lineArray = explode(',', $line[0]);
+								Products::model()->updateAll(
+											array('_outOfStocksUp' => $lineArray[5]),
+											'code = :code',
+											array(':code' => $lineArray[0])
+										);
+
+								$report[($lineArray[5] ? 'critical' : 'outOfStock')] += 1;
+								
+								// var_dump('Updating.... ', $lineArray[0], $lineArray[5]);
+								// echo '<br />';
+
+						}
+					}
+				}
+			}
+			
+			$this->renderJSON($report);
+			Yii::app()->end();			
+		}
+		
+		$this->render('updateCritical', array('model' => new Csv()));		
+	}
 
 	// Uncomment the following methods and override them if needed
 	/*

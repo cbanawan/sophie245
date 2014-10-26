@@ -158,7 +158,12 @@ class ProductController extends Controller
 				if($fp)
 				{
 					// Reset count
-					Products::model()->updateAll(array('_outOfStocksUp' => -1));
+					$currentCatalog = Catalogs::model()->find('_current = 1');
+					Products::model()->updateAll(
+							array('_outOfStocksUp' => -1), 
+							'catalogId = :catalogId', 
+							array(':catalogId' => 1) //$currentCatalog->id)
+						);
 					
 					//  $line = fgetcsv($fp, 1000, ",");
 					//  print_r($line); exit;

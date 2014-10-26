@@ -110,6 +110,8 @@ class Products extends CActiveRecord
 		$criteria->compare('catalogId',$this->catalogId);
 		$criteria->compare('_outOfStocksUp',$this->_outOfStocksUp);
 		$criteria->compare('_active',$this->_active);
+		
+		$criteria->addCondition('_active = 1');
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
