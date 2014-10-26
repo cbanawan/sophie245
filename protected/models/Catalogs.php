@@ -31,8 +31,10 @@ class Catalogs extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+			array('id', 'unique'),
 			array('_current', 'numerical', 'integerOnly'=>true),
-			array('dateReleased, dateCreated, dateLastModified', 'safe'),
+			array('name, dateReleased', 'required'),
+			array('id, name, dateReleased, dateCreated, dateLastModified', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, dateReleased, dateCreated, dateLastModified, _current', 'safe', 'on'=>'search'),
@@ -104,4 +106,16 @@ class Catalogs extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+	
+	public function beforeSave() 
+	{
+		if ($this->isNewRecord)
+		{
+			$this->dateCreated = new CDbExpression('NOW()');
+		}
+		
+		$this->dateLastModified = new CDbExpression('NOW()');
+
+		return parent::beforeSave();
+	}	
 }

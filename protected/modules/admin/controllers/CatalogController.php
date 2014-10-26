@@ -1,6 +1,6 @@
 <?php
 
-class CatalogsController extends Controller
+class CatalogController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -16,6 +16,7 @@ class CatalogsController extends Controller
 		return array(
 			'accessControl', // perform access control for CRUD operations
 			'postOnly + delete', // we only allow deletion via POST request
+			array('booster.filters.BoosterFilter'),
 		);
 	}
 

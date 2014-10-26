@@ -44,6 +44,11 @@
 			'htmlOptions' => array('class' => 'text-center'),
 		),
 		array(
+			'name' => 'catalogId',
+			'value' => '$data->catalog->name',
+			'htmlOptions' => array('class' => 'text-center'),
+		),
+		array(
 			'class' => 'booster.widgets.TbButtonColumn',
 			'template'=>'{view}',
 			'viewButtonUrl' => 'Yii::app()->controller->createUrl("order/view", array("id" => $data->id))',

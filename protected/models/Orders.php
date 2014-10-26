@@ -10,6 +10,7 @@
  * @property integer $memberId
  * @property integer $userId
  * @property integer $orderStatusId
+ * @property integer $catalogId
  * 
  * @property string $memberCode
  *
@@ -47,7 +48,7 @@ class Orders extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('memberId, userId, orderStatusId', 'required'),
-			array('memberId, userId, orderStatusId', 'numerical', 'integerOnly'=>true),
+			array('memberId, userId, orderStatusId, catalogId', 'numerical', 'integerOnly'=>true),
 			array('dateCreated', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -67,6 +68,7 @@ class Orders extends CActiveRecord
 			'member' => array(self::BELONGS_TO, 'Members', 'memberId'),
 			'user' => array(self::BELONGS_TO, 'Users', 'userId'),
 			'orderStatus' => array(self::BELONGS_TO, 'Orderstatus', 'orderStatusId'),
+			'catalog' => array(self::BELONGS_TO, 'Catalogs', 'catalogId'),
 			'orderstatushistories' => array(self::HAS_MANY, 'Orderstatushistory', 'orderId'),
 			'payments' => array(self::HAS_MANY, 'Payments', 'orderId', 'with' => 'paymentType'),
 			'uporders' => array(self::MANY_MANY, 'Uporders', 'upordersorders(orderId, upOrderId)'),
@@ -85,6 +87,7 @@ class Orders extends CActiveRecord
 			'memberId' => 'Member',
 			'userId' => 'User',
 			'orderStatusId' => 'Order Status',
+			'catalogId' => 'Catalog',
 		);
 	}
 

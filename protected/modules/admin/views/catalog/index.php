@@ -1,5 +1,5 @@
 <?php
-/* @var $this CatalogsController */
+/* @var $this CatalogController */
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(

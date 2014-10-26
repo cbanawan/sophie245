@@ -28,5 +28,6 @@
 				'members'=>$members,
 				'users'=>$users,
 				'orderStatus'=>$orderStatus,
+				'catalogs'=>$catalogs,
 			)); ?>
 <?php $this->endWidget(); ?>

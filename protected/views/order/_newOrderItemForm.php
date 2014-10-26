@@ -59,7 +59,7 @@
 					'id' => 'product',
 					'name' => 'product',
 					'datasets' => array(
-						'source' => array_values(CHtml::listData(Products::model()->findAll(), 'id', 'codename')),
+						'source' => array_values(CHtml::listData(Products::model()->findAll('catalogId = :catalogId', array(':catalogId' => $order->catalogId)), 'id', 'codename')),
 					),
 					'htmlOptions' => array(
 						// 'prepend' => TbHtml::icon(TbHtml::ICON_GLOBE),

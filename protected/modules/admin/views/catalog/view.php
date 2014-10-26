@@ -1,10 +1,11 @@
 <?php
-/* @var $this CatalogsController */
+/* @var $this CatalogController */
 /* @var $model Catalogs */
 
 $this->breadcrumbs=array(
-	'Catalogs'=>array('index'),
+	'Catalogs' => array('admin'),
 	$model->name,
+	'Upload Catalog Products' => array('/admin/product/upload', 'catId' => $model->id),
 );
 
 $this->menu=array(

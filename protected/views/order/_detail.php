@@ -8,6 +8,7 @@
 				array('name' => 'memberName', 'label' => 'Ordered By'),
 				array('name' => 'dateCreated', 'label' => 'Date Created'),
 				array('name' => 'orderStatus', 'label' => 'Order Status'),
+				array('name' => 'catalogId', 'label' => 'Catalog'),
 			),
 		)
 	);

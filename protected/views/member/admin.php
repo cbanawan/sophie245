@@ -4,7 +4,8 @@
 
 $this->breadcrumbs=array(
 	'Member',
-	'Create New Member' => array('create')
+	'Create New Member' => array('create'),
+	'Upload Members from CSV' => array('/admin/member/upload'),
 );
 
 Yii::app()->clientScript->registerScript('search', "

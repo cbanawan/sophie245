@@ -149,6 +149,30 @@
 			?>
 			</div>
 		</div>
+		<?php if(count($catalogs) == 1): ?>
+		<?php echo $form->hiddenField($model, 'catalogId', array('value' => key($catalogs))); ?>
+		<?php else: ?>
+		<div class="col-xs-12">
+			<div class="col-xs-3">
+			<?php
+				echo $form->dropDownListGroup(
+					$model,
+					'catalogId',
+					array(
+						'label' => 'Catalog',
+						'wrapperHtmlOptions' => array(
+							'class' => 'col-sm-5',
+						),
+						'widgetOptions' => array(
+							'data' => $catalogs,
+							// 'htmlOptions' => array('multiple' => true),
+						),
+					)
+				);			
+			?>
+			</div>
+		</div>		
+		<?php endif; ?>
 		<div class="col-xs-12">
 			<div class="col-xs-3">
 				<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('id' => 'btnSubmit', 'class' => 'btn btn-primary')); ?>

@@ -107,6 +107,7 @@ class OrderController extends Controller
 				), 
 				'member', 
 				'user',
+				'catalog',
 				'payments' => array(
 					'order' => 'payments.dateCreated DESC'
 				),
@@ -154,12 +155,14 @@ class OrderController extends Controller
 		$members = CHtml::listData(Members::model()->findAll(), 'id', 'codename');
 		$users = CHtml::listData(Users::model()->findAll(), 'id', 'username');
 		$orderStatus = CHtml::listData(Orderstatus::model()->findAll(), 'id', 'status');
-
+		$catalogs = CHtml::listData(Catalogs::model()->findAll('_current = 1'), 'id', 'name');
+		
 		$this->render('create',array(
 			'members'=>$members,
 			'users'=>$users,
 			'orderStatus'=>$orderStatus,
 			'model'=>$model,
+			'catalogs'=>$catalogs,
 		));	
 	}
 	

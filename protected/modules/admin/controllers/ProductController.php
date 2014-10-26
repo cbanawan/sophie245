@@ -2,73 +2,167 @@
 
 class ProductController extends Controller
 {
-	public $layout='//layouts/column2_2';
+	public function filters() {
+		return array(
+			//... probably other filter specifications ...
+			array('booster.filters.BoosterFilter')
+		);
+	}
 	
 	public function actionIndex()
 	{
 		$this->render('index');
 	}
 	
-	public function actionUpdateCritical()
+	public function actionUpload($catId = null)
 	{
 		$model = new Csv();
 		
-		//$file = CUploadedFile::getInstance($model,'csv_file');
-		if(isset($_POST['Csv']))
+		$catalog = null;
+		// Fetch the catalog from params
+		if($catId)
 		{
-			$model->attributes=$_POST['Csv'];
+			$catalog = Catalogs::model()->findByPk($catId);
+		}
+		// Fetch latest is no catalog id from params
+		if(!$catalog)
+		{
+			$catalog = Catalogs::model()->find('_current = 1');
+		}		
+		
+		$report = array(
+			'summary' => array(
+				'success' => array(
+					'insert' => 0,
+					'updated' => 0
+				),
+				'failure' => 0,
+			),
+			'failure' => array(),
+		);
+		
+		if(Yii::app()->request->getParam('Csv'))
+		{
+			$model->attributes = Yii::app()->request->getParam('Csv');
 			
 			if($file = CUploadedFile::getInstance($model,'csv_file'))
 			{
 				$fp = fopen($file->tempName, 'r');
 				if($fp)
 				{
-					// Reset count
-					Products::model()->updateAll(array('_outOfStocksUp' => -1));
+					$headers = array();
+					$productGroup = CHtml::listData(ProductGroups::model()->findAll(), 'name', 'id');
 					
-					//  $line = fgetcsv($fp, 1000, ",");
-					//  print_r($line); exit;
 					$first_time = true;
-					while( ($line = fgetcsv($fp, 1000, ";")) != FALSE)
+					while( ($lineArray = fgetcsv($fp, 1000, ",")) != FALSE)
 					{
 						if ($first_time == true) 
 						{
+							foreach($lineArray as $headerName)
+							{
+								$headers[] = $this->trimUTF8BOM($headerName);
+							}
+							
+							// var_dump($headers);
+							
 							$first_time = false;
 							continue;
 						}
-							/*$model = new Registration;
-							$model->firstname = $line[0];
-							$model->lastname  = $line[1];
-
-							$model->save();*/
-							$lineArray = explode(',', $line[0]);
-							Products::model()->updateAll(
-										array('_outOfStocksUp' => $lineArray[5]),
-										'code = :code',
-										array(':code' => $lineArray[0])
+						
+						$tmpData = array();
+						foreach($lineArray as $idx => $value)
+						{
+							$tmpData[$headers[$idx]] = $value;
+						}
+						
+						// Set the Catalog product belongs into
+						$tmpData['catalogId'] = $catalog->id;
+						
+						// Set initial stocks to available
+						$tmpData['_outOfStocksUp'] = -1;
+						
+						// Assign product group id
+						$tmpData['group'] = strtolower($tmpData['group']);
+						$tmpData['group'] = str_replace(' ', '_', $tmpData['group']);
+						if(isset($productGroup[$tmpData['group']]))
+						{
+							$tmpData['productGroupId'] = $productGroup[$tmpData['group']];	
+						}
+						else
+						{
+							$tmpData['productGroupId'] = $productGroup['other'];
+						}
+						
+						
+						// var_dump($tmpData);
+						
+						// Must have a member code to proceed
+						// var_dump($tmpData['memberCode']);
+ 						if(!isset($tmpData['code']) || empty($tmpData['code']))
+						{
+							continue;
+						}
+						
+						$criteria = new CDbCriteria();
+						$criteria->addCondition('catalogId = :catalogId')
+								 ->addCondition('code = :code');
+						$criteria->params = array(
+										':catalogId' => $catalog->id,
+										':code' => $tmpData['code'],
 									);
-							
-							var_dump('Updating.... ', $lineArray[0], $lineArray[5]);
-							echo '<br />';
-
+						$product = Products::model()->find($criteria);
+						if(!$product)
+						{
+							$product = new Products();
+						}
+						
+						$product->attributes = $tmpData;
+						if($product->save())
+						{
+							// var_dump('Saved : ', $product->attributes);
+							if($product->isNewRecord)
+							{
+								$report['summary']['success']['insert'] += 1;
+							}
+							else
+							{
+								$report['summary']['success']['updated'] += 1;
+							}
+						}
+						else
+						{
+							$report['summary']['failure'] += 1;
+							$report['failure'][] = array(
+									'data' => $product->attributes,
+									'error' => $product->getErrors()
+								);
+						}
+						
+						unset($product);
 					}
-					// $this->redirect('././index');
-
 				}
-				//    echo   $content = fread($fp, filesize($file->tempName));
-
 			}
-
-
-
 		}
 		
-		$this->render('updateCritical', array('model' => new Csv()));
+		if (Yii::app()->getRequest()->getIsAjaxRequest())
+		{
+			$this->renderJSON($report);
+		}
+		
+		$this->render(
+				'upload',
+				array(
+					'model' => $model,
+					'catalog' => $catalog,
+				)
+			);
 	}
 	
-	public function actionSearch()
-	{
-		$this->render('search');
+	private function trimUTF8BOM($data){ 
+		if(substr($data, 0, 3) == pack('CCC', 239, 187, 191)) {
+			return substr($data, 3);
+		}
+		return $data;
 	}
 
 	// Uncomment the following methods and override them if needed

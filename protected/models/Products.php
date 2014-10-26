@@ -40,8 +40,8 @@ class Products extends CActiveRecord
 			array('code, productGroupId, catalogId', 'required'),
 			array('stocksOnHand, productGroupId, catalogId, _outOfStocksUp', 'numerical', 'integerOnly'=>true),
 			array('catalogPrice, netPriceDiscount', 'numerical'),
-			array('code, description', 'length', 'max'=>45),
-			array('_outOfStocksUp', 'safe'),
+			array('code, description', 'length', 'max'=>255),
+			array('_outOfStocksUp, catalogId', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, code, description, catalogPrice, netPriceDiscount, stocksOnHand, productGroupId, catalogId, _outOfStocksUp', 'safe', 'on'=>'search'),
