@@ -119,6 +119,15 @@ class ProductController extends Controller
 						$product->attributes = $tmpData;
 						if($product->save())
 						{
+							$criteria = new CDbCriteria();
+							$criteria->addCondition('code = :code')
+									 ->addCondition('catalogId <> :catalogId');
+							$criteria->params = array(
+											':code' => $tmpData['code'],
+											':catalogId' => $catalog->id,
+										);
+							Products::model()->updateAll(array('_active' => 0) , $criteria);
+							
 							// var_dump('Saved : ', $product->attributes);
 							if($product->isNewRecord)
 							{

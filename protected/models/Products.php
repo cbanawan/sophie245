@@ -13,6 +13,7 @@
  * @property integer $productGroupId
  * @property integer $catalogId
  * @property integer $_outOfStocksUp
+ * @property integer $_active
  *
  * The followings are the available model relations:
  * @property Orderdetails[] $orderdetails
@@ -44,7 +45,7 @@ class Products extends CActiveRecord
 			array('_outOfStocksUp, catalogId', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, code, description, catalogPrice, netPriceDiscount, stocksOnHand, productGroupId, catalogId, _outOfStocksUp', 'safe', 'on'=>'search'),
+			array('id, code, description, catalogPrice, netPriceDiscount, stocksOnHand, productGroupId, catalogId, _outOfStocksUp, _active', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -77,6 +78,7 @@ class Products extends CActiveRecord
 			'productGroupId' => 'Product Group',
 			'catalogId' => 'Catalog',
 			'_outOfStocksUp' => 'Out Of Stocks Up',
+			'_active' => 'Active'
 		);
 	}
 
@@ -107,6 +109,7 @@ class Products extends CActiveRecord
 		$criteria->compare('productGroupId',$this->productGroupId);
 		$criteria->compare('catalogId',$this->catalogId);
 		$criteria->compare('_outOfStocksUp',$this->_outOfStocksUp);
+		$criteria->compare('_active',$this->_active);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

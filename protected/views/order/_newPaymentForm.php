@@ -60,31 +60,35 @@
 					<strong>Payment Details</strong>
 						<table class="table-striped table-condensed">
 							<tr>
-								<td class="text-right">Order Amount Due:</td>
+								<td class="text-right">Gross Amount:</td>
+								<td class="text-right"><strong>Php <span id="grossAmount"></span></strong></td>
+							</tr>
+							<tr>
+								<td class="text-right">Minimum Deposit:</td>
+								<td class="text-right"><strong>Php <span id="requiredDeposit"></span></strong></td>
+							</tr>
+							<tr>
+								<td class="text-right">&nbsp;</td>
+								<td class="text-right">&nbsp;</td>
+							</tr>
+							<tr>
+								<td class="text-right">Net Amount:</td>
 								<td class="text-right"><strong>Php <span id="amountDue"></span></strong></td>
 							</tr>
 							<tr>
-								<td class="text-right">Total Payment:</td>
+								<td class="text-right">Total Paid:</td>
 								<td class="text-right"><strong>Php <span id="totalPayment"></span></strong></td>
 							</tr>
 							<tr>
 								<td class="text-right">Balance Due:</td>
 								<td class="text-right"><strong>Php <span id="balanceDue"></span></strong></td>
 							</tr>
-							<tr>
-								<td class="text-right">&nbsp;</td>
-								<td class="text-right">&nbsp;</td>
-							</tr>
-							<tr>
-								<td class="text-right">Minimum Deposit:</td>
-								<td class="text-right"><strong>Php <span id="requiredDeposit"></span></strong></td>
-							</tr>
 						</table>
 					</div>
 					<div class="col-md-6 well">
 						<div class="row">
 							<?php echo CHtml::label('Amount Paid', 'amount'); ?>
-							<?php echo CHtml::textField('amount', '', array('class' => 'form-control span-3 text-right')); ?>
+							<?php echo CHtml::textField('amount', '', array('class' => 'form-control span-3 text-right', 'onclick' => '$(this).val("")')); ?>
 						</div>
 						<div class="row">
 							<?php echo CHtml::label('Remarks', 'remarks'); ?>

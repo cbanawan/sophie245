@@ -308,6 +308,7 @@ class OrderController extends Controller
 		}
 		
 		$orderDetail = $order->attributes;
+		$orderDetail['grossAmount'] = $order->grossAmount;
 		$orderDetail['netAmount'] = $order->netAmount;
 		$orderDetail['totalPayment'] = $order->totalPayment;
 		$orderDetail['amountDue'] = $order->netAmount - $order->totalPayment;

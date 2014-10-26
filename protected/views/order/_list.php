@@ -9,11 +9,11 @@
 		),
 		array(
 			'name' => 'dateCreated',
-			'value' => 'date("m/d/Y H:i:s", strtotime($data->dateCreated))'
+			'value' => 'date("m/d/Y", strtotime($data->dateCreated))'
 		),
 		array(
 			'name' => 'dateLastModified',
-			'value' => 'date("m/d/Y H:i:s", strtotime($data->dateLastModified))'
+			'value' => 'date("m/d/Y", strtotime($data->dateLastModified))'
 		),
 		// 'dateLastModified',
 		// 'memberId',

@@ -27,7 +27,7 @@ class ProductController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'search', 'updateCritical'),
+				'actions'=>array('create','update', 'search', 'updateCritical', 'ajaxGetProduct'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -227,4 +227,16 @@ class ProductController extends Controller
 			Yii::app()->end();
 		}
 	}
+	
+	public function actionAjaxGetProduct($id)
+	{
+		$criteria = new CDbCriteria();
+		$criteria->addCondition('code = :code')
+				 ->addCondition('_active = 1');
+		$criteria->params = array(':code' => $id);
+		$product = Products::model()->find($criteria);
+		
+		echo json_encode($product->attributes);
+		Yii::app()->end();
+	}	
 }

@@ -179,8 +179,9 @@
 							  success: function(data) {
 								  $('#amount').val(data.amountDue.toFixed(2));
 
+								  $('#grossAmount').text(data.grossAmount.toFixed(2));
 								  $('#amountDue').text(data.netAmount.toFixed(2));
-								  $('#requiredDeposit').text((data.netAmount/2).toFixed(2));
+								  $('#requiredDeposit').text((data.grossAmount/2).toFixed(2));
 								  $('#totalPayment').text(data.totalPayment.toFixed(2));
 								  $('#balanceDue').text(data.amountDue.toFixed(2));
 							  }

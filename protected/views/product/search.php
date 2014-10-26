@@ -28,7 +28,7 @@
 			'id' => 'product',
 			'name' => 'product',
 			'datasets' => array(
-				'source' => array_values(CHtml::listData(Products::model()->findAll(), 'id', 'codename')),
+				'source' => array_values(CHtml::listData(Products::model()->findAll('_active = 1'), 'id', 'codename')),
 			),
 			'htmlOptions' => array(
 				// 'prepend' => TbHtml::icon(TbHtml::ICON_GLOBE),
@@ -91,7 +91,7 @@
 			product = $(this).val();
 			prod = product.split(" ");
 
-			$.getJSON("<?php echo Yii::app()->createUrl('products/getProduct&id='); ?>" + prod[0],function(result){
+			$.getJSON("<?php echo Yii::app()->createUrl('product/ajaxGetProduct&id='); ?>" + prod[0],function(result){
 				// alert(result.id);
 				$("#productDesc").val(result.code + ' ' + result.description);
 				catalogPrice = Number(result.catalogPrice);
