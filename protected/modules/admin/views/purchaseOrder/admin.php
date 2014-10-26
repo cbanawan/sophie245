@@ -26,7 +26,28 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h3>Manage Purchase Orders</h3>
+<?php $this->beginWidget(
+    'booster.widgets.TbPanel',
+    array(
+        'title' => 'Manage Purchase Orders',
+        'headerIcon' => 'barcode',
+		// 'padContent' => false,
+        'htmlOptions' => array('class' => 'bootstrap-widget-table'),
+		'headerButtons' => array(
+            array(
+                'class' => 'booster.widgets.TbButton',
+				'label' => 'Export to CSV',
+				'icon' => 'plus-sign',
+				'size' => 'medium',
+				'htmlOptions' => array(
+					'id' => 'export-po-button',
+					'title' => 'Export to CSV',
+				),	
+				// 'visible' => (!in_array($order->orderStatus->status, array('cancelled')))
+            ),
+        )	
+    )
+); ?>
 
 <p class="blockquote">
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -61,3 +82,4 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		),
 	),
 )); ?>
+<?php $this->endWidget(); ?>

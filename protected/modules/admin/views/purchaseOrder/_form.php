@@ -22,7 +22,7 @@
 	<?php $this->beginWidget(
 		'booster.widgets.TbPanel',
 		array(
-			'title' => 'Purchase Order Header',
+			'title' => 'Create Purchase Order',
 			'headerIcon' => 'barcode',
 			'headerButtons' => array(
 				array(

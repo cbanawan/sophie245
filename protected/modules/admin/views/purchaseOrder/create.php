@@ -13,6 +13,4 @@ $this->menu=array(
 );
 ?>
 
-<h3>Create PurchaseOrders</h3>
-
 <?php $this->renderPartial('_form', array('model'=>$model, 'orders' => $orders)); ?>
