@@ -2,6 +2,8 @@
 
 class OrderController extends Controller
 {
+	// public $layout='//layouts/column2';
+	
 	public function filters() {
 		return array(
 			//... probably other filter specifications ...

@@ -31,7 +31,7 @@
 		echo '<fieldset>';
 		
 ?>
-		<div class="container">
+		<div class="container-fluid">
 			<div class="row">
 				<div class="span-6">
 				<?php
@@ -64,7 +64,7 @@
 		</div>
 
 		<div class="search-form" style="display:none">		
-			<div class="container">
+			<div class="container-fluid">
 			
 				<div class="row">
 					<div class="span-6">
