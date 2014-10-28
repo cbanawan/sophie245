@@ -33,15 +33,15 @@ class OrderController extends Controller
 			$this->renderPartial('index',array(
 				'orders' => $orders,
 				'orderStatus' => $orderStatus,
-			));			
+			));	
+			
+			Yii::app()->end();
 		}
-		else
-		{
-			$this->render('index',array(
-				'orders' => $orders,
-				'orderStatus' => $orderStatus,
-			));
-		}
+
+		$this->render('index',array(
+			'orders' => $orders,
+			'orderStatus' => $orderStatus,
+		));
 	}
 	
 	public function actionExport()
@@ -115,6 +115,30 @@ class OrderController extends Controller
 				),
 			)
 		)->findByPk($id);
+		
+		if (Yii::app()->getRequest()->getIsAjaxRequest())
+		{
+			if(Yii::app()->getRequest()->getParam('ajax') == 'order-items-grid')
+			{
+				$this->renderPartial(
+						'_items',
+						array(
+							'orderStatus' => $order->orderStatus->status,
+							'orderDetails' => $order->orderdetails,
+						)
+					); 				
+			}
+			elseif(Yii::app()->getRequest()->getParam('ajax') == 'order-payments-grid')
+			{
+				$this->renderPartial(
+						'_payments',
+						array(
+							'payments' => $order->payments,
+						)
+					); 				
+			}
+			Yii::app()->end();
+		}
 		
 		$this->render(
 				'view',
@@ -329,13 +353,13 @@ class OrderController extends Controller
 			$order = Orders::model()->findByPk($id);
 		}
 		
-		$orderDetails = $order->attributes;
+		/*$orderDetails = $order->attributes;
 		$orderDetails['memberName'] = $order->member->codeName;
-		$orderDetails['orderStatus'] = $order->orderStatus->description;
+		$orderDetails['orderStatus'] = $order->orderStatus->description;*/
 		$this->renderPartial(
-				'_detail',
+				'_detailWithButtons',
 				array(
-					'order' => $orderDetails,
+					'order' => $order,
 				)
 			); 	
 		

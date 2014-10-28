@@ -1,22 +1,4 @@
 <?php
-	Yii::app()->getClientScript()->registerScript("item-action-buttons", "
-		/*$('.item-action-button').click(function(e) {
-			e.preventDefault();
-			
-			$.ajax({
-			  type: 'POST',
-			  url: $(this).attr('href'),
-			})
-			  .done(function( msg ) {
-				  $.fn.yiiGridView.update('order-items-grid');
-			});
-			
-			// alert($(this).attr('href'));
-			
-			return false;
-		});	*/	
-	");	
-
 	$totalAmount = 0;
 	$totalGross = 0;
 	$quantity = 0;

@@ -27,7 +27,7 @@
 						type: 'GET',
 						dataType: 'html',
 						success: function (result) {
-							$('#order-details').html(result);
+							$('#order-details-with-buttons').html(result);
 						},
 					});	
 			});
