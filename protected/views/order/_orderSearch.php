@@ -33,7 +33,7 @@
 ?>
 		<div class="container-fluid">
 			<div class="row">
-				<div class="span-6">
+				<div class="col-sm-2">
 				<?php
 					echo $form->textFieldGroup(
 						$model,
@@ -41,6 +41,19 @@
 						array(
 							'class' => 'span-6',
 							'prepend' => '<i class="glyphicon glyphicon-search"></i>',
+						)
+					);
+				?>
+				</div>
+				<div class="col-sm-4">
+				<?php
+					echo $form->textFieldGroup(
+						$model,
+						'memberName',
+						array(
+							'label' => 'Search Lastname',
+							'class' => 'span-8',
+							'prepend' => '<i class="glyphicon glyphicon-user"></i>',
 						)
 					);
 				?>
@@ -78,22 +91,7 @@
 									),
 								)
 							);
-
-							echo $form->textFieldGroup(
-								$model,
-								'memberName',
-								array(
-									'label' => 'Lastname',
-									'wrapperHtmlOptions' => array(
-										'class' => 'col-sm-5',
-									),
-								)
-							);				
-					?>
-					</div>
-					<div class="span-3">&nbsp;</div>
-					<div class="span-6">
-					<?php
+							
 							echo $form->dateRangeGroup(
 								$model,
 								'dateCreatedRange',
@@ -106,8 +104,23 @@
 									),
 									'prepend' => '<i class="glyphicon glyphicon-calendar"></i>'
 								)
-							);		
+							);								
 
+							/*echo $form->textFieldGroup(
+								$model,
+								'memberName',
+								array(
+									'label' => 'Lastname',
+									'wrapperHtmlOptions' => array(
+										'class' => 'col-sm-5',
+									),
+								)
+							);	*/			
+					?>
+					</div>
+					<div class="span-3">&nbsp;</div>
+					<div class="span-6">
+					<?php
 							/*echo $form->dateRangeGroup(
 								$model,
 								'dateLastModifiedRange',
