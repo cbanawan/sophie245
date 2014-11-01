@@ -35,13 +35,13 @@
 					'type' => 'navbar',
 					'items' => array(
 						array('label'=>'Dashboard', 'url'=>array('/site/index')),
-						array('label'=>'Sales Order', 'url'=>array('/order/index')),
-						array('label'=>'Purchase Order', 'url'=>array('/admin/purchaseOrder/admin')),
-						array('label'=>'Member', 'url'=>array('/member/admin')),
-						array('label'=>'Product', 'url'=>array('/product/admin')),
+						array('label'=>'Sales Order', 'url'=>array('/order/index'), 'visible'=>!Yii::app()->user->isGuest),
+						array('label'=>'Purchase Order', 'url'=>array('/admin/purchaseOrder/admin'), 'visible'=>!Yii::app()->user->isGuest),
+						array('label'=>'Member', 'url'=>array('/member/admin'), 'visible'=>!Yii::app()->user->isGuest),
+						array('label'=>'Product', 'url'=>array('/product/admin'), 'visible'=>!Yii::app()->user->isGuest),
 						// array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 						// array('label'=>'Contact', 'url'=>array('/site/contact')),
-						// array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+						array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 						array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 					)
 				)
