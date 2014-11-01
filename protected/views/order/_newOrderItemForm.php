@@ -10,29 +10,43 @@
 				$('#product').focus();
 			});
 		});
+		
+		$('#order-item-dialog').on('shown.bs.modal', function () {
+			$('#product').val('');
+			$('#product').focus();
+		});  
+
 	");
 
 	
 	Yii::app()->clientScript->registerScript('item', "
 		$('#order-item-form').submit(function(){
-			$.ajax({
-			  type: 'POST',
-			  url: '" . Yii::app()->createUrl('order/ajaxAddOrderItem') . "',
-			  data: $(this).serialize()
-			})
-			  .done(function( msg ) {
-				  $.fn.yiiGridView.update('order-items-grid');
-				  $.ajax({
-						url: '" . Yii::app()->createUrl('order/ajaxView', array('id' => $order->id)) . "',
-						type: 'GET',
-						dataType: 'html',
-						success: function (result) {
-							$('#order-details-with-buttons').html(result);
-						},
-					});	
-			});
-
-			$('#btnClear').click();	
+			if($('#productId').val() != '')
+			{
+				if($('#quantity').val() == '')
+				{
+					$('#quantity').val(1);
+				}
+				
+				$.ajax({
+				  type: 'POST',
+				  url: '" . Yii::app()->createUrl('order/ajaxAddOrderItem') . "',
+				  data: $(this).serialize()
+				})
+				  .done(function( msg ) {
+					  $.fn.yiiGridView.update('order-items-grid');
+					  $.ajax({
+							url: '" . Yii::app()->createUrl('order/ajaxView', array('id' => $order->id)) . "',
+							type: 'GET',
+							dataType: 'html',
+							success: function (result) {
+								$('#order-details-with-buttons').html(result);
+							},
+						});	
+				});
+			}
+			
+			$('#btnClear').click();
 
 			return false;
 		});
@@ -83,23 +97,50 @@
 				<?php
 					echo CHtml::hiddenField('orderId', $order->id);
 					echo CHtml::hiddenField('productId', '');
+					echo CHtml::hiddenField('netPriceDiscount', '');
 				?>
 
 				<div class="row">
-					<?php echo CHtml::label('Selected Product', 'productDesc'); ?>
-					<?php echo CHtml::textField('productDesc', '', array('disabled' => true, 'class' => 'form-control')); ?>
+					<div class="col-sm-12">
+						<?php echo CHtml::label('Selected Product', 'productDesc'); ?>
+						<?php echo CHtml::textField('productDesc', '', array('disabled' => true, 'class' => 'form-control')); ?>
+					</div>
 				</div>
 				<div class="row">
-					<?php echo CHtml::label('Stock Status', 'stockStatus'); ?>
-					<?php echo CHtml::textField('stockStatus', '', array('disabled' => true, 'class' => 'form-control span-6')); ?>
+					<div class="col-sm-6">
+						<?php echo CHtml::label('Stock Status', 'stockStatus'); ?>
+						<?php echo CHtml::textField('stockStatus', '', array('disabled' => true, 'class' => 'form-control')); ?>
+					</div>
+					<div class="col-sm-6">
+						<?php echo CHtml::label('Catalog Price', 'catalogPrice'); ?>
+						<?php echo CHtml::textField('catalogPrice', '', array('disabled' => true, 'class' => 'text-right form-control')); ?>
+					</div>
 				</div>
 				<div class="row">
-					<?php echo CHtml::label('Discount', 'discount'); ?>
-					<?php echo CHtml::textField('discount', '', array('class' => 'text-right form-control span-3')); ?>
+					<div class="col-sm-6">
+						<?php echo CHtml::label('Discount', 'discount'); ?>
+						<?php echo CHtml::textField(
+								'discount', '', 
+								array(
+									'class' => 'text-right form-control',
+									'onchange' => 'js:
+										var discount = Number($("#catalogPrice").val()) * (Number($(this).val())/100);
+										$("#netPrice").val(($("#catalogPrice").val() - discount).toFixed(2));
+									'
+								)
+							); 
+						?>
+					</div>
+					<div class="col-sm-6">
+						<?php echo CHtml::label('Net Price', 'netPrice'); ?>
+						<?php echo CHtml::textField('netPrice', '', array('disabled' => true, 'class' => 'text-right form-control')); ?>
+					</div>
 				</div>
 				<div class="row">
-					<?php echo CHtml::label('Quantity', 'quantity'); ?>
-					<?php echo CHtml::textField('quantity', '', array('class' => 'text-right form-control span-3')); ?>
+					<div class="col-sm-6">
+						<?php echo CHtml::label('Quantity', 'quantity'); ?>
+						<?php echo CHtml::textField('quantity', '', array('class' => 'text-right form-control span-3')); ?>
+					</div>
 				</div>
 			   <div class="modal-footer">
 					<?php 
@@ -158,6 +199,7 @@
 <script>
 	$("#product").keypress(function( event ) {
 		if ( event.which == 13 ) {
+			$('#quantity').val(1);
 			$("#quantity").focus();
 			if($(this).val() == '')
 			{
@@ -172,7 +214,11 @@
 					// alert(result.id);
 					$("#productId").val(result.id);
 					$("#discount").val(result.netPriceDiscount);
+					$("#discount").val(result.netPriceDiscount);
 					$("#productDesc").val(result.code + ' ' + result.description);
+					$("#catalogPrice").val(Number(result.catalogPrice).toFixed(2));
+					var discount = Number(result.catalogPrice * (result.netPriceDiscount/100));
+					$("#netPrice").val((result.catalogPrice - discount).toFixed(2));
 					stockStatus = 'Available';
 					if(result._outOfStocksUp == 0)
 					{

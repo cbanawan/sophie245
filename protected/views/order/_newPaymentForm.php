@@ -22,6 +22,10 @@
 
 			return false;
 		});
+
+		$('#order-payment-dialog').on('shown.bs.modal', function () {
+			$('#btnPaymentSave').focus();
+		});  
 	");
 	
 	Yii::app()->clientScript->registerCss('payment', "
