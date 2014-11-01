@@ -133,5 +133,20 @@ class Orderdetails extends CActiveRecord
 		$this->dateLastModified = new CDbExpression('NOW()');
 		
 		return parent::beforeSave();
-	}	
+	} 
+	
+	public function afterSave()
+	{
+		if($this->orderId)
+		{
+			$order = Orders::model()->findByPk($this->orderId);
+			if($order)
+			{
+				$order->dateLastModified =  new CDbExpression('NOW()');
+				$order->save();
+			}
+		}
+		
+		return parent::afterSave();
+	}
 }

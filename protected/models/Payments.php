@@ -115,4 +115,19 @@ class Payments extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+	
+	public function afterSave()
+	{
+		if($this->orderId)
+		{
+			$order = Orders::model()->findByPk($this->orderId);
+			if($order)
+			{
+				$order->dateLastModified =  new CDbExpression('NOW()');
+				$order->save();
+			}
+		}
+		
+		return parent::afterSave();
+	}	
 }
