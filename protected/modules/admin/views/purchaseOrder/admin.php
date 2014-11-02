@@ -70,7 +70,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'dateCreated',
 		'dateLastModified',
 		'dateOrdered',
-		'userId',
+		'user.username',
 		array(
 			'name' => 'totalAmount',
 			'value' => '"Php " . number_format($data->totalAmount, 2)',
@@ -78,7 +78,12 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'orderStatus.description',
 		array(
 			'class' => 'booster.widgets.TbButtonColumn',
-			'template' => '{view}'
+			'template' => '{view}',
+			'buttons' => array(
+				'view' => array(
+					'icon' => 'edit'
+				)
+			)
 		),
 	),
 )); ?>

@@ -25,17 +25,8 @@
 			'header' => 'Status',
 		),
 	);
-
-	$orderItems = new CArrayDataProvider('Orders');
-	$orderItems->setData($orders);		
-
-	$this->widget('booster.widgets.TbExtendedGridView', array(
-		'id' => 'po-orders-grid',
-		'type' => 'striped bordered',
-		'dataProvider' => $orderItems,
-		'template' => "{items}",
-		'selectableRows' => 2,
-		'bulkActions' => array(
+	
+	$bulkActions = array(
 			'actionButtons' => array(
 				array(
 					'id' => 'btnCheck',
@@ -43,6 +34,7 @@
 					'context' => 'primary',
 					'size' => 'small',
 					'label' => 'Remove Selected From P.O.',
+					'visible' => 'false',
 					'click' => "js:function(values){
 						var data = {
 							data: values
@@ -66,7 +58,18 @@
 				'name' => 'id',
 				'id' => 'orders',
 			),
-		),
+		);
+
+	$orderItems = new CArrayDataProvider('Orders');
+	$orderItems->setData($pOrder->orders);		
+
+	$this->widget('booster.widgets.TbExtendedGridView', array(
+		'id' => 'po-orders-grid',
+		'type' => 'striped bordered',
+		'dataProvider' => $orderItems,
+		'template' => "{items}",
+		'selectableRows' => 1,
+		'bulkActions' => in_array($pOrder->orderStatus->status, array('ordered', 'delivered')) ? array() : $bulkActions,
 		'columns' => $gridColumns,
 	));	
 	?>

@@ -128,6 +128,9 @@
 
 	<?php $this->endWidget(); ?>
 	
+	<?php if(in_array($model->orderStatus->status, array('temp'))): ?>
+	
+	
 	<?php $collapse = $this->beginWidget('booster.widgets.TbCollapse'); ?>
 	<div class="panel-group" id="accordion">
 	  <div class="panel panel-default">
@@ -216,6 +219,8 @@
 		
 		?>
 	</div>
+	
+	<?php endif; ?>
 
 <?php $this->endWidget(); ?>
 

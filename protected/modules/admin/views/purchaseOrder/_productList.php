@@ -17,17 +17,7 @@ $gridColumns = array(
 	),*/
 );
 
-$products = new CArrayDataProvider('ProductOrders');
-$products->setData($productOrders);		
-// var_dump($products);
-
-$this->widget('booster.widgets.TbExtendedGridView', array(
-	'id' => 'po-products-grid',
-	'type' => 'striped bordered',
-	'selectableRows' => 2,
-	'dataProvider' => $products,
-	'template' => "{items}",
-	'bulkActions' => array(
+	$bulkActions = array(
 		'actionButtons' => array(
 			array(
 				'id' => 'btnCheckProducts',
@@ -38,7 +28,7 @@ $this->widget('booster.widgets.TbExtendedGridView', array(
 				'click' => "js:function(values){
 					// alert(values); return false;
 					var data = {
-						poId: " . $poOrderId . ",
+						poId: " . $pOrder->id . ",
 						data: values
 					};
 					// $.fn.yiiGridView.update('order-items-grid');
@@ -60,7 +50,19 @@ $this->widget('booster.widgets.TbExtendedGridView', array(
 			'name' => 'id',
 			'id' => 'products',
 		),
-	),			
+	);
+
+$products = new CArrayDataProvider('ProductOrders');
+$products->setData($productOrders);		
+// var_dump($products);
+
+$this->widget('booster.widgets.TbExtendedGridView', array(
+	'id' => 'po-products-grid',
+	'type' => 'striped bordered',
+	'selectableRows' => 2,
+	'dataProvider' => $products,
+	'template' => "{items}",
+	'bulkActions' => in_array($pOrder->orderStatus->status, array('ordered', 'delivered')) ? array() : $bulkActions,
 	'columns' => $gridColumns,
 ));	
 ?>

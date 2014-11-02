@@ -95,10 +95,17 @@ class PurchaseOrderController extends Controller
 			$orderIds = $_POST['orders'];
 			if(is_array($orderIds) && count($orderIds))
 			{
+				$model->attributes = $_POST['PurchaseOrders'];
 				$model->userId = 1;
 				$model->orderStatusId = 1;
-				$model->dateCreated = date('Y-m-d H:i:s');
-				$model->dateLastModified = $model->dateCreated;
+				if(isset($model->dateOrdered))
+				{
+					$model->dateOrdered = date('Y-m-d', strtotime($model->dateOrdered));
+				}
+				if(isset($model->dateExpected))
+				{
+					$model->dateExpected = date('Y-m-d', strtotime($model->dateExpected));
+				}
 				
 				if($model->save())
 				{
@@ -109,8 +116,6 @@ class PurchaseOrderController extends Controller
 						
 						$poOrder->purchaseOrderId = $model->id;
 						$poOrder->orderId = $orderId;
-						$poOrder->dateCreated = date('Y-m-d H:i:s');
-						$poOrder->dateLastModified = $poOrder->dateCreated;
 						if($poOrder->save())
 						{
 							$order = Orders::model()->with('orderdetails')->findByPk($orderId);
@@ -247,6 +252,9 @@ class PurchaseOrderController extends Controller
 				)
 			);
 		
+		$purchaseOrder->dateOrdered = date('m/d/Y', strtotime($purchaseOrder->dateOrdered));
+		$purchaseOrder->dateExpected = date('m/d/Y', strtotime($purchaseOrder->dateExpected));
+		
 		$orderItems = new CArrayDataProvider('Orders');
 		$orderItems->setData($orders);		
 
@@ -348,7 +356,16 @@ class PurchaseOrderController extends Controller
 			}
 		}
 		
-		$this->redirect(array('view','id'=>$id));			
+		if($orderStatus->status === 'ordered')
+		{
+			$user = Yii::app()->getComponent('user');
+			$user->setFlash(
+				'warning',
+				'Please update the <strong>Order Confirmation Number</strong>!'
+			);
+		}
+		
+		$this->redirect(array('view', 'id'=>$id, 'status' => $orderStatus->status));			
 	}
 
 	/**

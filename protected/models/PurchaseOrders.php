@@ -36,7 +36,7 @@ class PurchaseOrders extends CActiveRecord
 		return array(
 			array('userId, orderStatusId', 'required'),
 			array('userId, orderStatusId', 'numerical', 'integerOnly'=>true),
-			array('dateCreated, dateLastModified, dateOrdered', 'safe'),
+			array('dateCreated, dateLastModified, dateOrdered, dateExpected', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, dateCreated, dateLastModified, dateOrdered, userId, orderStatusId', 'safe', 'on'=>'search'),
@@ -102,9 +102,16 @@ class PurchaseOrders extends CActiveRecord
 		$criteria->compare('dateOrdered',$this->dateOrdered,true);
 		$criteria->compare('userId',$this->userId);
 		$criteria->compare('orderStatusId',$this->orderStatusId);
+		
+		$sort = new CSort;
+		/* Default Sort Order*/
+        $sort->defaultOrder= array(
+            'dateCreated'=>CSort::SORT_DESC,
+        );		
 
 		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
+			'criteria' => $criteria,
+			'sort' => $sort,
 		));
 	}
 
@@ -118,6 +125,26 @@ class PurchaseOrders extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+	
+	public function beforeSave() 
+	{
+		if ($this->isNewRecord)
+		{
+			// var_dump($this->dateCreated); exit;
+			if(!isset($this->dateCreated))
+			{
+				$this->dateCreated = new CDbExpression('NOW()');
+			}
+			else
+			{
+				$this->dateCreated .= date(' H:i:s');
+			}
+		}
+
+		$this->dateLastModified = new CDbExpression('NOW()');
+		
+		return parent::beforeSave();
+	}	
 	
 	public function getTotalAmount()
 	{

@@ -28,6 +28,23 @@
 	");	*/
 ?>
 
+<?php
+	$this->widget('booster.widgets.TbAlert', array(
+		'fade' => true,
+		'closeText' => '&times;', // false equals no close link
+		'events' => array(),
+		'htmlOptions' => array(),
+		'userComponentId' => 'user',
+		'alerts' => array( // configurations per alert type
+			// success, info, warning, error or danger
+			'success' => array('closeText' => '&times;'),
+			'info', // you don't need to specify full config
+			'warning' => array('closeText' => false),
+			'error' => array('closeText' => 'AAARGHH!!')
+		),
+	));
+?>
+
 <?php $this->beginWidget(
     'booster.widgets.TbPanel',
     array(
@@ -64,7 +81,12 @@
 								'visible' => !in_array($model->orderStatus->status, array('cancelled')),
 							),
 							array(
-								'label' => 'Submitted/Placed', 
+								'label' => 'Temporary', 
+								'url' => Yii::app()->createUrl('/admin/purchaseOrder/updateStatus', array('id' => $model->id, 'status' => 'temp')),
+								'visible' => !in_array($model->orderStatus->status, array('temp', 'delivered')),
+							),
+							array(
+								'label' => 'Submitted/Confirmed', 
 								'url' => Yii::app()->createUrl('/admin/purchaseOrder/updateStatus', array('id' => $model->id, 'status' => 'ordered')),
 								'visible' => !in_array($model->orderStatus->status, array('ordered')),
 							),
@@ -146,10 +168,9 @@ $gridColumns = array(
 			$this->renderPartial(
 						'_orderList',
 						array(
-							'orders' => $model->orders,
+							'pOrder' => $model,
 						)
 					);
-			$model->orders;
 		  ?>
       </div>
     </div>
@@ -175,7 +196,7 @@ $gridColumns = array(
 			$this->renderPartial(
 				'_productList',
 				array(
-					'poOrderId' => $model->id,
+					'pOrder' => $model,
 					'productOrders' => $productOrders,
 				)
 			);
