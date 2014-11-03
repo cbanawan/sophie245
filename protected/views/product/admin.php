@@ -71,6 +71,9 @@ Yii::app()->clientScript->registerScript('search', "
 			'template'=>'{view}&nbsp;&nbsp;{update}',
 			'buttons' => array(
 				'view' => array(
+					'icon' => 'zoom-in',
+				),
+				'update' => array(
 					'icon' => 'edit',
 				),
 			)			

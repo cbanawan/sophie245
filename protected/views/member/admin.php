@@ -80,8 +80,11 @@ $('.search-form form').submit(function(){
 			'template' => '{view}&nbsp;&nbsp;{update}',
 			'buttons' => array(
 				'view' => array(
-					'icon' => 'edit',
+					'icon' => 'zoom-in',
 				),
+				'update' => array(
+					'icon' => 'edit'
+				)
 			)
 		),
 	),

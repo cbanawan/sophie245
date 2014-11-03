@@ -37,6 +37,7 @@
 						array('label'=>'Dashboard', 'url'=>array('/site/index')),
 						array('label'=>'Sales Order', 'url'=>array('/order/index'), 'visible'=>!Yii::app()->user->isGuest),
 						array('label'=>'Purchase Order', 'url'=>array('/admin/purchaseOrder/admin'), 'visible'=>!Yii::app()->user->isGuest),
+						array('label'=>'Delivery', 'url'=>array('/admin/delivery/admin'), 'visible'=>!Yii::app()->user->isGuest),
 						array('label'=>'Member', 'url'=>array('/member/admin'), 'visible'=>!Yii::app()->user->isGuest),
 						array('label'=>'Product', 'url'=>array('/product/admin'), 'visible'=>!Yii::app()->user->isGuest),
 						// array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),

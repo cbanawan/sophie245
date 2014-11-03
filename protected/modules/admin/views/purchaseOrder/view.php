@@ -74,21 +74,22 @@
 					array(
 						'label' => 'Change Order Status',
 						'icon' => 'cog',
+						'visible' => !in_array($model->orderStatus->status, array('delivered')),
 						'items' => array(
 							array(
 								'label' => 'Cancel', 
 								'url' => Yii::app()->createUrl('/admin/purchaseOrder/updateStatus', array('id' => $model->id, 'status' => 'cancelled')),
-								'visible' => !in_array($model->orderStatus->status, array('cancelled')),
+								'visible' => in_array($model->orderStatus->status, array('temp')),
 							),
 							array(
 								'label' => 'Temporary', 
 								'url' => Yii::app()->createUrl('/admin/purchaseOrder/updateStatus', array('id' => $model->id, 'status' => 'temp')),
-								'visible' => !in_array($model->orderStatus->status, array('temp', 'delivered')),
+								'visible' => in_array($model->orderStatus->status, array('ordered', 'delivered')),
 							),
 							array(
 								'label' => 'Submitted/Confirmed', 
 								'url' => Yii::app()->createUrl('/admin/purchaseOrder/updateStatus', array('id' => $model->id, 'status' => 'ordered')),
-								'visible' => !in_array($model->orderStatus->status, array('ordered')),
+								'visible' => in_array($model->orderStatus->status, array('temp')),
 							),
 							array(
 								'label' => 'Delivered', 

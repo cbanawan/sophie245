@@ -66,7 +66,7 @@
 						array(
 							'label' => 'Served', 
 							'url' => Yii::app()->createUrl('order/changeStatus', array('id' => $order->id, 'status' => 'served')),
-							'visible' => in_array($order->orderStatus->status, array('paid', 'forOrder', 'ordered', 'delivered')),
+							'visible' => in_array($order->orderStatus->status, array('paid', 'delivered')) && $order->fullyPaid,
 						),
 						array(
 							'label' => 'Delete Permanently', 

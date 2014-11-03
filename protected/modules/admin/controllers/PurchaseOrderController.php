@@ -356,7 +356,7 @@ class PurchaseOrderController extends Controller
 			}
 		}
 		
-		if($orderStatus->status === 'ordered')
+		if($orderStatus->status === 'ordered' && empty($purchaseOrder->orderConfirmationNo))
 		{
 			$user = Yii::app()->getComponent('user');
 			$user->setFlash(

@@ -1,15 +1,15 @@
 <?php
-/* @var $this PurchaseOrderController */
-/* @var $model PurchaseOrders */
+/* @var $this DeliveryController */
+/* @var $model Deliveries */
 
 $this->breadcrumbs=array(
-	'Purchase Orders',
-	'Create New Purchase Order' => array('create'),
+	'Deliveries',
+	'Create New Delivery' => array('create')
 );
 
 $this->menu=array(
-	array('label'=>'List PurchaseOrders', 'url'=>array('index')),
-	array('label'=>'Create PurchaseOrders', 'url'=>array('create')),
+	array('label'=>'List Deliveries', 'url'=>array('index')),
+	array('label'=>'Create Deliveries', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -18,7 +18,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#purchase-orders-grid').yiiGridView('update', {
+	$('#deliveries-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -29,7 +29,7 @@ $('.search-form form').submit(function(){
 <?php $this->beginWidget(
     'booster.widgets.TbPanel',
     array(
-        'title' => 'Manage Purchase Orders',
+        'title' => 'Manage Deliveries',
         'headerIcon' => 'barcode',
 		// 'padContent' => false,
         'htmlOptions' => array('class' => 'bootstrap-widget-table'),
@@ -50,7 +50,7 @@ $('.search-form form').submit(function(){
 ); ?>
 
 <?php $this->widget('booster.widgets.TbGridView', array(
-	'id'=>'purchase-orders-grid',
+	'id'=>'deliveries-grid',
 	'dataProvider'=>$model->search(),
 	// 'filter'=>$model,
 	'columns'=>array(
@@ -66,32 +66,27 @@ $('.search-form form').submit(function(){
 			'value' => 'date("m/d/Y h:i A", strtotime($data->dateLastModified))',
 		),
 		array(
-			'name' => 'dateOrdered',
-			'header' => 'Order Date',
-			'value' => 'date("m/d/Y", strtotime($data->dateOrdered))',
+			'name' => 'dateCreated',
+			'header' => 'Date Created',
+			'value' => 'date("m/d/Y h:i A", strtotime($data->dateCreated))',
 		),
 		array(
-			'name' => 'user.username',
-			'header' => 'Prepared By',
+			'name' => 'dateDelivered',
+			'header' => 'Delivery Date',
+			'value' => 'date("m/d/Y", strtotime($data->dateDelivered))',
 		),
-		array(
-			'name' => 'totalAmount',
-			'header' => 'Amount',
-			'value' => '"Php " . number_format($data->totalAmount, 2)',
-		),
-		array(
-			'name' => 'orderStatus.description',
-			'header' => 'Status',
-		),
+		'purchaseOrderId',
+		'receivedBy',
 		array(
 			'class' => 'booster.widgets.TbButtonColumn',
 			'template' => '{view}',
 			'buttons' => array(
 				'view' => array(
 					'icon' => 'zoom-in'
-				)
-			)
+				),
+			),
 		),
 	),
 )); ?>
+
 <?php $this->endWidget(); ?>

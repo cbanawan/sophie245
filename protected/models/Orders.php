@@ -293,4 +293,9 @@ class Orders extends CActiveRecord
 	{
 		return $this->orderStatus->description;
 	}
+	
+	public function getFullyPaid()
+	{
+		return ($this->getNetAmount() < $this->getTotalPayment());
+	}
 }

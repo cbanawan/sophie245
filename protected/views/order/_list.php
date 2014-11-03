@@ -54,7 +54,7 @@
 			'viewButtonUrl' => 'Yii::app()->controller->createUrl("order/view", array("id" => $data->id))',
 			'buttons' => array(
 				'view' => array(
-					'icon' => 'edit',
+					'icon' => 'zoom-in',
 					'htmlOptions' => array(
 						'_target' => '_blank'
 					)
