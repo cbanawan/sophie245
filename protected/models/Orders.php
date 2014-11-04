@@ -296,6 +296,6 @@ class Orders extends CActiveRecord
 	
 	public function getFullyPaid()
 	{
-		return ($this->getNetAmount() < $this->getTotalPayment());
+		return ($this->getNetAmount() <= $this->getTotalPayment());
 	}
 }
