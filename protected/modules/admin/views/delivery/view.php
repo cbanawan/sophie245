@@ -49,7 +49,7 @@ $this->menu=array(
 						'items' => array(
 							array(
 								'label' => 'Confirm Delivery', 
-								//'url' => Yii::app()->createUrl('/admin/purchaseOrder/updateStatus', array('id' => $model->id, 'status' => 'cancelled')),
+								'url' => Yii::app()->createUrl('/admin/delivery/confirm', array('id' => $model->id)),
 								'visible' => !$model->deliveryConfirmed,
 							),
 							/*array(

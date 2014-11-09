@@ -1,3 +1,24 @@
+<?php
+	Yii::app()->getClientScript()->registerScript("print-order", "
+		$('#print').click(function(){
+			window.open('" . Yii::app()->createUrl('order/print', array('id' => $order->id)) . "', '_blank');
+		});
+
+		$(window).keydown(function(e) {
+			switch (e.keyCode) {
+				case 113: 
+					$('#add-order-item-button').click();
+					return false;
+				case 114: 
+					$('#add-order-payment-button').click();
+					return false;
+			}
+			return; //using 'return' other attached events will execute
+		});
+
+	");
+?>	
+
 <div id='order-details' class="row-fluid">
 	<?php 
 		$orderDetails = $order->attributes;
@@ -54,8 +75,8 @@
 							'visible' => !in_array($order->orderStatus->status, array('cancelled')),
 						),
 						array(
-							'label' => 'Ordered', 
-							'url' => Yii::app()->createUrl('order/changeStatus', array('id' => $order->id, 'status' => 'forOrder')),
+							'label' => 'In Order', 
+							'url' => Yii::app()->createUrl('order/changeStatus', array('id' => $order->id, 'status' => 'inOrder')),
 							'visible' => !in_array($order->orderStatus->status, array('inOrder', 'temp', 'cancelled', 'served')),
 						),
 						array(
