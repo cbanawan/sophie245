@@ -27,7 +27,7 @@ class DeliveryController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'ajaxUpdateQuantity'),
+				'actions'=>array('create','update', 'ajaxUpdateQuantity', 'confirm'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -99,10 +99,13 @@ class DeliveryController extends Controller
 					foreach($purchaseOrder->orders as $order)
 					{
 						// Update order status
-						if(isset($orderStatus['delivered']))
+						if(!in_array($order->orderStatusId, array(4, 5)))
 						{
-							$order->orderStatusId = $orderStatus['delivered'];
-							$order->save();
+							if(isset($orderStatus['delivered']))
+							{
+								$order->orderStatusId = $orderStatus['delivered'];
+								$order->save();
+							}
 						}
 						
 						// Gather all products in all order in this PO
@@ -216,6 +219,18 @@ class DeliveryController extends Controller
 		$this->render('admin',array(
 			'model'=>$model,
 		));
+	}
+	
+	public function actionConfirm($id)
+	{
+		$model = $this->loadModel($id);
+		if($model)
+		{
+			$model->deliveryConfirmed = 1;
+			$model->save();
+			
+			$this->redirect(array('view','id' => $model->id));
+		}
 	}
 
 	/**

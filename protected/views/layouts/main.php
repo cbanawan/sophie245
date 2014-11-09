@@ -20,14 +20,14 @@
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
-<body>
+<body style="padding-top: 70px;">
 
 <?php
 	$this->widget(
 		'booster.widgets.TbNavbar',
 		array(
 			'brand' => '<strong>Sophie BC 245</strong>',
-			'fixed' => true,
+			'fixed' => 'top',
 			'fluid' => true,
 			'items' => array(
 				array(

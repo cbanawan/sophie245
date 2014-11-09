@@ -6,11 +6,7 @@
 		'Create New Order' => array('order/create'),
 	);
 	
-	Yii::app()->getClientScript()->registerScript("print-order", "
-		$('#print').click(function(){
-			window.open('" . Yii::app()->createUrl('order/print', array('id' => $order->id)) . "', '_blank');
-		});
-
+	Yii::app()->getClientScript()->registerScript("add-order", "
 		$(window).keydown(function(e) {
 			switch (e.keyCode) {
 				case 113: 
