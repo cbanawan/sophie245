@@ -74,32 +74,27 @@
 					array(
 						'label' => 'Change Order Status',
 						'icon' => 'cog',
-						'visible' => !in_array($model->orderStatus->status, array('delivered')),
+						'visible' => in_array($model->orderStatus->status, array('temp')),
 						'items' => array(
 							array(
 								'label' => 'Cancel', 
 								'url' => Yii::app()->createUrl('/admin/purchaseOrder/updateStatus', array('id' => $model->id, 'status' => 'cancelled')),
 								'visible' => in_array($model->orderStatus->status, array('temp')),
 							),
-							array(
+							/*array(
 								'label' => 'Temporary', 
 								'url' => Yii::app()->createUrl('/admin/purchaseOrder/updateStatus', array('id' => $model->id, 'status' => 'temp')),
 								'visible' => in_array($model->orderStatus->status, array('ordered', 'delivered')),
-							),
+							),*/
 							array(
 								'label' => 'Submitted/Confirmed', 
 								'url' => Yii::app()->createUrl('/admin/purchaseOrder/updateStatus', array('id' => $model->id, 'status' => 'ordered')),
 								'visible' => in_array($model->orderStatus->status, array('temp')),
 							),
-							array(
+							/*array(
 								'label' => 'Delivered', 
 								'url' => Yii::app()->createUrl('/admin/purchaseOrder/updateStatus', array('id' => $model->id, 'status' => 'delivered')),
 								'visible' => in_array($model->orderStatus->status, array('ordered')),
-							),
-							/*'---',
-							array(
-								'label' => 'Print Sales Order', 
-								'url' => Yii::app()->createUrl('order/print', array('id' => $order->id)),
 							),*/
 						)
 					),

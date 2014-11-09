@@ -41,14 +41,16 @@
 		array(
 			'name' => 'status',
 			'value' => '$data->orderStatusDesc',
-			'htmlOptions' => array('class' => 'text-center'),
+			// 'htmlOptions' => array('class' => 'text-center'),
 		),
 		array(
 			'name' => 'catalogId',
 			'value' => '$data->catalog->name',
-			'htmlOptions' => array('class' => 'text-center'),
+			// 'htmlOptions' => array('class' => 'text-center'),
 		),
+		// 'purchaseOrder.purchaseOrder.dateExpected',
 		array(
+			'header' => 'Actions',
 			'class' => 'booster.widgets.TbButtonColumn',
 			'template'=>'{view}',
 			'viewButtonUrl' => 'Yii::app()->controller->createUrl("order/view", array("id" => $data->id))',

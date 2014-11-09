@@ -72,9 +72,9 @@
 						array(
 							'label' => 'Cancel', 
 							'url' => Yii::app()->createUrl('order/changeStatus', array('id' => $order->id, 'status' => 'cancelled')),
-							'visible' => !in_array($order->orderStatus->status, array('cancelled')),
+							'visible' => in_array($order->orderStatus->status, array('temp', 'partial', 'paid')),
 						),
-						array(
+						/*array(
 							'label' => 'In Order', 
 							'url' => Yii::app()->createUrl('order/changeStatus', array('id' => $order->id, 'status' => 'inOrder')),
 							'visible' => !in_array($order->orderStatus->status, array('inOrder', 'temp', 'cancelled', 'served')),
@@ -83,9 +83,9 @@
 							'label' => 'Delivered', 
 							'url' => Yii::app()->createUrl('order/changeStatus', array('id' => $order->id, 'status' => 'delivered')),
 							'visible' => !in_array($order->orderStatus->status, array('delivered', 'temp', 'cancelled', 'served')),
-						),
+						),*/
 						array(
-							'label' => 'Served', 
+							'label' => 'Serve', 
 							'url' => Yii::app()->createUrl('order/changeStatus', array('id' => $order->id, 'status' => 'served')),
 							'visible' => in_array($order->orderStatus->status, array('paid', 'delivered')) && $order->fullyPaid,
 						),

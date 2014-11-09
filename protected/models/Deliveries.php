@@ -54,7 +54,7 @@ class Deliveries extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'purchaseOrder' => array(self::BELONGS_TO, 'Purchaseorders', 'purchaseOrderId'),
-			'receivedBy0' => array(self::BELONGS_TO, 'Users', 'receivedBy'),
+			'user' => array(self::BELONGS_TO, 'Users', 'receivedBy'),
 			'products' => array(self::HAS_MANY, 'Deliveryproducts', 'deliveryId', 'with' => 'product'),
 		);
 	}

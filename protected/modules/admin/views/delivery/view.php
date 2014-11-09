@@ -46,6 +46,7 @@ $this->menu=array(
 					array(
 						'label' => 'Change Delivery Status',
 						'icon' => 'cog',
+						'visible' => !$model->deliveryConfirmed,
 						'items' => array(
 							array(
 								'label' => 'Confirm Delivery', 

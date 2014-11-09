@@ -27,7 +27,27 @@
 	// var_dump($model->products);
 
 	$products = new CArrayDataProvider('DeliveryProducts');
-	$products->setData($model->products);		
+	$products->setData($model->products);	
+	
+	$editableColumn = array(
+					'name' => 'delivered',
+					'header' => 'Delivered',
+					'class' => 'booster.widgets.TbEditableColumn',
+					'headerHtmlOptions' => array('style' => 'width:200px'),
+					'editable' => array(
+						'type' => 'text',
+						'url' => Yii::app()->createUrl('/admin/delivery/ajaxUpdateQuantity'),
+					)
+				);
+	
+	if($model->deliveryConfirmed)
+	{
+		$editableColumn = array(
+					'name' => 'delivered',
+					'header' => 'Delivered',
+					'headerHtmlOptions' => array('style' => 'width:200px')
+			);
+	}
 	
 	$this->widget(
 		'booster.widgets.TbExtendedGridView',
@@ -45,16 +65,7 @@
 				array('name' => 'product.code', 'header' => 'Product Code'),
 				array('name' => 'product.description', 'header' => 'Description'),
 				array('name' => 'ordered', 'header' => 'Ordered'),
-				array(
-					'name' => 'delivered',
-					'header' => 'Delivered',
-					'class' => 'booster.widgets.TbEditableColumn',
-					'headerHtmlOptions' => array('style' => 'width:200px'),
-					'editable' => array(
-						'type' => 'text',
-						'url' => Yii::app()->createUrl('/admin/delivery/ajaxUpdateQuantity'),
-					)
-				),				
+				$editableColumn,				
 				/*array(
 					'htmlOptions' => array('nowrap' => 'nowrap'),
 					'class' => 'booster.widgets.TbButtonColumn',

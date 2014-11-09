@@ -66,18 +66,18 @@ $('.search-form form').submit(function(){
 			'value' => 'date("m/d/Y h:i A", strtotime($data->dateLastModified))',
 		),
 		array(
-			'name' => 'dateCreated',
-			'header' => 'Date Created',
-			'value' => 'date("m/d/Y h:i A", strtotime($data->dateCreated))',
-		),
-		array(
 			'name' => 'dateDelivered',
 			'header' => 'Delivery Date',
 			'value' => 'date("m/d/Y", strtotime($data->dateDelivered))',
 		),
 		'purchaseOrderId',
-		'receivedBy',
 		array(
+			'name' => 'receviedBy',
+			'header' => 'Received By',
+			'value' => '$data->user->username',
+		),
+		array(
+			'header' => 'Actions',
 			'class' => 'booster.widgets.TbButtonColumn',
 			'template' => '{view}',
 			'buttons' => array(
