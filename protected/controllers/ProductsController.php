@@ -147,7 +147,7 @@ class ProductsController extends Controller
 	{
 		$product = Products::model()->find(
 				array(
-					'condition' => 'code = :code',
+					'condition' => 'code = :code AND _active = 1',
 					'params' => array(':code' => $id)
 				)
 			);

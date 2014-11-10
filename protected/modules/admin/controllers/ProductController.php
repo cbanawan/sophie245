@@ -196,6 +196,15 @@ class ProductController extends Controller
 					{
 						// Reset count
 						$currentCatalog = Catalogs::model()->find('_current = 1');
+
+						// Update all as inactive with zero stocks
+						Products::model()->updateAll(
+								array('_outOfStocksUp' => 0), 
+								'catalogId <> :catalogId', 
+								array(':catalogId' => $currentCatalog->id)
+							);
+						
+						// Update all products in current catalog as available
 						Products::model()->updateAll(
 								array('_outOfStocksUp' => -1), 
 								'catalogId = :catalogId', 

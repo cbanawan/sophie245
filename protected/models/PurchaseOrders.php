@@ -51,7 +51,7 @@ class PurchaseOrders extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'orders' =>  array(self::MANY_MANY, 'Orders', 'Purchaseorderorders(purchaseOrderId, orderId)', 'with' => 'orderdetails'),
+			'orders' =>  array(self::MANY_MANY, 'Orders', 'purchaseorderorders(purchaseOrderId, orderId)', 'with' => 'orderdetails'),
 			// array(self::HAS_MANY, 'Purchaseorderorders', 'purchaseOrderId'),
 			'user' => array(self::BELONGS_TO, 'Users', 'userId'),
 			'orderStatus' => array(self::BELONGS_TO, 'Orderstatus', 'orderStatusId'),

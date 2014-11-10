@@ -55,7 +55,7 @@ class Payments extends CActiveRecord
 		return array(
 			'order' => array(self::BELONGS_TO, 'Orders', 'orderId'),
 			'user' => array(self::BELONGS_TO, 'Users', 'userId'),
-			'paymentType' => array(self::BELONGS_TO, 'PaymentTypes', 'paymentTypeId'),
+			'paymentType' => array(self::BELONGS_TO, 'Paymenttypes', 'paymentTypeId'),
 		);
 	}
 
