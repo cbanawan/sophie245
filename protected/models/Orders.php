@@ -72,7 +72,7 @@ class Orders extends CActiveRecord
 			'catalog' => array(self::BELONGS_TO, 'Catalogs', 'catalogId'),
 			'orderstatushistories' => array(self::HAS_MANY, 'Orderstatushistory', 'orderId'),
 			'payments' => array(self::HAS_MANY, 'Payments', 'orderId', 'with' => 'paymentType'),
-			'uporders' => array(self::MANY_MANY, 'Uporders', 'upordersorders(orderId, upOrderId)'),
+			'purchaseOrder' => array(self::HAS_ONE, 'Purchaseorderorders', 'orderId'),
 		);
 	}
 
@@ -174,7 +174,7 @@ class Orders extends CActiveRecord
 
 		/* Default Sort Order*/
         $sort->defaultOrder= array(
-            'dateLastModified'=>CSort::SORT_DESC,
+            'dateOrdered'=>CSort::SORT_DESC,
         );
 
 		return new CActiveDataProvider($this, array(

@@ -8,15 +8,17 @@
 			'header' => 'S.O. No.'
 		),
 		array(
-			'name' => 'dateCreated',
-			'value' => 'date("m/d/Y", strtotime($data->dateCreated))'
+			'name' => 'dateOrdered',
+			'value' => 'date("D m/d/Y", strtotime($data->dateOrdered))'
 		),
+		/*array(
+			'name' => 'dateCreated',
+			'value' => 'date("m/d/Y H:i:s", strtotime($data->dateCreated))'
+		),*/
 		array(
 			'name' => 'dateLastModified',
-			'value' => 'date("m/d/Y", strtotime($data->dateLastModified))'
+			'value' => 'date("m/d/Y H:i:s", strtotime($data->dateLastModified))'
 		),
-		// 'dateLastModified',
-		// 'memberId',
 		array(
 			'name' => 'memberCode',
 			'value' => '$data->memberMemberCode',
@@ -43,12 +45,13 @@
 			'value' => '$data->orderStatusDesc',
 			// 'htmlOptions' => array('class' => 'text-center'),
 		),
-		array(
+		/*array(
 			'name' => 'catalogId',
 			'value' => '$data->catalog->name',
 			// 'htmlOptions' => array('class' => 'text-center'),
-		),
-		// 'purchaseOrder.purchaseOrder.dateExpected',
+		),*/
+		'purchaseOrder.purchaseOrder.orderConfirmationNo',
+		'purchaseOrder.purchaseOrder.dateExpected',
 		array(
 			'header' => 'Actions',
 			'class' => 'booster.widgets.TbButtonColumn',
