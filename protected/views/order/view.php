@@ -1,4 +1,3 @@
-
 <?php
 	$this->breadcrumbs=array(
 		'Sales Order' => array('order/index'),

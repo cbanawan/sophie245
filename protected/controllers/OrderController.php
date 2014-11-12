@@ -161,35 +161,60 @@ class OrderController extends Controller
 	
 	public function actionCreate()
 	{
-		$model = new Orders;
-		$model->dateCreated = date("m/d/Y");
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$memberDataProvider = new CArrayDataProvider(array());
 		
+		// Prepare Members		
+		$memberModel = new Members();
+		if(isset($_GET['Members']['searchCriteria']))
+		{
+			$memberModel->searchCriteria = $_GET['Members']['searchCriteria'];
+			
+			$criteria=new CDbCriteria;
+			if($memberModel->searchCriteria)
+			{
+				$criteria->compare('memberCode', $memberModel->searchCriteria, true, 'OR');
+				$criteria->compare('lastName', $memberModel->searchCriteria, true, 'OR');
+				$criteria->compare('firstName', $memberModel->searchCriteria, true, 'OR');
+			}
+
+			$memberDataProvider = new CActiveDataProvider($memberModel, array(
+				'criteria' => $criteria,
+			));			
+		}
+		
+		// Render only the grid if an ajax call
+		if (Yii::app()->getRequest()->getIsAjaxRequest())
+		{
+			$this->renderPartial(
+					'_orderFormMemberGrid',
+					array(
+						'dataProvider' => $memberDataProvider
+					)
+				);
+			
+			Yii::app()->end();
+		}
+		
+		// Process Order		
+		$orderModel = new Orders();
+		$orderModel->dateOrdered = date("Y-m-d");
+
 		if(isset($_POST['Orders']))
 		{
-			$model->attributes = $_POST['Orders'];
-			$model->dateCreated = date("Y-m-d ", strtotime($model->dateCreated)); 
-			
-			if($model->save())
+			$orderModel->attributes = $_POST['Orders'];
+			if($orderModel->save())
 			{
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('view','id' => $orderModel->id));
 			}
 		}
 		
-		$members = CHtml::listData(Members::model()->findAll(), 'id', 'codename');
-		$users = CHtml::listData(Users::model()->findAll(), 'id', 'username');
-		$orderStatus = CHtml::listData(Orderstatus::model()->findAll(), 'id', 'status');
-		$catalogs = CHtml::listData(Catalogs::model()->findAll('_current = 1'), 'id', 'name');
-		
-		$this->render('create',array(
-			'members'=>$members,
-			'users'=>$users,
-			'orderStatus'=>$orderStatus,
-			'model'=>$model,
-			'catalogs'=>$catalogs,
-		));	
+		$this->render(
+				'create',
+				array(
+					'orderModel' => $orderModel,
+					'memberModel' => $memberModel,
+					'memberDataProvider' => $memberDataProvider
+				));	
 	}
 	
 	public function actionChangeStatus($id, $status)

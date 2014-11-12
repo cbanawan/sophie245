@@ -15,8 +15,24 @@ class MemberController extends Controller
 	 */
 	public function actionView($id)
 	{
+		$model = $this->loadModel($id);
+		
+		if (Yii::app()->getRequest()->getIsAjaxRequest())
+		{
+			$member =  array();
+			if($model)
+			{
+				$member = $model->attributes;
+				$member['fullName'] = $model->lastName . ', ' . $model->lastName;
+			}
+			
+			header('Content-type: application/json');
+			echo json_encode($member);
+			Yii::app()->end();
+		}
+		
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+			'model' => $model,
 		));
 	}
 	

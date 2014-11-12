@@ -22,6 +22,8 @@
  * @property string $position
  * @property string $dateJoined
  *
+ * @property string $searchCriteria
+ * 
  * The followings are the available model relations:
  * @property Members $sponsor
  * @property Members[] $members
@@ -32,6 +34,8 @@
  */
 class Members extends CActiveRecord
 {
+	public $searchCriteria;
+	
 	/**
 	 * @return string the associated database table name
 	 */
@@ -51,7 +55,7 @@ class Members extends CActiveRecord
 			array('memberCode, firstName, lastName, dateJoined', 'required'),
 			array('memberCode', 'unique'),
 			array('memberCode', 'length', 'max'=>10),
-            array('sponsorCode, dateJoined, middleName, homePhone, mobilePhone', 'safe'),
+            array('sponsorCode, dateJoined, middleName, homePhone, mobilePhone, searchCriteria', 'safe'),
 			// array('firstName, lastName, middleName, address1, address2', 'length', 'max'=>45),
 			// array('homePhone, mobilePhone', 'length', 'max'=>13),
 			// array('emailAddress', 'length', 'max'=>100),
@@ -100,7 +104,8 @@ class Members extends CActiveRecord
 			'fullName' => 'Full Name',
 			'sponsorCode' => 'Sponsor Code',
 			'position' => 'Position',
-			'dateJoined' => 'Date Joined'
+			'dateJoined' => 'Date Joined',
+			'searchCriteria' => 'Find a Member',
 		);
 	}
 
@@ -133,7 +138,14 @@ class Members extends CActiveRecord
 		$criteria->compare('address2',$this->address2,true);
 		$criteria->compare('cityId',$this->cityId);
         $criteria->compare('sponsorCode',$this->sponsorCode);
-
+		
+		if($this->searchCriteria)
+		{
+			$criteria->compare('memberCode', $this->searchCriteria, true, 'OR');
+			$criteria->compare('lastName', $this->searchCriteria, true, 'OR');
+			$criteria->compare('firstName', $this->searchCriteria, true, 'OR');
+		}
+		
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));

@@ -6,6 +6,7 @@
  * The followings are the available columns in table 'orders':
  * @property integer $id
  * @property string $dateCreated
+ * @property string $dateOrdered
  * @property string $dateLastModified
  * @property integer $memberId
  * @property integer $userId
@@ -47,12 +48,12 @@ class Orders extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('memberId, userId, orderStatusId', 'required'),
+			array('memberId, userId, orderStatusId, dateOrdered', 'required'),
 			array('memberId, userId, orderStatusId, catalogId', 'numerical', 'integerOnly'=>true),
-			array('dateCreated', 'safe'),
+			array('dateCreated, dateOrdered', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, dateCreated, dateCreatedRange, dateLastModified, memberId, userId, orderStatusId, memberCode, memberName', 'safe', 'on'=>'search'),
+			array('id, dateCreated, dateOrdered, dateCreatedRange, dateLastModified, memberId, userId, orderStatusId, memberCode, memberName', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -88,6 +89,7 @@ class Orders extends CActiveRecord
 			'userId' => 'User',
 			'orderStatusId' => 'Order Status',
 			'catalogId' => 'Catalog',
+			'dateOrdered' => 'Order Date',
 		);
 	}
 
@@ -117,6 +119,7 @@ class Orders extends CActiveRecord
 		
 		$criteria->compare('t.id',$this->id);
 		$criteria->compare('t.dateCreated', $this->dateCreated,true);
+		$criteria->compare('t.dateOrdered', $this->dateOrdered,true);
 		$criteria->compare('dateLastModified',$this->dateLastModified,true);
 		$criteria->compare('memberId',$this->memberId);
 		$criteria->compare('userId',$this->userId);
@@ -130,8 +133,7 @@ class Orders extends CActiveRecord
 			$startDate = date('Y-m-d 00:00:00', strtotime($dateCreatedRange[0]));
 			$endDate = date('Y-m-d 23:59:00', strtotime($dateCreatedRange[1]));
 			
-			$criteria->addBetweenCondition('t.dateCreated', $startDate, $endDate);
-			// $criteria->params=array('dateCreated' => $startDate, ':endDate' => $endDate);
+			$criteria->addBetweenCondition('t.dateOrdered', $startDate, $endDate);
 		}
 
 		/*if(!empty($this->dateLastModifiedRange))
