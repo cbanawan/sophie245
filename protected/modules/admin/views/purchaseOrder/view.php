@@ -89,7 +89,7 @@
 							array(
 								'label' => 'Submitted/Confirmed', 
 								'url' => Yii::app()->createUrl('/admin/purchaseOrder/updateStatus', array('id' => $model->id, 'status' => 'ordered')),
-								'visible' => in_array($model->orderStatus->status, array('temp')),
+								'visible' => in_array($model->orderStatus->status, array('temp')) && !empty($model->orderConfirmationNo),
 							),
 							/*array(
 								'label' => 'Delivered', 

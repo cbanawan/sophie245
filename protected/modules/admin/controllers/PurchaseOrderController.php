@@ -98,14 +98,14 @@ class PurchaseOrderController extends Controller
 				$model->attributes = $_POST['PurchaseOrders'];
 				$model->userId = 1;
 				$model->orderStatusId = 1;
-				if(isset($model->dateOrdered))
+				/*if(isset($model->dateOrdered))
 				{
 					$model->dateOrdered = date('Y-m-d', strtotime($model->dateOrdered));
 				}
 				if(isset($model->dateExpected))
 				{
 					$model->dateExpected = date('Y-m-d', strtotime($model->dateExpected));
-				}
+				}*/
 				
 				if($model->save())
 				{
@@ -163,7 +163,10 @@ class PurchaseOrderController extends Controller
 			);
 		
 		$orderItems = new CArrayDataProvider('Orders');
-		$orderItems->setData($orders);		
+		$orderItems->setData($orders);
+		
+		$model->dateOrdered = date('Y-m-d');
+		$model->dateExpected = date('Y-m-d', strtotime('+3 days'));
 
 		$this->render('create',array(
 			'model'=>$model,

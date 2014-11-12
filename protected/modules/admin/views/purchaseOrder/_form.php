@@ -63,9 +63,9 @@
 		?>
 	</div>
 	<br />
-	<div class="well" id="po-header-detail-form">
+	<div class="container-fluid well" id="po-header-detail-form">
 		<div class="row">
-			<div class="span-3">
+			<div class="col-sm-3">
 			<?php
 				echo $form->datePickerGroup(
 						$model,
@@ -74,6 +74,7 @@
 							'widgetOptions' => array(
 								'options' => array(
 									'language' => 'es',
+									'format' => 'yyyy-mm-dd'
 								),
 							),
 							'wrapperHtmlOptions' => array(
@@ -87,7 +88,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="span-3">
+			<div class="col-sm-3">
 			<?php
 				echo $form->datePickerGroup(
 						$model,
@@ -96,6 +97,7 @@
 							'widgetOptions' => array(
 								'options' => array(
 									'language' => 'es',
+									'format' => 'yyyy-mm-dd'
 								),
 							),
 							'wrapperHtmlOptions' => array(
@@ -109,7 +111,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="span-6">
+			<div class="col-sm-3">
 			<?php
 				echo $form->textFieldGroup(
 					$model,
