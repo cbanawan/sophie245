@@ -71,6 +71,11 @@ $('.search-form form').submit(function(){
 			'value' => 'date("m/d/Y", strtotime($data->dateOrdered))',
 		),
 		array(
+			'name' => 'dateExpected',
+			'header' => 'Date Expected',
+			'value' => 'date("m/d/Y", strtotime($data->dateExpected))',
+		),
+		array(
 			'name' => 'user.username',
 			'header' => 'Prepared By',
 		),
@@ -78,6 +83,10 @@ $('.search-form form').submit(function(){
 			'name' => 'totalAmount',
 			'header' => 'Amount',
 			'value' => '"Php " . number_format($data->totalAmount, 2)',
+		),
+		array(
+			'name' => 'orderConfirmationNo',
+			'header' => 'Confirmation No',
 		),
 		array(
 			'name' => 'orderStatus.description',

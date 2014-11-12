@@ -66,7 +66,7 @@
     </div>
 
     <div class="modal-body">
-		<div class="form">
+		<div class="container-fluid">
 			<div class="row">
 				<?php echo CHtml::label('Find a Product', 'product'); ?>
 				<?php $this->widget('booster.widgets.TbTypeAhead', array(

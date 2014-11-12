@@ -69,7 +69,7 @@ class DeliveryController extends Controller
 
 		if(isset($_POST['Deliveries']))
 		{
-			$model->attributes=$_POST['Deliveries'];
+			$model->attributes = $_POST['Deliveries'];
 			
 			// TODO: Based on login
 			$model->receivedBy = 1;
@@ -116,16 +116,16 @@ class DeliveryController extends Controller
 								continue;
 							}
 							
-							if(!isset($products[$orderDetail->productId]))
+							if(!isset($products[$orderDetail->product->code]))
 							{
-								$products[$orderDetail->productId] = array(
+								$products[$orderDetail->product->code] = array(
 									'deliveryId' => $model->id,
-									'productId' => $orderDetail->productId,
+									'productId' => $orderDetail->product->code,
 									'ordered' => 0, // $orderDetail->quantity
 								);
 							}
 
-							$products[$orderDetail->productId]['ordered'] += $orderDetail->quantity;
+							$products[$orderDetail->product->code]['ordered'] += $orderDetail->quantity;
 						}
 					}
 					
@@ -146,7 +146,18 @@ class DeliveryController extends Controller
 			}
 		}
 		
+		$model->dateDelivered = date('Y-m-d');
+		
 		$pOrders = CHtml::listData(PurchaseOrders::model()->findAll('orderStatusId = 8'), 'id', 'orderConfirmationNo');
+		
+		if($pOrders)
+		{
+			$user = Yii::app()->getComponent('user');
+			$user->setFlash(
+				'error',
+				'There are NO confirmed Orders pending for Delivery!'
+			);
+		}
 
 		$this->render('create',array(
 			'model' => $model,

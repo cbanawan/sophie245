@@ -39,9 +39,8 @@
 				echo $form->hiddenField($orderModel, 'userId', array('value' => 1)); 
 			?>
 
-			<div class="row-fluid">
-				<div class="col-xs-12">
-					<div class="col-xs-3">
+				<div class="row">
+					<div class="col-sm-3">
 					<?php
 						echo $form->textFieldGroup(
 							$orderModel,
@@ -59,8 +58,8 @@
 					?>
 					</div>
 				</div>
-				<div class="col-xs-12">
-					<div class="col-xs-6">
+				<div class="row">
+					<div class="col-sm-5">
 					<?php
 					echo $form->textFieldGroup(
 						$orderModel,
@@ -78,8 +77,8 @@
 					?>
 					</div>
 				</div>
-				<div class="col-xs-12">
-					<div class="col-xs-3">
+				<div class="row">
+					<div class="col-sm-3">
 					<?php
 					echo $form->datePickerGroup(
 						$orderModel,
@@ -100,13 +99,12 @@
 					?>
 					</div>
 				</div>
-				<div class="col-xs-12">
-					<div class="col-xs-3">
+				<div class="row">
+					<div class="col-sm-12">
 						<?php echo CHtml::submitButton($orderModel->isNewRecord ? 'Create' : 'Save', array('id' => 'btnSubmit', 'class' => 'btn btn-primary')); ?>
 						<?php echo CHtml::button('Cancel', array('submit' => $this->createUrl('order/index'), 'class' => 'btn')); ?>
 					</div>		
 				</div>
-			</div>
 
 			<?php $this->endWidget(); ?>			
 		</div>

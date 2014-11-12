@@ -59,16 +59,16 @@ class PurchaseOrderController extends Controller
 		{
 			foreach($order->orderdetails as $orderDetail)
 			{
-				if(!isset($productOrders[$orderDetail->productId]))
+				if(!isset($productOrders[$orderDetail->product->code]))
 				{
-					$productOrders[$orderDetail->productId] = $orderDetail->product->attributes;
-					$productOrders[$orderDetail->productId]['netPrice'] = $orderDetail->product->catalogPrice - ($orderDetail->product->catalogPrice * ($orderDetail->discount / 100));
-					$productOrders[$orderDetail->productId]['quantity'] = 0;
-					$productOrders[$orderDetail->productId]['_availabe'] = $orderDetail->orderDetailStatus->_active;
-					$productOrders[$orderDetail->productId]['status'] = $orderDetail->orderDetailStatus->description;
+					$productOrders[$orderDetail->product->code] = $orderDetail->product->attributes;
+					$productOrders[$orderDetail->product->code]['netPrice'] = $orderDetail->product->catalogPrice - ($orderDetail->product->catalogPrice * ($orderDetail->discount / 100));
+					$productOrders[$orderDetail->product->code]['quantity'] = 0;
+					$productOrders[$orderDetail->product->code]['_availabe'] = $orderDetail->orderDetailStatus->_active;
+					$productOrders[$orderDetail->product->code]['status'] = $orderDetail->orderDetailStatus->description;
 				}
 				
-				$productOrders[$orderDetail->productId]['quantity'] += $orderDetail->quantity;
+				$productOrders[$orderDetail->product->code]['quantity'] += $orderDetail->quantity;
 			}
 		}
 		$productOrders = array_values($productOrders);

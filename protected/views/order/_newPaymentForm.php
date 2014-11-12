@@ -48,7 +48,6 @@
     </div>
 
     <div class="modal-body">
-		<div class="form">
 		<?php $form = $this->beginWidget('booster.widgets.TbActiveForm', array(
 			'id' => 'order-payment-form',
 			'action' => Yii::app()->createUrl($this->route),
@@ -59,7 +58,7 @@
 		?>
 
 			<div class="container-fluid">
-				<div class="row-fluid">
+				<div class="row">
 					<div class="col-md-6">
 					<strong>Payment Details</strong>
 						<table class="table-striped table-condensed">
@@ -147,7 +146,7 @@
 				</div>
 			<?php $this->endWidget(); ?>
 			</div>
-		</div>
+
     </div>
 
 <?php $this->endWidget(); ?>

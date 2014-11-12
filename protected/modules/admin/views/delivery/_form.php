@@ -40,82 +40,84 @@
 		)
 	); ?>	
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<div class="container-fluid">
+		<p class="note">Fields with <span class="required">*</span> are required.</p>
 
-	<?php // echo $form->errorSummary($model); ?>
+		<?php // echo $form->errorSummary($model); ?>
 
-	<div class="row">
-		<div class="span-6">
-		<?php echo $form->dropDownListGroup(
-			$model,
-			'purchaseOrderId',
-			array(
-				'wrapperHtmlOptions' => array(
-					'class' => 'col-sm-5',
-				),
-				'widgetOptions' => array(
-					'data' => $pOrders,
-					'htmlOptions' => array(),
-				)
-			)
-		); ?>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="span-6">
-		<?php
-			echo $form->textFieldGroup(
+		<div class="row">
+			<div class="col-sm-3">
+			<?php echo $form->dropDownListGroup(
 				$model,
-				'deliveryNo',
+				'purchaseOrderId',
 				array(
 					'wrapperHtmlOptions' => array(
 						'class' => 'col-sm-5',
 					),
-					// 'hint' => 'In addition to freeform text, any HTML5 text-based input appears like so.'
-				)
-			);			
-		?>
-		</div>
-	</div>
-	
-	<div class="row">
-		<div class="span-6">
-		<?php
-			echo $form->datePickerGroup(
-					$model,
-					'dateDelivered',
-					array(
-						'widgetOptions' => array(
-							'options' => array(
-								'language' => 'es',
-							),
-						),
-						'wrapperHtmlOptions' => array(
-							'class' => 'col-sm-3',
-						),
-						// 'hint' => 'Click inside! This is a super cool date field.',
-						'prepend' => '<i class="glyphicon glyphicon-calendar"></i>'
+					'widgetOptions' => array(
+						'data' => $pOrders,
+						'htmlOptions' => array(),
 					)
-				);		
-		?>
+				)
+			); ?>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-3">
+			<?php
+				echo $form->textFieldGroup(
+					$model,
+					'deliveryNo',
+					array(
+						'wrapperHtmlOptions' => array(
+							'class' => 'col-sm-5',
+						),
+						// 'hint' => 'In addition to freeform text, any HTML5 text-based input appears like so.'
+					)
+				);			
+			?>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-3">
+			<?php
+				echo $form->datePickerGroup(
+						$model,
+						'dateDelivered',
+						array(
+							'widgetOptions' => array(
+								'options' => array(
+									'language' => 'es',
+									'format' => 'yyyy-mm-dd',
+								),
+							),
+							'wrapperHtmlOptions' => array(
+								'class' => 'col-sm-3',
+							),
+							// 'hint' => 'Click inside! This is a super cool date field.',
+							'prepend' => '<i class="glyphicon glyphicon-calendar"></i>'
+						)
+					);		
+			?>
+			</div>
+		</div>
+
+		<?php $this->endWidget(); ?>
+
+		<div class="row buttons">
+			<?php 
+				/*$this->widget(
+					'booster.widgets.TbButton',
+					array(
+						'label' => $model->isNewRecord ? 'Create' : 'Save',
+						'buttonType' => 'submit',
+					)
+				);*/
+			?>
 		</div>
 	</div>
-
-	<?php $this->endWidget(); ?>
-	
-	<div class="row buttons">
-		<?php 
-			/*$this->widget(
-				'booster.widgets.TbButton',
-				array(
-					'label' => $model->isNewRecord ? 'Create' : 'Save',
-					'buttonType' => 'submit',
-				)
-			);*/
-		?>
-	</div>
-
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->

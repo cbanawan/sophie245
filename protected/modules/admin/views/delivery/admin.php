@@ -70,11 +70,24 @@ $('.search-form form').submit(function(){
 			'header' => 'Delivery Date',
 			'value' => 'date("m/d/Y", strtotime($data->dateDelivered))',
 		),
-		'purchaseOrderId',
 		array(
 			'name' => 'receviedBy',
 			'header' => 'Received By',
 			'value' => '$data->user->username',
+		),
+		'purchaseOrderId',
+		array(
+			'name' => 'purchaseOrder.orderConfirmationNo',
+			'header' => 'P.O. Confirmation No',
+		),
+		array(
+			'name' => 'deliveryNo',
+			'header' => 'Delivery No',
+		),
+		array(
+			'name' => 'deliveryConfirmed',
+			'header' => 'Confirmed',
+			'value' => '$data->deliveryConfirmed ? "Yes" : "No"'
 		),
 		array(
 			'header' => 'Actions',
