@@ -117,6 +117,7 @@
 										  url: '" . Yii::app()->createUrl('order/ajaxGetOrder', array('id' => $order->id)) . "',
 										  // data: $(this).serialize(),
 										  datatype: 'json',
+										  beforeSend: function() { Loading.show(); },
 										  success: function(data) {
 											  $('#amount').val(data.amountDue.toFixed(2));
 
@@ -129,6 +130,7 @@
 										})
 										  .done(function( msg ) {
 											  $.fn.yiiGridView.update('order-items-grid');
+											  Loading.hide();
 										});							
 									",
 							),

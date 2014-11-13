@@ -38,6 +38,7 @@
 	);	
 ?>
 <div class="container-fluid">	
+	<?php $this->widget('ext.widgets.loading.LoadingWidget'); ?>
 	<div id="breadCrumb">
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('booster.widgets.TbBreadcrumbs', array(

@@ -6,6 +6,10 @@
 			});
 
 			$('#btnClear').click(function(){
+			
+				$('#discount').attr('disabled', 'disabled');
+				$('#quantity').attr('disabled', 'disabled');
+			
 				$('#product').val('');
 				$('#product').focus();
 			});
@@ -122,6 +126,7 @@
 						<?php echo CHtml::textField(
 								'discount', '', 
 								array(
+									'disabled' => true, 
 									'class' => 'text-right form-control',
 									'onchange' => 'js:
 										var discount = Number($("#catalogPrice").val()) * (Number($(this).val())/100);
@@ -139,7 +144,7 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<?php echo CHtml::label('Quantity', 'quantity'); ?>
-						<?php echo CHtml::textField('quantity', '', array('class' => 'text-right form-control span-3')); ?>
+						<?php echo CHtml::textField('quantity', '', array('disabled' => true, 'class' => 'text-right form-control span-3')); ?>
 					</div>
 				</div>
 			   <div class="modal-footer">
@@ -199,8 +204,6 @@
 <script>
 	$("#product").keypress(function( event ) {
 		if ( event.which == 13 ) {
-			$('#quantity').val(1);
-			$("#quantity").focus();
 			if($(this).val() == '')
 			{
 				$('#btnClose').click();
@@ -209,27 +212,45 @@
 			else {
 				product = $(this).val();
 				prod = product.split(" ");
-
-				$.getJSON("<?php echo Yii::app()->createUrl('products/getProduct&id='); ?>" + prod[0],function(result){
+				
+				$.ajax({
+				  type: 'GET',
+				  dateType: 'json',
+				  url: "<?php echo Yii::app()->createUrl('products/getProduct&id='); ?>" + prod[0],
+				  beforeSend: function() { Loading.show(); },
+				  success: function(result){
 					// alert(result.id);
-					$("#productId").val(result.id);
-					$("#discount").val(result.netPriceDiscount);
-					$("#discount").val(result.netPriceDiscount);
-					$("#productDesc").val(result.code + ' ' + result.description);
-					$("#catalogPrice").val(Number(result.catalogPrice).toFixed(2));
-					var discount = Number(result.catalogPrice * (result.netPriceDiscount/100));
-					$("#netPrice").val((result.catalogPrice - discount).toFixed(2));
-					stockStatus = 'Available';
-					if(result._outOfStocksUp == 0)
+					if(result.id)
 					{
-						stockStatus = 'Out Of Stock';
+						$("#discount").removeAttr("disabled");
+						$("#quantity").removeAttr("disabled");
+
+						$('#quantity').val(1);
+						$("#quantity").focus();
+
+						$("#productId").val(result.id);
+						$("#discount").val(result.netPriceDiscount);
+						$("#discount").val(result.netPriceDiscount);
+						$("#productDesc").val(result.code + ' ' + result.description);
+						$("#catalogPrice").val(Number(result.catalogPrice).toFixed(2));
+						var discount = Number(result.catalogPrice * (result.netPriceDiscount/100));
+						$("#netPrice").val((result.catalogPrice - discount).toFixed(2));
+						stockStatus = 'Available';
+						if(result._outOfStocksUp == 0)
+						{
+							stockStatus = 'Out Of Stock';
+						}
+						else if(result._outOfStocksUp > 0)
+						{
+							stockStatus = 'Critical Stock (' + result._outOfStocksUp + ')';
+						}
+						$("#stockStatus").val(stockStatus);	
 					}
-					else if(result._outOfStocksUp > 0)
-					{
-						stockStatus = 'Critical Stock (' + result._outOfStocksUp + ')';
-					}
-					$("#stockStatus").val(stockStatus);
-				});
+				  }
+				})
+				  .done(function( msg ) {
+					 Loading.hide();
+				});				
 			}			
 		}
 	});

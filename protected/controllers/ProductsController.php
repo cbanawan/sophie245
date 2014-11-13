@@ -152,6 +152,12 @@ class ProductsController extends Controller
 				)
 			);
 		
+		if(!$product)
+		{
+			$product = new Products();
+		}
+		
+		header('Content-Type: application/json');
 		echo json_encode($product->attributes);
 		exit;
 		
