@@ -22,7 +22,7 @@
 	<?php $this->beginWidget(
 		'booster.widgets.TbPanel',
 		array(
-			'title' => 'Create Purchase Order',
+			'title' => $model->isNewRecord ? 'Create Purchase Order' : 'Update Purchase Order',
 			'headerIcon' => 'barcode',
 			'headerButtons' => array(
 				array(
@@ -73,7 +73,7 @@
 						array(
 							'widgetOptions' => array(
 								'options' => array(
-									'language' => 'es',
+									// 'language' => 'es',
 									'format' => 'yyyy-mm-dd'
 								),
 							),
@@ -96,7 +96,7 @@
 						array(
 							'widgetOptions' => array(
 								'options' => array(
-									'language' => 'es',
+									// 'language' => 'es',
 									'format' => 'yyyy-mm-dd'
 								),
 							),

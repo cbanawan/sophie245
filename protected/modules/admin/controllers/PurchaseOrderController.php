@@ -255,8 +255,8 @@ class PurchaseOrderController extends Controller
 				)
 			);
 		
-		$purchaseOrder->dateOrdered = date('m/d/Y', strtotime($purchaseOrder->dateOrdered));
-		$purchaseOrder->dateExpected = date('m/d/Y', strtotime($purchaseOrder->dateExpected));
+		$purchaseOrder->dateOrdered = date('Y-m-d', strtotime($purchaseOrder->dateOrdered));
+		$purchaseOrder->dateExpected = date('Y-m-d', strtotime($purchaseOrder->dateExpected));
 		
 		$orderItems = new CArrayDataProvider('Orders');
 		$orderItems->setData($orders);		

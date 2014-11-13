@@ -27,7 +27,7 @@ class DeliveryController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'ajaxUpdateQuantity', 'confirm'),
+				'actions'=>array('create','update', 'ajaxUpdateQuantity', 'confirm', 'deliveryUpdate'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -54,6 +54,77 @@ class DeliveryController extends Controller
 					'model'=>$delivery,
 				)
 			);
+	}
+	
+	public function actionDeliveryUpdate($id)
+	{
+		$model = Deliveries::model()->findByPk($id);
+		
+			if($model)
+			{
+				// Update status of PO
+				$purchaseOrder = PurchaseOrders::model()->with('orders')->findByPk($model->purchaseOrderId);
+				if($purchaseOrder)
+				{
+					// Get order statuses
+					$orderStatus = CHtml::listData(Orderstatus::model()->findAll(), 'status', 'id');
+
+					// Update the PO status
+					/*if(isset($orderStatus['delivered']))
+					{
+						$purchaseOrder->orderStatusId = $orderStatus['delivered'];
+						$purchaseOrder->save();
+					}*/
+					
+					$products = array();
+					foreach($purchaseOrder->orders as $order)
+					{
+						// Update order status
+						/*if(!in_array($order->orderStatusId, array(4, 5)))
+						{
+							if(isset($orderStatus['delivered']))
+							{
+								$order->orderStatusId = $orderStatus['delivered'];
+								$order->save();
+							}
+						}*/
+						
+						// Gather all products in all order in this PO
+						foreach($order->orderdetails as $orderDetail)
+						{
+							if(!$orderDetail->orderDetailStatus->_active)
+							{
+								continue;
+							}
+							
+							if(!isset($products[$orderDetail->product->code]))
+							{
+								$products[$orderDetail->product->code] = array(
+									'deliveryId' => $model->id,
+									'productId' => $orderDetail->productId,
+									'ordered' => 0, // $orderDetail->quantity
+								);
+							}
+
+							$products[$orderDetail->product->code]['ordered'] += $orderDetail->quantity;
+						}
+					}
+					
+					// Insert products to delivery details for initial product list
+					foreach($products as $product)
+					{
+						$product['delivered'] = $product['ordered'];
+						
+						$dProduct = new DeliveryProducts();
+						$dProduct->attributes = $product;
+						$dProduct->save();
+					}
+				}
+				
+				
+				
+				$this->redirect(array('view','id'=>$model->id));
+			}
 	}
 
 	/**
@@ -120,7 +191,7 @@ class DeliveryController extends Controller
 							{
 								$products[$orderDetail->product->code] = array(
 									'deliveryId' => $model->id,
-									'productId' => $orderDetail->product->code,
+									'productId' => $orderDetail->productId,
 									'ordered' => 0, // $orderDetail->quantity
 								);
 							}
@@ -150,7 +221,7 @@ class DeliveryController extends Controller
 		
 		$pOrders = CHtml::listData(PurchaseOrders::model()->findAll('orderStatusId = 8'), 'id', 'orderConfirmationNo');
 		
-		if($pOrders)
+		if(!$pOrders)
 		{
 			$user = Yii::app()->getComponent('user');
 			$user->setFlash(
