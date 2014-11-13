@@ -45,11 +45,6 @@
 			'value' => '$data->orderStatusDesc',
 			// 'htmlOptions' => array('class' => 'text-center'),
 		),
-		/*array(
-			'name' => 'catalogId',
-			'value' => '$data->catalog->name',
-			// 'htmlOptions' => array('class' => 'text-center'),
-		),*/
 		'purchaseOrder.purchaseOrder.orderConfirmationNo',
 		'purchaseOrder.purchaseOrder.dateExpected',
 		array(

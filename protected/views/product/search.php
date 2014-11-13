@@ -20,9 +20,9 @@
 	");
 ?>
 
-<div class="form">
+<div class="container-fluid">
 	<div class="row">
-		<div class="span-12">
+		<div class="col-sm-6">
 		<?php echo CHtml::label('Find a Product', 'product'); ?>
 		<?php $this->widget('booster.widgets.TbTypeAhead', array(
 			'id' => 'product',
@@ -45,33 +45,46 @@
 	)); ?>
 
 	<div class="row">
-		<?php echo CHtml::label('Selected Product', 'productDesc'); ?>
-		<?php echo CHtml::textField('productDesc', '', array('disabled' => true, 'class' => 'span-12 form-control')); ?>
+		<div class="col-sm-6">
+			<?php echo CHtml::label('Selected Product', 'productDesc'); ?>
+			<?php echo CHtml::textField('productDesc', '', array('disabled' => true, 'class' => 'span-12 form-control')); ?>
+		</div>			
 	</div>
 	<div class="row">
-		<?php echo CHtml::label('Stock Status', 'stockStatus'); ?>
-		<?php echo CHtml::textField('stockStatus', '', array('disabled' => true, 'class' => 'span-6 form-control')); ?>
+		<div class="col-sm-3">
+			<?php echo CHtml::label('Stock Status', 'stockStatus'); ?>
+			<?php echo CHtml::textField('stockStatus', '', array('disabled' => true, 'class' => 'span-6 form-control')); ?>
+		</div>
 	</div>
 	<div class="row">
-		<?php echo CHtml::label('Catalog Price', 'catalogPrice'); ?>
-		<?php echo CHtml::textField('catalogPrice', '', array('disabled' => true, 'class' => 'span-3 form-control')); ?>
+		<div class="col-sm-2">
+			<?php echo CHtml::label('Catalog Price', 'catalogPrice'); ?>
+			<?php echo CHtml::textField('catalogPrice', '', array('disabled' => true, 'class' => 'span-3 form-control')); ?>
+		</div>
 	</div>
 	<div class="row">
-		<?php echo CHtml::label('Discount', 'discount'); ?>
-		<?php echo CHtml::textField('discount', '', array('disabled' => true, 'class' => 'span-3 form-control')); ?>
+		<div class="col-sm-2">
+			<?php echo CHtml::label('Discount', 'discount'); ?>
+			<?php echo CHtml::textField('discount', '', array('disabled' => true, 'class' => 'span-3 form-control')); ?>
+		</div>
 	</div>
 	<div class="row">
-		<?php echo CHtml::label('Net Price', 'netPrice'); ?>
-		<?php echo CHtml::textField('netPrice', '', array('disabled' => true, 'class' => 'span-3 form-control')); ?>
+		<div class="col-sm-2">
+			<?php echo CHtml::label('Net Price', 'netPrice'); ?>
+			<?php echo CHtml::textField('netPrice', '', array('disabled' => true, 'class' => 'span-3 form-control')); ?>
+		</div>
 	</div>
-	
-	<div class="row buttons">
-		<?php echo CHtml::resetButton('Clear', array('id' => 'btnClear', 'class' => 'btn btn-primary')); ?>
+	<div>&nbsp;</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<?php echo CHtml::resetButton('Clear', array('id' => 'btnClear', 'class' => 'btn btn-primary')); ?>
+		</div>
 	</div>
 
 	<?php $this->endWidget(); ?>
 
 </div><!-- search-form -->
+<div>&nbsp;</div>
 
 <script>
 	$("#product").keypress(function( event ) {

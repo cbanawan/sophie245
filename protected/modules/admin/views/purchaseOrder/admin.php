@@ -55,7 +55,7 @@ $('.search-form form').submit(function(){
 	// 'filter'=>$model,
 	'columns'=>array(
 		'id',
-		array(
+		/*array(
 			'name' => 'dateCreated',
 			'header' => 'Date Created',
 			'value' => 'date("m/d/Y h:i A", strtotime($data->dateCreated))',
@@ -64,16 +64,16 @@ $('.search-form form').submit(function(){
 			'name' => 'dateLastModified',
 			'header' => 'Last Modified',
 			'value' => 'date("m/d/Y h:i A", strtotime($data->dateLastModified))',
-		),
+		),*/
 		array(
 			'name' => 'dateOrdered',
 			'header' => 'Order Date',
-			'value' => 'date("m/d/Y", strtotime($data->dateOrdered))',
+			'value' => 'date("D m/d/Y", strtotime($data->dateOrdered))',
 		),
 		array(
 			'name' => 'dateExpected',
 			'header' => 'Date Expected',
-			'value' => 'date("m/d/Y", strtotime($data->dateExpected))',
+			'value' => 'date("D m/d/Y", strtotime($data->dateExpected))',
 		),
 		array(
 			'name' => 'user.username',
@@ -87,12 +87,20 @@ $('.search-form form').submit(function(){
 		array(
 			'name' => 'orderConfirmationNo',
 			'header' => 'Confirmation No',
+			'value' => '$data->orderConfirmationNo ? $data->orderConfirmationNo : "-"'
 		),
 		array(
 			'name' => 'orderStatus.description',
 			'header' => 'Status',
 		),
+		// 'delivery.dateDelivered',
 		array(
+			'name' => 'delivery.dateDelivered',
+			'header' => 'Delivery Date',
+			// 'value' => '$data->delivery->dateDelivered',
+		),		
+		array(
+			'header' => 'Actions',
 			'class' => 'booster.widgets.TbButtonColumn',
 			'template' => '{view}',
 			'buttons' => array(

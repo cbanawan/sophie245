@@ -55,6 +55,7 @@ class PurchaseOrders extends CActiveRecord
 			// array(self::HAS_MANY, 'Purchaseorderorders', 'purchaseOrderId'),
 			'user' => array(self::BELONGS_TO, 'Users', 'userId'),
 			'orderStatus' => array(self::BELONGS_TO, 'Orderstatus', 'orderStatusId'),
+			'delivery' => array(self::HAS_ONE, 'Deliveries', 'purchaseOrderId'),
 		);
 	}
 
