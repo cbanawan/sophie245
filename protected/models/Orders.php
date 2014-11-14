@@ -251,6 +251,7 @@ class Orders extends CActiveRecord
 		$gross = 0;
 		$net = 0;
 		$items = 0;
+		$outOfStock = 0;
 		$orderDetails = $this->orderdetails;
 		foreach($orderDetails as $orderDetail)
 		{
@@ -261,12 +262,20 @@ class Orders extends CActiveRecord
 				$net += $orderDetail->product->catalogPrice * $discount * $orderDetail->quantity;
 				$items += $orderDetail->quantity;
 			}
+			else
+			{
+				if($orderDetail->orderDetailStatus->status == 'outOfStock')
+				{
+					$outOfStock += $orderDetail->quantity;
+				}
+			}
 		}
 		
 		return array(
 					'gross' => $gross,
 					'net' => $net,
 					'items' => $items,
+					'outOfStock' => $outOfStock,
 				);
 	}
 	
@@ -279,6 +288,11 @@ class Orders extends CActiveRecord
 		}
 		
 		return $paymentTotal;
+	}
+	
+	public function getOutOfStock()
+	{
+		return $this->orderDetailSummary['outOfStock'];
 	}
 	
 	public function getMemberMemberCode()

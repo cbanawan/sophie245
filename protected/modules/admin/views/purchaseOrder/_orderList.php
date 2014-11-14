@@ -1,8 +1,10 @@
 <?php
 	$gridColumns = array(
 		array(
+			'type' => 'raw',
 			'name' => 'id',
 			'header' => 'Order ID',
+			'value' => 'CHtml::link($data->id, Yii::app()->createUrl("order/view",array("id"=>$data->id)), array("target" => "_blank"))'
 		),
 		array(
 			'name' => 'dateCreated',
@@ -19,6 +21,10 @@
 		array(
 			'name' => 'totalPayment',
 			'header' => 'Amount Paid',
+		),
+		array(
+			'name' => 'outOfStock',
+			'header' => 'Out-Of-Stock Items',
 		),
 		array(
 			'name' => 'orderStatus.description',
