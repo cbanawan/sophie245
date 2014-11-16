@@ -77,77 +77,74 @@
 		</div>
 
 		<div class="search-form" style="display:none">		
-			<div class="container-fluid">
-			
-				<div class="row">
-					<div class="span-6">
-					<?php
-							echo $form->textFieldGroup(
-								$model,
-								'memberCode',
-								array(
-									'wrapperHtmlOptions' => array(
-										'class' => 'col-sm-5',
-									),
-								)
-							);
-							
-							echo $form->dateRangeGroup(
-								$model,
-								'dateCreatedRange',
-								array(
-									'widgetOptions' => array(
-										'callback' => 'js:function(start, end){console.log(start.toString("MMMM d, yyyy") + " - " + end.toString("MMMM d, yyyy"));}'
-									), 
-									'wrapperHtmlOptions' => array(
-										'class' => 'col-sm-5',
-									),
-									'prepend' => '<i class="glyphicon glyphicon-calendar"></i>'
-								)
-							);								
+			<div class="container-fluid well">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                     <?php
+                                         echo $form->textFieldGroup(
+                                                 $model,
+                                                 'memberCode',
+                                                 array(
+                                                         'wrapperHtmlOptions' => array(
+                                                                 'class' => 'col-sm-5',
+                                                         ),
+                                                 )
+                                         );
+                                     ?>
+                                     </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                    <?php
+                                        echo $form->dateRangeGroup(
+                                                $model,
+                                                'dateCreatedRange',
+                                                array(
+                                                        'widgetOptions' => array(
+                                                                'callback' => 'js:function(start, end){console.log(start.toString("MMMM d, yyyy") + " - " + end.toString("MMMM d, yyyy"));}'
+                                                        ), 
+                                                        'wrapperHtmlOptions' => array(
+                                                                'class' => 'col-sm-5',
+                                                        ),
+                                                        'prepend' => '<i class="glyphicon glyphicon-calendar"></i>'
+                                                )
+                                        );								
 
-							/*echo $form->textFieldGroup(
-								$model,
-								'memberName',
-								array(
-									'label' => 'Lastname',
-									'wrapperHtmlOptions' => array(
-										'class' => 'col-sm-5',
-									),
-								)
-							);	*/			
-					?>
-					</div>
-					<div class="span-3">&nbsp;</div>
-					<div class="span-6">
-					<?php
-							/*echo $form->dateRangeGroup(
-								$model,
-								'dateLastModifiedRange',
-								array(
-									'widgetOptions' => array(
-										'callback' => 'js:function(start, end){console.log(start.toString("MMMM d, yyyy") + " - " + end.toString("MMMM d, yyyy"));}'
-									), 
-									'wrapperHtmlOptions' => array(
-										'class' => 'col-sm-5',
-									),
-									'prepend' => '<i class="glyphicon glyphicon-calendar"></i>'
-								)
-							);	*/	
+                                    ?>
+                                    </div>
+                                </div>
+                            </div>
 
-							echo $form->checkboxListGroup(
-								$model,
-								'orderStatusId',
-								array(
-									'widgetOptions' => array(
-										'data' => $orderStatus,
-									),
-									// 'hint' => '<strong>Note:</strong> Labels surround all the options for much larger click areas.'
-								)
-							);						
-					?>
-					</div>
-				</div>
+                            <div class="col-sm-6">
+                            <?php
+                                            /*echo $form->dateRangeGroup(
+                                                    $model,
+                                                    'dateLastModifiedRange',
+                                                    array(
+                                                            'widgetOptions' => array(
+                                                                    'callback' => 'js:function(start, end){console.log(start.toString("MMMM d, yyyy") + " - " + end.toString("MMMM d, yyyy"));}'
+                                                            ), 
+                                                            'wrapperHtmlOptions' => array(
+                                                                    'class' => 'col-sm-5',
+                                                            ),
+                                                            'prepend' => '<i class="glyphicon glyphicon-calendar"></i>'
+                                                    )
+                                            );	*/	
+
+                                            echo $form->checkboxListGroup(
+                                                    $model,
+                                                    'orderStatusId',
+                                                    array(
+                                                            'widgetOptions' => array(
+                                                                    'data' => $orderStatus,
+                                                            ),
+                                                            // 'hint' => '<strong>Note:</strong> Labels surround all the options for much larger click areas.'
+                                                    )
+                                            );						
+                            ?>
+                            </div>
+				
 			</div>
 		</div>
 
