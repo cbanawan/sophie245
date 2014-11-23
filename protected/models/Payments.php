@@ -116,6 +116,26 @@ class Payments extends CActiveRecord
 		return parent::model($className);
 	}
 	
+	public function beforeSave() 
+	{
+		if ($this->isNewRecord)
+		{
+			// var_dump($this->dateCreated); exit;
+			if(!isset($this->dateCreated))
+			{
+				$this->dateCreated = new CDbExpression('NOW()');
+			}
+			else
+			{
+				$this->dateCreated .= date(' H:i:s');
+			}
+		}
+
+		$this->dateLastModified = new CDbExpression('NOW()');
+		
+		return parent::beforeSave();
+	}	
+	
 	public function afterSave()
 	{
 		if($this->orderId)
