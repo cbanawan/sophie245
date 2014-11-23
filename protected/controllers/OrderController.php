@@ -321,27 +321,29 @@ class OrderController extends Controller
 					$paymentTypeModel = Paymenttypes::model()->find('name = :name', array(':name' => $paymentType));
 					$payment->paymentTypeId = $paymentTypeModel->id;	
 					
+					// TODO: Must be dynamic
 					$payment->userId = 1;
-					$payment->dateCreated = date("Y-m-d H:i:s");
-					$payment->dateLastModified = date("Y-m-d H:i:s");
-				}	
-				var_dump($payment->attributes);	
-				if($payment->save())
-				{
-									
-					$order = Orders::model()->with('orderdetails')->findByPk($payment->orderId);
-					if($order->totalPayment < $order->netAmount)
+					// $payment->dateCreated = date("Y-m-d H:i:s");
+					// $payment->dateLastModified = date("Y-m-d H:i:s");
+	
+					if($payment->save())
 					{
-						$orderStatus = Orderstatus::model()->find('status = :status', array(':status' => 'partial'));
-						$order->orderStatusId = $orderStatus->id;
-					}
-					else
-					{
-						$orderStatus = Orderstatus::model()->find('status = :status', array(':status' => 'paid'));
-						$order->orderStatusId = $orderStatus->id;
-					}
+						if(!in_array($order->orderStatus->status, array('inOrder', 'delivered')))
+						{
+							if($order->totalPayment + $payment->amount < $order->netAmount)
+							{
+								$orderStatus = Orderstatus::model()->find('status = :status', array(':status' => 'partial'));
+								$order->orderStatusId = $orderStatus->id;
+							}
+							else
+							{
+								$orderStatus = Orderstatus::model()->find('status = :status', array(':status' => 'paid'));
+								$order->orderStatusId = $orderStatus->id;
+							}
 
-					$order->save();
+							$order->save();
+						}
+					}
 				}
 			}
 		}
