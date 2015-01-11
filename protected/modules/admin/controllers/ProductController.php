@@ -17,6 +17,8 @@ class ProductController extends Controller
 	public function actionUpload($catId = null)
 	{
 		$model = new Csv();
+                
+                var_dump($catId);
 		
 		$catalog = null;
 		// Fetch the catalog from params
@@ -82,8 +84,15 @@ class ProductController extends Controller
 						$tmpData['_outOfStocksUp'] = -1;
 						
 						// Assign product group id
-						$tmpData['group'] = strtolower($tmpData['group']);
-						$tmpData['group'] = str_replace(' ', '_', $tmpData['group']);
+                                                if(isset($tmpData['group']))
+                                                {
+                                                    $tmpData['group'] = strtolower($tmpData['group']);
+                                                    $tmpData['group'] = str_replace(' ', '_', $tmpData['group']);
+                                                }
+                                                else
+                                                {
+                                                    $tmpData['group'] = 'other';
+                                                }
 						if(isset($productGroup[$tmpData['group']]))
 						{
 							$tmpData['productGroupId'] = $productGroup[$tmpData['group']];	
@@ -105,11 +114,11 @@ class ProductController extends Controller
 						
 						$criteria = new CDbCriteria();
 						$criteria->addCondition('catalogId = :catalogId')
-								 ->addCondition('code = :code');
+							 ->addCondition('code = :code');
 						$criteria->params = array(
-										':catalogId' => $catalog->id,
-										':code' => $tmpData['code'],
-									);
+							':catalogId' => $catalog->id,
+							':code' => $tmpData['code'],
+						);
 						$product = Products::model()->find($criteria);
 						if(!$product)
 						{
@@ -195,20 +204,25 @@ class ProductController extends Controller
 					if($fp)
 					{
 						// Reset count
-						$currentCatalog = Catalogs::model()->find('_current = 1');
+						$currentCatalog = Catalogs::model()->findAll('_current = 1');
+                                                $catalogIds = array();
+                                                foreach($currentCatalog as $catalog)
+                                                {
+                                                    array_push($catalogIds, $catalog->id);
+                                                }
 
 						// Update all as inactive with zero stocks
 						Products::model()->updateAll(
 								array('_outOfStocksUp' => 0), 
-								'catalogId <> :catalogId', 
-								array(':catalogId' => $currentCatalog->id)
+								'catalogId NOT IN (' . implode(',', $catalogIds) . ')' 
+								// array(':catalogId' => $currentCatalog->id)
 							);
 						
 						// Update all products in current catalog as available
 						Products::model()->updateAll(
 								array('_outOfStocksUp' => -1), 
-								'catalogId = :catalogId', 
-								array(':catalogId' => $currentCatalog->id)
+								'catalogId IN (' . implode(',', $catalogIds) . ')'  
+								// array(':catalogId' => $currentCatalog->id)
 							);
 
 						//  $line = fgetcsv($fp, 1000, ",");

@@ -72,7 +72,7 @@
 						array(
 							'label' => 'Delete Permanently', 
 							'url' => Yii::app()->createUrl('order/delete', array('id' => $order->id)),
-							'visible' => in_array($order->orderStatus->status, array('cancelled')),
+							'visible' => 0, //in_array($order->orderStatus->status, array('cancelled')),
 						),
 					)
 				)

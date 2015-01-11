@@ -104,7 +104,7 @@
 			product = $(this).val();
 			prod = product.split(" ");
 
-			$.getJSON("<?php echo Yii::app()->createUrl('product/ajaxGetProduct&id='); ?>" + prod[0],function(result){
+			$.getJSON("<?php echo Yii::app()->createUrl('product/ajaxGetProduct&id='); ?>" + prod[1],function(result){
 				// alert(result.id);
 				$("#productDesc").val(result.code + ' ' + result.description);
 				catalogPrice = Number(result.catalogPrice);

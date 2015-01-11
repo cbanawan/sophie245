@@ -131,7 +131,7 @@ class Products extends CActiveRecord
 	
 	public function getCodeName()
 	{
-		return $this->code . ' ' . $this->description;
+		return 'CAT_' . $this->catalogId . ' ' . $this->code . ' ' . $this->description;
 	}
 	
 	public function getOutOfStock()

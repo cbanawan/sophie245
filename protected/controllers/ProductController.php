@@ -175,20 +175,20 @@ class ProductController extends Controller
 							$first_time = false;
 							continue;
 						}
-							/*$model = new Registration;
-							$model->firstname = $line[0];
-							$model->lastname  = $line[1];
+                                                /*$model = new Registration;
+                                                $model->firstname = $line[0];
+                                                $model->lastname  = $line[1];
 
-							$model->save();*/
-							$lineArray = explode(',', $line[0]);
-							Products::model()->updateAll(
-										array('_outOfStocksUp' => $lineArray[5]),
-										'code = :code',
-										array(':code' => $lineArray[0])
-									);
-							
-							var_dump('Updating.... ', $lineArray[0], $lineArray[5]);
-							echo '<br />';
+                                                $model->save();*/
+                                                $lineArray = explode(',', $line[0]);
+                                                Products::model()->updateAll(
+                                                                        array('_outOfStocksUp' => $lineArray[5]),
+                                                                        'code = :code',
+                                                                        array(':code' => $lineArray[0])
+                                                                );
+
+                                                var_dump('Updating.... ', $lineArray[0], $lineArray[5]);
+                                                echo '<br />';
 
 					}
 					// $this->redirect('././index');

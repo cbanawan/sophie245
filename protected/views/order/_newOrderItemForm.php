@@ -216,7 +216,7 @@
 				$.ajax({
 				  type: 'GET',
 				  dateType: 'json',
-				  url: "<?php echo Yii::app()->createUrl('products/getProduct&id='); ?>" + prod[0],
+				  url: "<?php echo Yii::app()->createUrl('products/getProduct&id='); ?>" + prod[1],
 				  beforeSend: function() { Loading.show(); },
 				  success: function(result){
 					// alert(result.id);
